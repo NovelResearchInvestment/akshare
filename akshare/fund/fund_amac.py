@@ -416,7 +416,7 @@ def amac_fund_info(start_page: str = '1', end_page: str = "2000", params: dict={
         "establishDate",
         "mandatorName",
     ]  # 定义要取的 value 的 keys
-    manager_data_out = big_df[keys_list]
+    manager_data_out = big_df[keys_list].copy()
     manager_data_out.columns = [
         "基金编号",
         "基金名称",

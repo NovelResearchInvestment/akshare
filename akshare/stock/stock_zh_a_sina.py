@@ -325,6 +325,10 @@ def stock_zh_a_minute(
         "datalen": datalen,
     }
     r = requests.get(url, params=params)
+    if len(r.text) == 0:
+        print(f"{symbol} 股票数据不存在，请检查是否已退市")
+        return
+
     temp_df = pd.DataFrame(json.loads(r.text.split("=(")[1].split(");")[0])).iloc[:, :6]
     if temp_df.empty:
         print(f"{symbol} 股票数据不存在，请检查是否已退市")
