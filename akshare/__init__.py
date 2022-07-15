@@ -2061,9 +2061,20 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.6.40 add: add stock_mda_ym interface
 1.6.41 add: add futures_inventory_99 interface
 1.6.42 fix: fix stock_balance_sheet_by_yearly_em interface
+1.6.43 fix: fix futures_inventory_99 interface
+1.6.44 fix: fix futures_inventory_em interface
+1.6.45 fix: fix stock_zh_index_hist_csindex interface
+1.6.46 fix: fix fund_open_fund_info_em interface
+1.6.47 fix: fix stock_zh_a_minute interface
+1.6.48 fix: fix stock_report_disclosure interface
+1.6.49 fix: fix stock_zh_a_alerts_cls interface
+1.6.50 add: add stock_industry_category_cninfo interface
+1.6.51 fix: fix stock_analyst_detail_em interface
+1.6.52 fix: fix index_zh_a_hist interface
+1.6.53 fix: fix fx_spot_quote interface
 """
 
-__version__ = "1.6.42"
+__version__ = "1.6.53"
 __author__ = "AKFamily"
 
 import sys
@@ -2073,6 +2084,11 @@ if sys.version_info < (3, 7):
     sys.exit(1)
 
 del sys
+
+"""
+行业板块
+"""
+from akshare.stock_feature.stock_classify_sina import stock_classify_sina
 
 """
 管理层讨论与分析
@@ -2447,6 +2463,19 @@ from akshare.stock.stock_new_cninfo import (
 个股分红
 """
 from akshare.stock.stock_dividents_cninfo import stock_dividents_cninfo
+
+"""
+公司股本变动
+"""
+from akshare.stock.stock_share_changes_cninfo import stock_share_change_cninfo
+
+"""
+行业分类数据
+"""
+from akshare.stock.stock_industry_cninfo import (
+    stock_industry_category_cninfo,
+    stock_industry_change_cninfo,
+)
 
 """
 行业市盈率
@@ -4073,6 +4102,11 @@ from akshare.index.index_investing import (
     index_investing_global_country_name_url,
     index_investing_global_from_url,
 )
+
+"""
+99期货-期货库存数据
+"""
+from akshare.futures.futures_inventory_99 import futures_inventory_99
 
 """
 东方财富-期货库存数据

@@ -29,6 +29,53 @@
 
 ## 更新说明
 
+1.6.53 fix: fix fx_spot_quote interface
+
+    1. 修复 fx_spot_quote 接口
+
+1.6.52 fix: fix index_zh_a_hist interface
+
+    1. 修复 index_zh_a_hist 接口，增加更多指数支持
+
+1.6.51 fix: fix stock_analyst_detail_em interface
+
+    1. 修复 stock_analyst_detail_em 接口，处理空数据情况
+
+1.6.50 add: add stock_industry_category_cninfo interface
+
+    1. 新增 stock_industry_category_cninfo 接口
+    2. 新增 stock_industry_change_cninfo 接口
+    3. 新增 stock_share_change_cninfo 接口
+    4. 新增 stock_classify_sina 接口
+
+1.6.49 fix: fix stock_zh_a_alerts_cls interface
+
+    1. 修复 stock_zh_a_alerts_cls 接口
+
+1.6.48 fix: fix stock_report_disclosure interface
+
+    1. 修复 stock_report_disclosure 接口，添加北交所的数据
+
+1.6.47 fix: fix stock_zh_a_minute interface
+
+    1. 修复 stock_zh_a_minute 接口
+
+1.6.46 fix: fix fund_open_fund_info_em interface
+
+    1. 修复 fund_open_fund_info_em 接口
+
+1.6.45 fix: fix stock_zh_index_hist_csindex interface
+
+    1. 修复 stock_zh_index_hist_csindex 接口
+
+1.6.44 fix: fix futures_inventory_em interface
+
+    1. 修复 futures_inventory_em 接口
+
+1.6.43 fix: fix futures_inventory_99 interface
+
+    1. 修复 futures_inventory_99 接口
+
 1.6.42 fix: fix stock_balance_sheet_by_yearly_em interface
 
     1. 修复 stock_balance_sheet_by_report_em 接口
@@ -864,6 +911,28 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.6.53 fix: fix fx_spot_quote interface
+
+1.6.52 fix: fix index_zh_a_hist interface
+
+1.6.51 fix: fix stock_analyst_detail_em interface
+
+1.6.50 add: add stock_industry_category_cninfo interface
+
+1.6.49 fix: fix stock_zh_a_alerts_cls interface
+
+1.6.48 fix: fix stock_report_disclosure interface
+
+1.6.47 fix: fix stock_zh_a_minute interface
+
+1.6.46 fix: fix fund_open_fund_info_em interface
+
+1.6.45 fix: fix stock_zh_index_hist_csindex interface
+
+1.6.44 fix: fix futures_inventory_em interface
+
+1.6.43 fix: fix futures_inventory_99 interface
 
 1.6.42 fix: fix stock_balance_sheet_by_yearly_em interface
 
