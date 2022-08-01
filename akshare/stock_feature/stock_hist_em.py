@@ -1001,7 +1001,7 @@ def stock_zh_a_hist_min_em(
             "最新价",
         ]
         temp_df.index = pd.to_datetime(temp_df["时间"])
-        temp_df = temp_df[start_date:end_date]
+        temp_df = temp_df[start_date:end_date].copy()
         temp_df.reset_index(drop=True, inplace=True)
         temp_df["开盘"] = pd.to_numeric(temp_df["开盘"])
         temp_df["收盘"] = pd.to_numeric(temp_df["收盘"])
