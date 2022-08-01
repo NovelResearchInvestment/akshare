@@ -422,6 +422,7 @@
  "currency_name_code"  # 当前所有可兑换货币对
  # 公募基金
  "fund_name_em",  # 基金基本信息
+ "fund_info_index_em",  # 指数型基金-基本信息
  "fund_purchase_em",  # 基金申购状态
  "fund_open_fund_daily_em",  # 开放式基金-实时数据
  "fund_open_fund_info_em",  # 开放式基金-历史数据
@@ -951,6 +952,7 @@
  "stock_rank_xzjp_ths"  # 险资举牌
  # 可转债分时数据
  "bond_zh_hs_cov_min"  # 可转债分时数据
+ "bond_zh_hs_cov_pre_min"  # 可转债分时数据-分时行情-盘前
  # 艺人
  "business_value_artist"  # 艺人商业价值
  "online_value_artist"  # 艺人流量价值
@@ -1110,6 +1112,11 @@
  "stock_industry_change_cninfo"  # 巨潮资讯-上市公司行业归属的变动情况
  # 公司股本变动
  "stock_share_change_cninfo"  # 巨潮资讯-公司股本变动
+ # 咨询-财联社
+ "stock_zh_a_alerts_cls"  # 咨询-财联社-今日快讯
+ "stock_telegraph_cls"  # 咨询-财联社-电报
+ # 上海金属网
+ "futures_news_shmet"  # 上海金属网-快讯
 ```
 
 ## 案例演示

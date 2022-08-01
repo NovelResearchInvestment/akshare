@@ -2072,9 +2072,28 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.6.51 fix: fix stock_analyst_detail_em interface
 1.6.52 fix: fix index_zh_a_hist interface
 1.6.53 fix: fix fx_spot_quote interface
+1.6.54 fix: fix stock_hsgt_hold_stock_em interface
+1.6.55 fix: fix stock_gdfx_free_holding_analyse_em interface
+1.6.56 fix: fix index_zh_a_hist interface
+1.6.57 fix: fix stock_info_sh_name_code interface
+1.6.58 fix: fix stock_gdfx_holding_analyse_em interface
+1.6.59 add: add stock_industry_change_cninfo interface
+1.6.60 add: add stock_telegraph_cls interface
+1.6.61 fix: fix futures_shfe_warehouse_receipt interface
+1.6.62 fix: fix futures_zh_spot interface
+1.6.63 fix: fix fund_portfolio_em and futures_roll_yield interface
+1.6.64 fix: fix index_investing_global interface
+1.6.65 fix: fix bond_cb_redeem_jsl interface
+1.6.66 fix: fix stock_balance_sheet_by_report_em interface
+1.6.67 fix: fix stock_zh_a_alerts_cls interface
+1.6.68 fix: fix stock_zh_a_minute interface
+1.6.69 add: add fund_info_index_em interface
+1.6.70 add: add bond_zh_hs_cov_pre_min interface
+1.6.71 fix: fix bond_zh_hs_cov_pre_min interface
+1.6.72 add: add futures_news_shmet interface
 """
 
-__version__ = "1.6.53"
+__version__ = "1.6.72"
 __author__ = "AKFamily"
 
 import sys
@@ -2711,7 +2730,11 @@ from akshare.stock.stock_stop import stock_staq_net_stop
 """
 每日快讯数据
 """
-from akshare.stock_feature.stock_cls_alerts import stock_zh_a_alerts_cls
+
+from akshare.stock_feature.stock_cls_alerts import (
+    stock_zh_a_alerts_cls,
+    stock_telegraph_cls,
+)
 
 """
 涨停板行情
@@ -3457,6 +3480,7 @@ from akshare.bond.bond_zh_cov_sina import (
     bond_zh_cov,
     bond_zh_cov_info,
     bond_zh_hs_cov_min,
+    bond_zh_hs_cov_pre_min,
     bond_zh_cov_value_analysis,
 )
 from akshare.bond.bond_convert import (
@@ -3500,6 +3524,7 @@ from akshare.fund.fund_em import (
     fund_financial_fund_daily_em,
     fund_financial_fund_info_em,
     fund_name_em,
+    fund_info_index_em,
     fund_graded_fund_daily_em,
     fund_graded_fund_info_em,
     fund_money_fund_daily_em,

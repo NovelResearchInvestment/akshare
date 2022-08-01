@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # !/usr/bin/env python
 """
-Date: 2022/2/17 16:55
+Date: 2022/7/15 22:00
 Desc: 东方财富网-数据中心-股东分析
 https://data.eastmoney.com/gdfx/
 """
@@ -741,6 +741,7 @@ def stock_gdfx_free_holding_analyse_em(date: str = "20210930") -> pd.DataFrame:
         "-",
         "-",
         "期末持股-数量变化",
+        "-",
         "公告日后涨跌幅-10个交易日",
         "公告日后涨跌幅-30个交易日",
         "公告日后涨跌幅-60个交易日",
@@ -775,7 +776,7 @@ def stock_gdfx_free_holding_analyse_em(date: str = "20210930") -> pd.DataFrame:
     return big_df
 
 
-def stock_gdfx_holding_analyse_em(date: str = "20210930") -> pd.DataFrame:
+def stock_gdfx_holding_analyse_em(date: str = "20220331") -> pd.DataFrame:
     """
     东方财富网-数据中心-股东分析-股东持股分析-十大股东
     https://data.eastmoney.com/gdfx/HoldingAnalyse.html
@@ -835,8 +836,8 @@ def stock_gdfx_holding_analyse_em(date: str = "20210930") -> pd.DataFrame:
         "股票简称",
         "-",
         "-",
-        "期末持股-流通市值",
         "期末持股-持股变动",
+        "期末持股-流通市值",
         "-",
         "-",
         "-",
@@ -865,6 +866,7 @@ def stock_gdfx_holding_analyse_em(date: str = "20210930") -> pd.DataFrame:
         ]
     ]
     big_df["公告日"] = pd.to_datetime(big_df["公告日"]).dt.date
+    big_df["报告期"] = pd.to_datetime(big_df["报告期"]).dt.date
     big_df["期末持股-数量"] = pd.to_numeric(big_df["期末持股-数量"])
     big_df["期末持股-数量变化"] = pd.to_numeric(big_df["期末持股-数量变化"])
     big_df["期末持股-数量变化比例"] = pd.to_numeric(big_df["期末持股-数量变化比例"])
@@ -1031,12 +1033,12 @@ if __name__ == "__main__":
     print(stock_gdfx_holding_detail_em_df)
 
     stock_gdfx_free_holding_analyse_em_df = stock_gdfx_free_holding_analyse_em(
-        date="20210930"
+        date="20220331"
     )
     print(stock_gdfx_free_holding_analyse_em_df)
 
     stock_gdfx_holding_analyse_em_df = stock_gdfx_holding_analyse_em(
-        date="20210930"
+        date="20220331"
     )
     print(stock_gdfx_holding_analyse_em_df)
 

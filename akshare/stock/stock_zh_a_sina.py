@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2022/7/12 17:28
+Date: 2022/7/27 22:28
 Desc: 新浪财经-A 股-实时行情数据和历史行情数据(包含前复权和后复权因子)
 https://finance.sina.com.cn/realstock/company/sh689009/nc.shtml
 """
@@ -345,21 +345,21 @@ def stock_zh_a_minute(
     :return: specific data
     :rtype: pandas.DataFrame
     """
-    url = "https://quotes.sina.cn/cn/api/jsonp_v2.php/=/CN_MarketDataService.getKLineData"
-    params = {
-        "symbol": symbol,
-        "scale": period,
-        "ma": "no",
-        "datalen": f"{datalen}",
-    }
-    r = requests.get(url, params=params)
-    data_text = r.text
-    if len(data_text) == 0:
-        print(f"{symbol} 股票数据不存在，请检查是否已退市")
-        return
-
-    data_json = json.loads(data_text.split("=(")[1].split(");")[0])
-    temp_df = pd.DataFrame(data_json).iloc[:, :6]
+    try:
+        data_json = json.loads(data_text.split("=(")[1].split(");")[0])
+        temp_df = pd.DataFrame(data_json).iloc[:, :6]
+    except:
+        url = f"https://quotes.sina.cn/cn/api/jsonp_v2.php/var%20_{symbol}_{period}_1658852984203=/CN_MarketDataService.getKLineData"
+        params = {
+            "symbol": symbol,
+            "scale": period,
+            "ma": "no",
+            "datalen": f"{datalen}",
+        }
+        r = requests.get(url, params=params)
+        data_text = r.text
+        data_json = json.loads(data_text.split("=(")[1].split(");")[0])
+        temp_df = pd.DataFrame(data_json).iloc[:, :6]
     if temp_df.empty:
         print(f"{symbol} 股票数据不存在，请检查是否已退市")
         return
@@ -492,12 +492,12 @@ if __name__ == "__main__":
     print(stock_zh_a_spot_df)
 
     stock_zh_a_minute_df = stock_zh_a_minute(
-        symbol="sh600751", period="5", adjust=""
+        symbol="sz000001", period="1", adjust=""
     )
     print(stock_zh_a_minute_df)
 
     stock_zh_a_minute_df = stock_zh_a_minute(
-        symbol="sh600751", period="1", adjust=""
+        symbol="sh600519", period="1", adjust="hfq"
     )
     print(stock_zh_a_minute_df)
 
