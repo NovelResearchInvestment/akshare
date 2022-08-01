@@ -339,7 +339,7 @@ def option_sse_spot_price_sina(symbol: str = "10003720") -> pd.DataFrame:
         "成交额",
     ]
     data_df = pd.DataFrame(
-        list(zip(field_list, data_list)), columns=["字段", "值"]
+        list(zip(field_list, data_list)), columns=["item", "value"]
     )
     return data_df
 
@@ -407,7 +407,7 @@ def option_sse_underlying_spot_price_sina(
         "停牌状态",
     ]
     data_df = pd.DataFrame(
-        list(zip(field_list, data_list)), columns=["字段", "值"]
+        list(zip(field_list, data_list)), columns=["item", "value"]
     )
     return data_df
 
@@ -454,7 +454,7 @@ def option_sse_greeks_sina(symbol: str = "10003045") -> pd.DataFrame:
     ]
     data_df = pd.DataFrame(
         list(zip(field_list, [data_list[0]] + data_list[4:])),
-        columns=["字段", "值"],
+        columns=["item", "value"],
     )
     return data_df
 
