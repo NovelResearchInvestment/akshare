@@ -29,6 +29,58 @@
 
 ## 更新说明
 
+1.6.84 fix: fix stock_zt_pool_em interface
+
+    1. 修复 stock_zt_pool_em 接口
+
+1.6.83 fix: fix option_dce_daily interface
+
+    1. 修复 option_dce_daily 接口，新增黄大豆1号，黄大豆2号，豆油等期权等支持
+
+1.6.82 fix: fix option_cffex_hs300_spot_sina interface
+
+    1. 修复 option_cffex_hs300_spot_sina 接口，对字段做异常处理
+
+1.6.81 fix: fix currency_hist interface
+
+    1. 修复 currency_hist 接口，同时修改该函数的参数及输出字段
+
+1.6.80 fix: fix index_investing_global interface
+
+    1. 修复 index_investing_global 接口，同时修改该函数的参数及输出字段
+
+1.6.79 fix: fix fund_rating_all interface
+
+    1. 修复 fund_rating_all 接口，字段与目标网站对齐
+
+1.6.78 fix: fix stock_telegraph_cls interface
+
+    1. 移除 pycryptodomex 依赖
+    2. 移除冗余代码
+
+1.6.77 fix: fix stock_telegraph_cls interface
+
+    1. 修复 stock_telegraph_cls 接口
+
+1.6.76 add: add pycryptodomex library
+
+    1. 新增 pycryptodomex 依赖库支持
+
+1.6.75 add: add option_cffex_zz1000_spot_sina interface
+
+    1. 新增 option_cffex_zz1000_spot_sina 接口
+    2. 将 stock_technology_ths.py 中所有接口 append 方法移除
+
+1.6.74 add: add option_cffex_zz1000_list_sina interface
+
+    1. 新增 option_cffex_zz1000_list_sina 接口
+    2. 新增 option_cffex_zz1000_spot_sina 接口
+    3. 新增 option_cffex_zz1000_daily_sina 接口
+
+1.6.73 fix: fix macro_china_rmb interface
+
+    1. 修复 macro_china_rmb 接口，规范输出的格式
+
 1.6.72 add: add futures_news_shmet interface
 
     1. 新增 futures_news_shmet 接口，获取期货资讯数据
@@ -987,6 +1039,30 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.6.84 fix: fix stock_zt_pool_em interface
+
+1.6.83 fix: fix option_dce_daily interface
+
+1.6.82 fix: fix option_cffex_hs300_spot_sina interface
+
+1.6.81 fix: fix currency_hist interface
+
+1.6.80 fix: fix index_investing_global interface
+
+1.6.79 fix: fix fund_rating_all interface
+
+1.6.78 fix: fix stock_telegraph_cls interface
+
+1.6.77 fix: fix stock_telegraph_cls interface
+
+1.6.76 add: add pycryptodomex library
+
+1.6.75 add: add option_cffex_zz1000_spot_sina interface
+
+1.6.74 add: add option_cffex_zz1000_list_sina interface
+
+1.6.73 fix: fix macro_china_rmb interface
 
 1.6.72 add: add futures_news_shmet interface
 

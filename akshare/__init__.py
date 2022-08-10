@@ -2091,9 +2091,21 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.6.70 add: add bond_zh_hs_cov_pre_min interface
 1.6.71 fix: fix bond_zh_hs_cov_pre_min interface
 1.6.72 add: add futures_news_shmet interface
+1.6.73 fix: fix macro_china_rmb interface
+1.6.74 add: add option_cffex_zz1000_list_sina interface
+1.6.75 add: add option_cffex_zz1000_spot_sina interface
+1.6.76 add: add pycryptodomex library
+1.6.77 fix: fix stock_telegraph_cls interface
+1.6.78 fix: fix stock_telegraph_cls interface
+1.6.79 fix: fix fund_rating_all interface
+1.6.80 fix: fix index_investing_global interface
+1.6.81 fix: fix currency_hist interface
+1.6.82 fix: fix option_cffex_hs300_spot_sina interface
+1.6.83 fix: fix option_dce_daily interface
+1.6.84 fix: fix stock_zt_pool_em interface
 """
 
-__version__ = "1.6.72"
+__version__ = "1.6.84"
 __author__ = "AKFamily"
 
 import sys
@@ -3458,6 +3470,9 @@ from akshare.option.option_finance_sina import (
     option_cffex_hs300_list_sina,
     option_cffex_hs300_spot_sina,
     option_cffex_hs300_daily_sina,
+    option_cffex_zz1000_list_sina,
+    option_cffex_zz1000_spot_sina,
+    option_cffex_zz1000_daily_sina,
     option_sse_list_sina,
     option_sse_expire_day_sina,
     option_sse_codes_sina,
@@ -4124,7 +4139,7 @@ from akshare.bond.bond_investing import (
 """
 from akshare.index.index_investing import (
     index_investing_global,
-    index_investing_global_country_name_url,
+    index_investing_global_area_index_name_code,
     index_investing_global_from_url,
 )
 
