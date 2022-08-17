@@ -53,7 +53,7 @@ def stock_balance_sheet_by_report_em(symbol: str = "SH600519") -> pd.DataFrame:
         ",".join(need_date[i : i + 5]) for i in range(0, len(need_date), 5)
     ]
     big_df = pd.DataFrame()
-    for item in tqdm(sep_list, leave=False):
+    for item in sep_list:
         url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/zcfzbAjaxNew"
         params = {
             "companyType": company_type,
@@ -79,7 +79,8 @@ def stock_balance_sheet_by_yearly_em(symbol: str = "SZ000001") -> pd.DataFrame:
     :rtype: pandas.DataFrame
     """
     url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/zcfzbDateAjaxNew"
-    company_type = 3 if symbol[:2] == "SZ" else 4
+    # company_type = 3 if symbol[:2] == "SZ" else 4
+    company_type = 4
     params = {
         "companyType": company_type,
         "reportDateType": "1",
@@ -95,7 +96,7 @@ def stock_balance_sheet_by_yearly_em(symbol: str = "SZ000001") -> pd.DataFrame:
         ",".join(need_date[i : i + 5]) for i in range(0, len(need_date), 5)
     ]
     big_df = pd.DataFrame()
-    for item in tqdm(sep_list, leave=False):
+    for item in sep_list:
         url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/zcfzbAjaxNew"
         params = {
             "companyType": company_type,
@@ -120,7 +121,7 @@ def stock_profit_sheet_by_report_em(symbol: str = "SH600519") -> pd.DataFrame:
     :return: 利润表-报告期
     :rtype: pandas.DataFrame
     """
-    company_type = 3 if symbol[:2] == "SZ" else 4
+    company_type = 4
     url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbDateAjaxNew"
     params = {
         "companyType": company_type,
@@ -137,7 +138,7 @@ def stock_profit_sheet_by_report_em(symbol: str = "SH600519") -> pd.DataFrame:
         ",".join(need_date[i : i + 5]) for i in range(0, len(need_date), 5)
     ]
     big_df = pd.DataFrame()
-    for item in tqdm(sep_list, leave=False):
+    for item in sep_list:
         url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbAjaxNew"
         params = {
             "companyType": company_type,
@@ -162,7 +163,8 @@ def stock_profit_sheet_by_yearly_em(symbol: str = "SH600519") -> pd.DataFrame:
     :return: 利润表-按年度
     :rtype: pandas.DataFrame
     """
-    company_type = 3 if symbol[:2] == "SZ" else 4
+    # company_type = 3 if symbol[:2] == "SZ" else 4
+    company_type = 4
     url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbDateAjaxNew"
     params = {
         "companyType": company_type,
@@ -179,7 +181,7 @@ def stock_profit_sheet_by_yearly_em(symbol: str = "SH600519") -> pd.DataFrame:
         ",".join(need_date[i : i + 5]) for i in range(0, len(need_date), 5)
     ]
     big_df = pd.DataFrame()
-    for item in tqdm(sep_list, leave=False):
+    for item in sep_list:
         url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbAjaxNew"
         params = {
             "companyType": company_type,
@@ -206,7 +208,8 @@ def stock_profit_sheet_by_quarterly_em(
     :return: 利润表-按单季度
     :rtype: pandas.DataFrame
     """
-    company_type = 3 if symbol[:2] == "SZ" else 4
+    # company_type = 3 if symbol[:2] == "SZ" else 4
+    company_type = 4
     url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbDateAjaxNew"
     params = {
         "companyType": company_type,
@@ -223,7 +226,7 @@ def stock_profit_sheet_by_quarterly_em(
         ",".join(need_date[i : i + 5]) for i in range(0, len(need_date), 5)
     ]
     big_df = pd.DataFrame()
-    for item in tqdm(sep_list, leave=False):
+    for item in sep_list:
         url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbAjaxNew"
         params = {
             "companyType": company_type,
@@ -250,7 +253,8 @@ def stock_cash_flow_sheet_by_report_em(
     :return: 现金流量表-按报告期
     :rtype: pandas.DataFrame
     """
-    company_type = 3 if symbol[:2] == "SZ" else 4
+    # company_type = 3 if symbol[:2] == "SZ" else 4
+    company_type = 4
     url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbDateAjaxNew"
     params = {
         "companyType": company_type,
@@ -267,7 +271,7 @@ def stock_cash_flow_sheet_by_report_em(
         ",".join(need_date[i : i + 5]) for i in range(0, len(need_date), 5)
     ]
     big_df = pd.DataFrame()
-    for item in tqdm(sep_list, leave=False):
+    for item in sep_list:
         url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbAjaxNew"
         params = {
             "companyType": company_type,
@@ -294,7 +298,8 @@ def stock_cash_flow_sheet_by_yearly_em(
     :return: 现金流量表-按年度
     :rtype: pandas.DataFrame
     """
-    company_type = 3 if symbol[:2] == "SZ" else 4
+    # company_type = 3 if symbol[:2] == "SZ" else 4
+    company_type = 4
     url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbDateAjaxNew"
     params = {
         "companyType": company_type,
@@ -311,7 +316,7 @@ def stock_cash_flow_sheet_by_yearly_em(
         ",".join(need_date[i : i + 5]) for i in range(0, len(need_date), 5)
     ]
     big_df = pd.DataFrame()
-    for item in tqdm(sep_list, leave=False):
+    for item in sep_list:
         url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbAjaxNew"
         params = {
             "companyType": company_type,
@@ -338,7 +343,8 @@ def stock_cash_flow_sheet_by_quarterly_em(
     :return: 现金流量表-按单季度
     :rtype: pandas.DataFrame
     """
-    company_type = 3 if symbol[:2] == "SZ" else 4
+    # company_type = 3 if symbol[:2] == "SZ" else 4
+    company_type = 4
     url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbDateAjaxNew"
     params = {
         "companyType": company_type,
@@ -355,7 +361,7 @@ def stock_cash_flow_sheet_by_quarterly_em(
         ",".join(need_date[i : i + 5]) for i in range(0, len(need_date), 5)
     ]
     big_df = pd.DataFrame()
-    for item in tqdm(sep_list, leave=False):
+    for item in sep_list:
         url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbAjaxNew"
         params = {
             "companyType": company_type,
