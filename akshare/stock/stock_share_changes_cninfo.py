@@ -89,6 +89,9 @@ def stock_share_change_cninfo(
     r = requests.post(url, params=params, headers=headers)
     data_json = r.json()
     temp_df = pd.DataFrame(data_json["records"])
+    if len(temp_df) == 0:
+        print(f"{symbol} has no results.")
+        return temp_df
     cols_map = {
         "SECCODE": "证券代码",
         "SECNAME": "证券简称",
@@ -138,8 +141,7 @@ def stock_share_change_cninfo(
         "F050N": "控股股东、实际控制人",
     }
     ignore_cols = ["最新记录标识", "其他"]
-    temp_df.rename(columns=cols_map, inplace=True)
-    temp_df.fillna(np.nan, inplace=True)
+    temp_df = temp_df.filter(list(cols_map.keys())).rename(columns=cols_map).fillna(np.nan)
     temp_df["公告日期"] = pd.to_datetime(temp_df["公告日期"]).dt.date
     temp_df["变动日期"] = pd.to_datetime(temp_df["变动日期"]).dt.date
     data_df = temp_df[[c for c in temp_df.columns if c not in ignore_cols]]
