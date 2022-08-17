@@ -2586,6 +2586,12 @@ def macro_china_fx_gold() -> pd.DataFrame:
         "黄金储备-同比",
         "黄金储备-环比",
     ]
+    temp_df['国家外汇储备-数值'] = pd.to_numeric(temp_df['国家外汇储备-数值'])
+    temp_df['国家外汇储备-同比'] = pd.to_numeric(temp_df['国家外汇储备-同比'])
+    temp_df['国家外汇储备-环比'] = pd.to_numeric(temp_df['国家外汇储备-环比'])
+    temp_df['黄金储备-数值'] = pd.to_numeric(temp_df['黄金储备-数值'])
+    temp_df['黄金储备-同比'] = pd.to_numeric(temp_df['黄金储备-同比'])
+    temp_df['黄金储备-环比'] = pd.to_numeric(temp_df['黄金储备-环比'])
     return temp_df
 
 
@@ -3932,6 +3938,7 @@ def macro_china_real_estate() -> pd.DataFrame:
     big_df['近2年涨跌幅'] = pd.to_numeric(big_df['近2年涨跌幅'])
     big_df['近3年涨跌幅'] = pd.to_numeric(big_df['近3年涨跌幅'])
     big_df.sort_values(['日期'], inplace=True)
+    big_df.drop_duplicates(inplace=True)
     big_df.reset_index(inplace=True, drop=True)
     return big_df
 
