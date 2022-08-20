@@ -37,14 +37,28 @@ def stock_balance_sheet_by_report_em(symbol: str = "SH600519") -> pd.DataFrame:
     :rtype: pandas.DataFrame
     """
     company_type = _stock_balance_sheet_by_report_ctype_em(symbol=symbol)
-    url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/zcfzbDateAjaxNew"
-    params = {
-        "companyType": company_type,
-        "reportDateType": "0",
-        "code": symbol,
-    }
-    r = requests.get(url, params=params)
-    data_json = r.json()
+    company_types = set(['1', '2', '3', '4'] + [company_type])
+    for company_type in company_types:
+        url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/zcfzbDateAjaxNew"
+        params = {
+            "companyType": company_type,
+            "reportDateType": "0",
+            "code": symbol,
+        }
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        if "data" in data_json:
+            if len(data_json["data"]) > 0:
+                break
+            
+    if "data" not in data_json:
+        print(f"{symbol} has no results.")
+        return
+
+    if len(data_json["data"]) == 0:
+        print(f"{symbol} has no results.")
+        return
+
     temp_df = pd.DataFrame(data_json["data"])
     temp_df["REPORT_DATE"] = pd.to_datetime(temp_df["REPORT_DATE"]).dt.date
     temp_df["REPORT_DATE"] = temp_df["REPORT_DATE"].astype(str)
@@ -78,16 +92,29 @@ def stock_balance_sheet_by_yearly_em(symbol: str = "SZ000001") -> pd.DataFrame:
     :return: 资产负债表-按年度
     :rtype: pandas.DataFrame
     """
-    url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/zcfzbDateAjaxNew"
-    # company_type = 3 if symbol[:2] == "SZ" else 4
-    company_type = 4
-    params = {
-        "companyType": company_type,
-        "reportDateType": "1",
-        "code": symbol,
-    }
-    r = requests.get(url, params=params)
-    data_json = r.json()
+    company_type = 3 if symbol[:2] == "SZ" else 4
+    company_types = set(['1', '2', '3', '4'] + [company_type])
+    for company_type in company_types:
+        url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/zcfzbDateAjaxNew"
+        params = {
+            "companyType": company_type,
+            "reportDateType": "1",
+            "code": symbol,
+        }
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        if "data" in data_json:
+            if len(data_json["data"]) > 0:
+                break
+                
+    if "data" not in data_json:
+        print(f"{symbol} has no results.")
+        return
+
+    if len(data_json["data"]) == 0:
+        print(f"{symbol} has no results.")
+        return
+
     temp_df = pd.DataFrame(data_json["data"])
     temp_df["REPORT_DATE"] = pd.to_datetime(temp_df["REPORT_DATE"]).dt.date
     temp_df["REPORT_DATE"] = temp_df["REPORT_DATE"].astype(str)
@@ -121,15 +148,29 @@ def stock_profit_sheet_by_report_em(symbol: str = "SH600519") -> pd.DataFrame:
     :return: 利润表-报告期
     :rtype: pandas.DataFrame
     """
-    company_type = 4
-    url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbDateAjaxNew"
-    params = {
-        "companyType": company_type,
-        "reportDateType": "0",
-        "code": symbol,
-    }
-    r = requests.get(url, params=params)
-    data_json = r.json()
+    company_type = 3 if symbol[:2] == "SZ" else 4
+    company_types = set(['1', '2', '3', '4'] + [company_type])
+    for company_type in company_types:
+        url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbDateAjaxNew"
+        params = {
+            "companyType": company_type,
+            "reportDateType": "0",
+            "code": symbol,
+        }
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        if "data" in data_json:
+            if len(data_json["data"]) > 0:
+                break
+
+    if "data" not in data_json:
+        print(f"{symbol} has no results.")
+        return
+
+    if len(data_json["data"]) == 0:
+        print(f"{symbol} has no results.")
+        return
+
     temp_df = pd.DataFrame(data_json["data"])
     temp_df["REPORT_DATE"] = pd.to_datetime(temp_df["REPORT_DATE"]).dt.date
     temp_df["REPORT_DATE"] = temp_df["REPORT_DATE"].astype(str)
@@ -163,16 +204,29 @@ def stock_profit_sheet_by_yearly_em(symbol: str = "SH600519") -> pd.DataFrame:
     :return: 利润表-按年度
     :rtype: pandas.DataFrame
     """
-    # company_type = 3 if symbol[:2] == "SZ" else 4
-    company_type = 4
-    url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbDateAjaxNew"
-    params = {
-        "companyType": company_type,
-        "reportDateType": "1",
-        "code": symbol,
-    }
-    r = requests.get(url, params=params)
-    data_json = r.json()
+    company_type = 3 if symbol[:2] == "SZ" else 4
+    company_types = set(['1', '2', '3', '4'] + [company_type])
+    for company_type in company_types:
+        url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbDateAjaxNew"
+        params = {
+            "companyType": company_type,
+            "reportDateType": "1",
+            "code": symbol,
+        }
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        if "data" in data_json:
+            if len(data_json["data"]) > 0:
+                break
+
+    if "data" not in data_json:
+        print(f"{symbol} has no results.")
+        return
+
+    if len(data_json["data"]) == 0:
+        print(f"{symbol} has no results.")
+        return
+
     temp_df = pd.DataFrame(data_json["data"])
     temp_df["REPORT_DATE"] = pd.to_datetime(temp_df["REPORT_DATE"]).dt.date
     temp_df["REPORT_DATE"] = temp_df["REPORT_DATE"].astype(str)
@@ -208,16 +262,29 @@ def stock_profit_sheet_by_quarterly_em(
     :return: 利润表-按单季度
     :rtype: pandas.DataFrame
     """
-    # company_type = 3 if symbol[:2] == "SZ" else 4
-    company_type = 4
-    url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbDateAjaxNew"
-    params = {
-        "companyType": company_type,
-        "reportDateType": "2",
-        "code": symbol,
-    }
-    r = requests.get(url, params=params)
-    data_json = r.json()
+    company_type = 3 if symbol[:2] == "SZ" else 4
+    company_types = set(['1', '2', '3', '4'] + [company_type])
+    for company_type in company_types:
+        url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/lrbDateAjaxNew"
+        params = {
+            "companyType": company_type,
+            "reportDateType": "2",
+            "code": symbol,
+        }
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        if "data" in data_json:
+            if len(data_json["data"]) > 0:
+                break
+
+    if "data" not in data_json:
+        print(f"{symbol} has no results.")
+        return
+
+    if len(data_json["data"]) == 0:
+        print(f"{symbol} has no results.")
+        return
+
     temp_df = pd.DataFrame(data_json["data"])
     temp_df["REPORT_DATE"] = pd.to_datetime(temp_df["REPORT_DATE"]).dt.date
     temp_df["REPORT_DATE"] = temp_df["REPORT_DATE"].astype(str)
@@ -253,16 +320,29 @@ def stock_cash_flow_sheet_by_report_em(
     :return: 现金流量表-按报告期
     :rtype: pandas.DataFrame
     """
-    # company_type = 3 if symbol[:2] == "SZ" else 4
-    company_type = 4
-    url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbDateAjaxNew"
-    params = {
-        "companyType": company_type,
-        "reportDateType": "0",
-        "code": symbol,
-    }
-    r = requests.get(url, params=params)
-    data_json = r.json()
+    company_type = 3 if symbol[:2] == "SZ" else 4
+    company_types = set(['1', '2', '3', '4'] + [company_type])
+    for company_type in company_types:
+        url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbDateAjaxNew"
+        params = {
+            "companyType": company_type,
+            "reportDateType": "0",
+            "code": symbol,
+        }
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        if "data" in data_json:
+            if len(data_json["data"]) > 0:
+                break
+
+    if "data" not in data_json:
+        print(f"{symbol} has no results.")
+        return
+
+    if len(data_json["data"]) == 0:
+        print(f"{symbol} has no results.")
+        return
+
     temp_df = pd.DataFrame(data_json["data"])
     temp_df["REPORT_DATE"] = pd.to_datetime(temp_df["REPORT_DATE"]).dt.date
     temp_df["REPORT_DATE"] = temp_df["REPORT_DATE"].astype(str)
@@ -298,16 +378,29 @@ def stock_cash_flow_sheet_by_yearly_em(
     :return: 现金流量表-按年度
     :rtype: pandas.DataFrame
     """
-    # company_type = 3 if symbol[:2] == "SZ" else 4
-    company_type = 4
-    url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbDateAjaxNew"
-    params = {
-        "companyType": company_type,
-        "reportDateType": "1",
-        "code": symbol,
-    }
-    r = requests.get(url, params=params)
-    data_json = r.json()
+    company_type = 3 if symbol[:2] == "SZ" else 4
+    company_types = set(['1', '2', '3', '4'] + [company_type])
+    for company_type in company_types:
+        url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbDateAjaxNew"
+        params = {
+            "companyType": company_type,
+            "reportDateType": "1",
+            "code": symbol,
+        }
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        if "data" in data_json:
+            if len(data_json["data"]) > 0:
+                break
+
+    if "data" not in data_json:
+        print(f"{symbol} has no results.")
+        return
+
+    if len(data_json["data"]) == 0:
+        print(f"{symbol} has no results.")
+        return
+
     temp_df = pd.DataFrame(data_json["data"])
     temp_df["REPORT_DATE"] = pd.to_datetime(temp_df["REPORT_DATE"]).dt.date
     temp_df["REPORT_DATE"] = temp_df["REPORT_DATE"].astype(str)
@@ -343,16 +436,29 @@ def stock_cash_flow_sheet_by_quarterly_em(
     :return: 现金流量表-按单季度
     :rtype: pandas.DataFrame
     """
-    # company_type = 3 if symbol[:2] == "SZ" else 4
-    company_type = 4
-    url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbDateAjaxNew"
-    params = {
-        "companyType": company_type,
-        "reportDateType": "2",
-        "code": symbol,
-    }
-    r = requests.get(url, params=params)
-    data_json = r.json()
+    company_type = 3 if symbol[:2] == "SZ" else 4
+    company_types = set(['1', '2', '3', '4'] + [company_type])
+    for company_type in company_types:
+        url = "https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/xjllbDateAjaxNew"
+        params = {
+            "companyType": company_type,
+            "reportDateType": "2",
+            "code": symbol,
+        }
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        if "data" in data_json:
+            if len(data_json["data"]) > 0:
+                break
+
+    if "data" not in data_json:
+        print(f"{symbol} has no results.")
+        return
+
+    if len(data_json["data"]) == 0:
+        print(f"{symbol} has no results.")
+        return
+
     temp_df = pd.DataFrame(data_json["data"])
     temp_df["REPORT_DATE"] = pd.to_datetime(temp_df["REPORT_DATE"]).dt.date
     temp_df["REPORT_DATE"] = temp_df["REPORT_DATE"].astype(str)
