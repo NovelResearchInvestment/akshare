@@ -47,23 +47,7 @@ def stock_zh_a_spot(num_per_page=80) -> pd.DataFrame:
     :return: 所有股票的实时行情数据
     :rtype: pandas.DataFrame
     """
-    big_df = pd.DataFrame()
-    page_count = _get_zh_a_page_count(num_per_page=num_per_page)
-    zh_sina_stock_payload_copy = zh_sina_a_stock_payload.copy()
-    for page in tqdm(
-        range(1, page_count + 1), leave=False, desc="Please wait for a moment"
-    ):
-        zh_sina_stock_payload_copy.update({"page": page})
-        r = requests.get(
-            zh_sina_a_stock_url, params=zh_sina_stock_payload_copy
-        )
-        data_json = demjson.decode(r.text)
-        big_df = pd.concat(
-            [big_df, pd.DataFrame(data_json)], ignore_index=True
-        )
-
-    big_df = big_df.astype(
-        {
+    TYPE_MAPPING = {
             "trade": "float",
             "pricechange": "float",
             "changepercent": "float",
@@ -81,46 +65,34 @@ def stock_zh_a_spot(num_per_page=80) -> pd.DataFrame:
             "nmc": "float",
             "turnoverratio": "float",
         }
-    )
-    big_df.columns = [
-        "代码",
-        "_",
-        "名称",
-        "最新价",
-        "涨跌额",
-        "涨跌幅",
-        "买入",
-        "卖出",
-        "昨收",
-        "今开",
-        "最高",
-        "最低",
-        "成交量",
-        "成交额",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-    ]
-    big_df = big_df[
-        [
-            "代码",
-            "名称",
-            "最新价",
-            "涨跌额",
-            "涨跌幅",
-            "买入",
-            "卖出",
-            "昨收",
-            "今开",
-            "最高",
-            "最低",
-            "成交量",
-            "成交额",
-        ]
-    ]
+    COLUMNS_WEB = ["代码", "_", "名称", "最新价", "涨跌额", "涨跌幅", "买入",
+                   "卖出", "昨收", "今开", "最高", "最低", "成交量", "成交额",
+                   "_", "_", "_", "_", "_", "_",]
+    COLUMNS_OUT = ["代码", "名称", "最新价", "涨跌额", "涨跌幅", "买入", "卖出",
+                   "昨收", "今开", "最高", "最低", "成交量", "成交额",]
+    big_df_list = []
+    page_count = _get_zh_a_page_count(num_per_page=num_per_page)
+    zh_sina_stock_payload_copy = zh_sina_a_stock_payload.copy()
+    for page in tqdm(
+        range(1, page_count + 1), leave=False, desc="Please wait for a moment"
+    ):
+        zh_sina_stock_payload_copy.update({"page": page})
+        r = requests.get(
+            zh_sina_a_stock_url, params=zh_sina_stock_payload_copy
+        )
+        if r.status_code == 456:
+            data_json = pd.DataFrame()
+        else:
+            data_json = demjson.decode(r.text)
+        big_df_list.append(pd.DataFrame(data_json))
+
+    big_df = pd.concat(big_df_list)
+    if len(big_df) > 0:
+        big_df = big_df.astype(TYPE_MAPPING)
+        big_df.columns = COLUMNS_WEB
+        big_df = big_df[COLUMNS_OUT]
+    else:
+        big_df = pd.DataFrame(columns=COLUMNS_OUT)
     return big_df
 
 
