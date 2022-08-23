@@ -1498,7 +1498,7 @@ def macro_china_au_report() -> pd.DataFrame:
         "https://cdn.jin10.com/data_center/reports/sge.json", params=params
     )
     json_data = res.json()
-    big_df = pd.DataFrame()
+    big_df_list = []
     for item in json_data["values"].keys():
         temp_df = pd.DataFrame(json_data["values"][item])
         temp_df["date"] = item
@@ -1518,7 +1518,8 @@ def macro_china_au_report() -> pd.DataFrame:
             "交收量",
             "日期",
         ]
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df.index = pd.to_datetime(big_df["日期"])
     del big_df["日期"]
     big_df.sort_index(inplace=True)
@@ -3090,7 +3091,7 @@ def macro_china_hb(symbol: str = "weekly") -> pd.DataFrame:
             "t": "1597986289666",
             "t": "1597986289666",
         }
-        big_df = pd.DataFrame()
+        big_df_list = []
         for year in tqdm(range(1997, current_year + 1)):
             payload = {
                 "startWeek": f"{year}-01",
@@ -3100,7 +3101,8 @@ def macro_china_hb(symbol: str = "weekly") -> pd.DataFrame:
             }
             r = requests.post(url, params=params, data=payload)
             temp_df = pd.DataFrame(r.json()["data"]["resultList"])
-            big_df = big_df.append(temp_df, ignore_index=True)
+            big_df_list.append(temp_df)
+        big_df = pd.concat(big_df_list, ignore_index=True)
         big_df = big_df.sort_values(by=["startDate"])
         big_df.reset_index(inplace=True, drop=True)
         big_df.columns = ["日期", "投放量", "回笼量", "净投放", "开始日期", "结束日期"]
@@ -3118,7 +3120,7 @@ def macro_china_hb(symbol: str = "weekly") -> pd.DataFrame:
             "t": "1597986289666",
             "t": "1597986289666",
         }
-        big_df = pd.DataFrame()
+        big_df_list = []
         for year in tqdm(range(1997, current_year + 1)):
             payload = {
                 "startMonth": f"{year}-01",
@@ -3128,7 +3130,8 @@ def macro_china_hb(symbol: str = "weekly") -> pd.DataFrame:
             }
             r = requests.post(url, params=params, data=payload)
             temp_df = pd.DataFrame(r.json()["data"]["resultList"])
-            big_df = big_df.append(temp_df, ignore_index=True)
+            big_df_list.append(temp_df)
+        big_df = pd.concat(big_df_list, ignore_index=True)
         big_df.columns = ["日期", "投放量", "回笼量", "净投放", "-", "-"]
         big_df = big_df[["日期", "投放量", "回笼量", "净投放"]]
         big_df["投放量"] = pd.to_numeric(big_df["投放量"])
@@ -3166,7 +3169,7 @@ def macro_china_gksccz() -> pd.DataFrame:
     r = requests.post(url, params=params, data=payload, headers=headers)
     data_json = r.json()
     total_page = data_json["data"]["pageTotal"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(1, total_page + 1)):
         payload.update(
             {
@@ -3176,7 +3179,8 @@ def macro_china_gksccz() -> pd.DataFrame:
         r = requests.post(url, params=params, data=payload)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["data"]["resultList"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df.columns = [
         "操作日期",
         "期限",

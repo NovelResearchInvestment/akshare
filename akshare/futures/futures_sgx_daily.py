@@ -30,7 +30,7 @@ def futures_sgx_daily(
     :return: data contains from (trade_date - recent_day) to trade_day
     :rtype: pandas.DataFrame
     """
-    big_df = pd.DataFrame()
+    big_df_list = []
     index_df = index_investing_global(
         area="新加坡",
         symbol="FTSE Singapore",
@@ -56,7 +56,8 @@ def futures_sgx_daily(
                     data_df = pd.read_table(StringIO(data))
                 else:
                     data_df = pd.read_csv(StringIO(data))
-        big_df = pd.concat([big_df, data_df], ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     return big_df
 
 

@@ -31,14 +31,15 @@ def fund_scale_change_em() -> pd.DataFrame:
     data_text = r.text
     data_json = demjson.decode(data_text[data_text.find("{") : -1])
     total_page = data_json["pages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in range(1, int(total_page) + 1):
         params.update({"pi": page})
         r = requests.get(url, params=params)
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -1])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df.reset_index(inplace=True)
     big_df["index"] = big_df["index"] + 1
     big_df.columns = [
@@ -79,14 +80,15 @@ def fund_hold_structure_em() -> pd.DataFrame:
     data_text = r.text
     data_json = demjson.decode(data_text[data_text.find("{") : -1])
     total_page = data_json["pages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in range(1, int(total_page) + 1):
         params.update({"pi": page})
         r = requests.get(url, params=params)
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -1])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df.reset_index(inplace=True)
     big_df["index"] = big_df["index"] + 1
     big_df.columns = [

@@ -95,7 +95,7 @@ def stock_sector_detail(sector: str = "gn_gfgn") -> pd.DataFrame:
     r = requests.get(url, params=params)
     total_num = int(r.json())
     total_page_num = math.ceil(int(total_num) / 80)
-    big_df = pd.DataFrame()
+    big_df_list = []
     url = "http://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData"
     for page in tqdm(range(1, total_page_num+1), leave=True):
         params = {
@@ -111,7 +111,8 @@ def stock_sector_detail(sector: str = "gn_gfgn") -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text)
         temp_df = pd.DataFrame(data_json)
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df['trade'] = pd.to_numeric(big_df['trade'])
     big_df['pricechange'] = pd.to_numeric(big_df['pricechange'])
     big_df['changepercent'] = pd.to_numeric(big_df['changepercent'])

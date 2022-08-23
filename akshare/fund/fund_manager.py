@@ -21,7 +21,7 @@ def fund_manager(adjust: str = '0') -> pd.DataFrame:
     :return: 基金经理大全
     :rtype: pandas.DataFrame
     """
-    big_df = pd.DataFrame()
+    big_df_list = []
     url = "http://fund.eastmoney.com/Data/FundDataPortfolio_Interface.aspx"
     params = {
         "dt": "14",
@@ -51,8 +51,8 @@ def fund_manager(adjust: str = '0') -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text.strip("var returnjson= "))
         temp_df = pd.DataFrame(data_json["data"])
-
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df.reset_index(inplace=True)
     big_df["index"] = range(1, len(big_df) + 1)
     big_df.columns = [

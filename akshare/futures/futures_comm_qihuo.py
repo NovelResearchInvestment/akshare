@@ -199,22 +199,29 @@ def futures_comm_info(symbol: str = "所有") -> pd.DataFrame:
     elif symbol == "中国金融期货交易所":
         return _futures_comm_qihuo_process(cffex_df, "中国金融期货交易所")
     else:
-        big_df = pd.DataFrame()
-        big_df = big_df.append(
-            _futures_comm_qihuo_process(shfe_df, "上海期货交易所"), ignore_index=True
-        )
-        big_df = big_df.append(
-            _futures_comm_qihuo_process(dce_df, "大连商品交易所"), ignore_index=True
-        )
-        big_df = big_df.append(
-            _futures_comm_qihuo_process(czce_df, "郑州商品交易所"), ignore_index=True
-        )
-        big_df = big_df.append(
-            _futures_comm_qihuo_process(ine_df, "上海国际能源交易中心"), ignore_index=True
-        )
-        big_df = big_df.append(
-            _futures_comm_qihuo_process(cffex_df, "中国金融期货交易所"), ignore_index=True
-        )
+        # big_df = pd.DataFrame()
+        # big_df = big_df.append(
+        #     _futures_comm_qihuo_process(shfe_df, "上海期货交易所"), ignore_index=True
+        # )
+        # big_df = big_df.append(
+        #     _futures_comm_qihuo_process(dce_df, "大连商品交易所"), ignore_index=True
+        # )
+        # big_df = big_df.append(
+        #     _futures_comm_qihuo_process(czce_df, "郑州商品交易所"), ignore_index=True
+        # )
+        # big_df = big_df.append(
+        #     _futures_comm_qihuo_process(ine_df, "上海国际能源交易中心"), ignore_index=True
+        # )
+        # big_df = big_df.append(
+        #     _futures_comm_qihuo_process(cffex_df, "中国金融期货交易所"), ignore_index=True
+        # )
+        big_df = pd.concat([
+            _futures_comm_qihuo_process(shfe_df, "上海期货交易所"),
+            _futures_comm_qihuo_process(dce_df, "大连商品交易所"),
+            _futures_comm_qihuo_process(czce_df, "郑州商品交易所"),
+            _futures_comm_qihuo_process(ine_df, "上海国际能源交易中心"),
+            _futures_comm_qihuo_process(cffex_df, "中国金融期货交易所")
+        ], ignore_index=True)
         return big_df
 
 

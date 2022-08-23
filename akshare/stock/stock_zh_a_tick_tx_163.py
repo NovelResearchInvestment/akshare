@@ -22,8 +22,8 @@ def stock_zh_a_tick_tx_js(symbol: str = "sz000001") -> pd.DataFrame:
     :type symbol: str
     :return: 股票代码
     :rtype: pandas.DataFrame
-    """
-    big_df = pd.DataFrame()
+"""
+
     page = 0
     warnings.warn("正在下载数据，请稍等")
     while True:
@@ -43,10 +43,10 @@ def stock_zh_a_tick_tx_js(symbol: str = "sz000001") -> pd.DataFrame:
                 .str.split("/", expand=True)
             )
             page += 1
-            big_df = pd.concat([big_df, temp_df], ignore_index=True)
-
+            big_df_list.append(temp_df)
         except:
             break
+    big_df = pd.concat(big_df_list, ignore_index=True)
     if not big_df.empty:
         big_df = big_df.iloc[:, 1:]
         big_df.columns = ["成交时间", "成交价格", "价格变动", "成交量", "成交金额", "性质"]
@@ -145,7 +145,7 @@ def stock_zh_a_tick_163_now(symbol: str = "000001") -> pd.DataFrame:
         for item in pd.date_range("13:00:00", "15:00:00", freq="5min").tolist()
     ][1:]
     time_list_one.extend(time_list_two)
-    big_df = pd.DataFrame()
+    big_df_list = []
     for item in tqdm(time_list_one):
         url = "http://quotes.money.163.com/service/zhubi_ajax.html"
         params = {"symbol": symbol, "end": item}
@@ -161,7 +161,8 @@ def stock_zh_a_tick_163_now(symbol: str = "000001") -> pd.DataFrame:
         temp_df.sort_values(
             by="index", ascending=False, ignore_index=True, inplace=True
         )
-        big_df = pd.concat([big_df,temp_df], ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
 
     del big_df["index"]
     big_df.columns = [

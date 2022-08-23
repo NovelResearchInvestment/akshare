@@ -302,7 +302,7 @@ def stock_zh_a_new() -> pd.DataFrame:
     r = requests.get(url, params=params)
     total_page = math.ceil(int(r.json()) / 80)
     url = "http://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData"
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in range(1, total_page + 1):
         params = {
             "page": str(page),
@@ -317,7 +317,8 @@ def stock_zh_a_new() -> pd.DataFrame:
         r.encoding = "gb2312"
         data_json = r.json()
         temp_df = pd.DataFrame(data_json)
-        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df = big_df[
         [
             "symbol",

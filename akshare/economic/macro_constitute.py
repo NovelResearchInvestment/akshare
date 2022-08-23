@@ -587,7 +587,7 @@ def _macro_cons_opec_month():
     )
     json_data = json.loads(res.text[res.text.find("{"): res.text.rfind("}") + 1])
     date_list = [item["date"] for item in json_data["list"]]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for country in [item["datas"] for item in json_data["list"]][0].keys():
         try:
             value_list = [item["datas"][country] for item in json_data["list"]]
@@ -596,10 +596,10 @@ def _macro_cons_opec_month():
             value_df.index = pd.to_datetime(date_list)
             temp_df = value_df["上个月"]
             temp_df.name = country
-            big_df = big_df.append(temp_df)
+            big_df_list.append(temp_df)
         except:
             continue
-
+    big_df = pd.concat(big_df_list, ignore_index=True)
     headers = {
         "accept": "*/*",
         "accept-encoding": "gzip, deflate, br",

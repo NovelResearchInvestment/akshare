@@ -42,7 +42,7 @@ def fund_portfolio_hold_em(
         item.text.split("\xa0\xa0")[1]
         for item in soup.find_all("h4", attrs={"class": "t"})
     ]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for item in range(len(item_label)):
         temp_df = pd.read_html(data_json["content"], converters={"股票代码": str})[
             item
@@ -69,7 +69,8 @@ def fund_portfolio_hold_em(
                 "季度",
             ]
         ]
-        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df["占净值比例"] = pd.to_numeric(big_df["占净值比例"], errors="coerce")
     big_df["持股数"] = pd.to_numeric(big_df["持股数"], errors="coerce")
     big_df["持仓市值"] = pd.to_numeric(big_df["持仓市值"], errors="coerce")
@@ -105,7 +106,7 @@ def fund_portfolio_bond_hold_em(
         item.text.split("\xa0\xa0")[1]
         for item in soup.find_all("h4", attrs={"class": "t"})
     ]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for item in range(len(item_label)):
         temp_df = pd.read_html(data_json["content"], converters={"债券代码": str})[
             item
@@ -125,7 +126,8 @@ def fund_portfolio_bond_hold_em(
                 "季度",
             ]
         ]
-        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df["占净值比例"] = pd.to_numeric(big_df["占净值比例"], errors="coerce")
     big_df["持仓市值"] = pd.to_numeric(big_df["持仓市值"], errors="coerce")
     big_df["序号"] = range(1, len(big_df) + 1)
@@ -240,7 +242,7 @@ def fund_portfolio_change_em(
         item.text.split("\xa0\xa0")[1]
         for item in soup.find_all("h4", attrs={"class": "t"})
     ]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for item in range(len(item_label)):
         temp_df = pd.read_html(data_json["content"], converters={"股票代码": str})[
             item
@@ -268,7 +270,8 @@ def fund_portfolio_change_em(
                 "季度",
             ]
         ]
-        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     del big_df["序号"]
     big_df.reset_index(inplace=True)
     big_df["index"] = big_df.index + 1

@@ -182,7 +182,7 @@ def futures_delivery_match_czce(date: str = "20210106") -> pd.DataFrame:
     r.encoding = "utf-8"
     temp_df = pd.read_excel(r.content, skiprows=0)
     index_flag = temp_df[temp_df.iloc[:, 0].str.contains("配对日期")].index.values
-    big_df = pd.DataFrame()
+    big_df_list = []
     for i, item in enumerate(index_flag):
         try:
             temp_inner_df = temp_df[index_flag[i] + 1 : index_flag[i + 1]]
@@ -200,7 +200,8 @@ def futures_delivery_match_czce(date: str = "20210106") -> pd.DataFrame:
         symbol = date_contract_str.split("：")[-1]
         temp_inner_df["配对日期"] = inner_date
         temp_inner_df["合约代码"] = symbol
-        big_df = pd.concat([big_df, temp_inner_df], ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
 
     big_df.columns = [
         "卖方会员",

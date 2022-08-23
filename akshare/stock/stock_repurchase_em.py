@@ -30,13 +30,14 @@ def stock_repurchase_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     total_page = data_json["result"]["pages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(1, int(total_page) + 1), leave=False):
         params.update({"p": page})
         r = requests.get(url, params=params)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["result"]["data"])
-        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df.rename(
         {
             "dim_scode": "股票代码",

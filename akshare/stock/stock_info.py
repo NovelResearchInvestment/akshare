@@ -198,7 +198,7 @@ def stock_info_bj_name_code() -> pd.DataFrame:
     data_text = r.text
     data_json = json.loads(data_text[data_text.find("[") : -1])
     total_page = data_json[0]["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(total_page)):
         payload.update({"page": page})
         r = requests.post(url, data=payload)
@@ -206,7 +206,8 @@ def stock_info_bj_name_code() -> pd.DataFrame:
         data_json = json.loads(data_text[data_text.find("[") : -1])
         temp_df = data_json[0]["content"]
         temp_df = pd.DataFrame(temp_df)
-        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df.columns = [
         "上市日期",
         "-",

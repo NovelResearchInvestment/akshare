@@ -70,13 +70,14 @@ def amac_member_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "managerName",
         "memberBehalf",
@@ -130,7 +131,7 @@ def amac_person_fund_org_list(symbol: str = "公募基金管理公司", params: 
     )
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(
@@ -138,7 +139,8 @@ def amac_person_fund_org_list(symbol: str = "公募基金管理公司", params: 
         )
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "orgName",
         "orgType",
@@ -230,13 +232,14 @@ def amac_manager_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "managerName",
         "artificialPersonName",
@@ -285,13 +288,14 @@ def amac_manager_classify_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "managerName",
         "artificialPersonName",
@@ -340,13 +344,14 @@ def amac_member_sub_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "managerName",
         "memberBehalf",
@@ -399,13 +404,14 @@ def amac_fund_info(start_page: str = '1', end_page: str = "2000", params: dict={
         real_end_page = int(end_page)
     else:
         real_end_page = total_page
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(int(start_page) - 1, real_end_page), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "fundNo",
         "fundName",
@@ -455,13 +461,14 @@ def amac_securities_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "cpmc",
         "cpbm",
@@ -510,13 +517,14 @@ def amac_aoin_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "code",
         "name",
@@ -556,13 +564,14 @@ def amac_fund_sub_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "productCode",
         "productName",
@@ -605,13 +614,14 @@ def amac_fund_account_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "registerDate",
         "registerCode",
@@ -649,13 +659,14 @@ def amac_fund_abs(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     big_df.reset_index(inplace=True)
     big_df["index"] = range(1, len(big_df) + 1)
     big_df.columns = [
@@ -709,13 +720,14 @@ def amac_futures_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "mpiName",
         "mpiProductCode",
@@ -768,13 +780,14 @@ def amac_manager_cancelled_info(params: dict={}) -> pd.DataFrame:
     r = requests.post(url, params=params, json={}, verify=False)
     data_json = r.json()
     total_page = data_json["totalPages"]
-    big_df = pd.DataFrame()
+    big_df_list = []
     for page in tqdm(range(0, int(total_page)), leave=False):
         params.update({"page": page})
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df_list.append(temp_df)
+    big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
         "orgName",
         "orgCode",
