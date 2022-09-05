@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # !/usr/bin/env python
 """
-Date: 2022/7/25 22:58
+Date: 2022/8/30 16:20
 Desc: 东方财富-股票-财务分析
 """
 import pandas as pd
@@ -83,7 +83,7 @@ def stock_balance_sheet_by_report_em(symbol: str = "SH600519") -> pd.DataFrame:
     return big_df
 
 
-def stock_balance_sheet_by_yearly_em(symbol: str = "SZ000001") -> pd.DataFrame:
+def stock_balance_sheet_by_yearly_em(symbol: str = "SH600036") -> pd.DataFrame:
     """
     东方财富-股票-财务分析-资产负债表-按年度
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh600519#lrb-0
@@ -490,7 +490,7 @@ if __name__ == "__main__":
     print(stock_balance_sheet_by_report_em_df)
 
     stock_balance_sheet_by_yearly_em_df = stock_balance_sheet_by_yearly_em(
-        symbol="SH600519"
+        symbol="SH600036"
     )
     print(stock_balance_sheet_by_yearly_em_df)
 
