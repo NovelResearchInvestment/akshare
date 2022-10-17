@@ -4,6 +4,9 @@
 
 | AKShare 版本 | 旧接口名称                                       | 新接口名称                                       | 修改日期     |
 |------------|---------------------------------------------|---------------------------------------------|----------|
+| 1.7.27     | stock_em_qsjy                               | stock_qsjy_em                               | 20220921 |
+| 1.7.23     | futures_pig_info                            | futures_hog_info                            | 20220916 |
+| 1.7.23     | futures_pig_rank                            | futures_hog_rank                            | 20220916 |
 | 1.6.86     | stock_em_gpzy_distribute_statistics_company | stock_gpzy_distribute_statistics_company_em | 20220811 |
 | 1.6.86     | stock_em_gpzy_distribute_statistics_bank    | stock_gpzy_distribute_statistics_bank_em    | 20220811 |
 | 1.5.94     | bond_conv_adj_logs_jsl                      | bond_cb_adj_logs_jsl                        | 20220524 |
@@ -30,6 +33,159 @@
 | 1.4.86     | fund_em_aum                                 | fund_aum_em                                 | 20220322 |
 
 ## 更新说明
+
+1.7.53 add: add stock_buffett_index_lg interface
+
+    1. 新增 stock_buffett_index_lg 接口
+
+1.7.52 fix: fix stock_sse_summary interface
+
+    1. 修复 stock_sse_summary 接口的字段对齐问题
+
+1.7.51 fix: fix stock_a_lg_indicator interface
+
+    1. 修复 stock_a_lg_indicator 接口
+
+1.7.50 add: add stock_hot_search_baidu interface
+
+    1. 新增 stock_hot_search_baidu 接口，获取百度热搜股票的数据
+
+1.7.49 add: add futures_news_baidu interface
+
+    1. 新增 futures_news_baidu 接口，获取百度股市通中期货相关新闻数据
+
+1.7.48 add: add stock_zh_vote_baidu interface
+
+    1. 新增 stock_zh_vote_baidu 接口
+
+1.7.47 add: add stock_zh_valuation_baidu interface
+
+    1. 新增 stock_zh_valuation_baidu 接口
+
+1.7.46 fix: fix stock_hk_valuation_baidu interface
+
+    1. 修复 stock_hk_valuation_baidu 接口
+
+1.7.45 add: add stock_hk_valuation_baidu interface
+
+    1. 新增 stock_hk_valuation_baidu 接口
+
+1.7.44 add: add stock_allotment_cninfo interface
+
+    1. 新增 stock_allotment_cninfo 接口
+
+1.7.43 fix: fix stock_a_all_pb interface
+
+    1. 修复 stock_a_all_pb 接口
+
+1.7.42 add: add stock_sgt_reference_exchange_rate_szse interface
+
+    1. 新增 stock_sgt_reference_exchange_rate_szse 接口
+
+1.7.41 add: add stock_sgt_reference_exchange_rate_sse interface
+
+    1. 新增 stock_sgt_reference_exchange_rate_sse 接口
+
+1.7.40 add: add stock_sgt_settlement_exchange_rate_sse interface
+
+    1. 新增 stock_sgt_settlement_exchange_rate_sse 接口
+
+1.7.39 add: add stock_sgt_settlement_exchange_rate_szse interface
+
+    1. 新增 stock_sgt_settlement_exchange_rate_szse 接口
+
+1.7.38 add: add sw_index_second_info interface
+
+    1. 新增 sw_index_second_info 接口
+
+1.7.37 add: add sw_index_first_info interface
+
+    1. 新增 sw_index_first_info 接口
+
+1.7.36 fix: fix rename branch master to main
+
+    1. 将项目的 master 分支重命名为 main
+
+1.7.35 fix: fix stock_market_fund_flow interface
+
+    1. 修复 stock_market_fund_flow 接口，规范数据输出格式
+
+1.7.34 fix: fix bond_cb_jsl interface
+
+    1. 修复 bond_cb_jsl 接口，统一字段
+
+1.7.33 fix: fix stock_zh_ah_daily interface
+
+    1. 修复 stock_zh_ah_daily 接口，调整输出的格式
+
+1.7.32 fix: fix stock_a_ttm_lyr interface
+
+    1. 修复 stock_a_ttm_lyr 接口
+
+1.7.31 fix: fix stock_a_lg_indicator interface
+
+    1. 修复 stock_a_lg_indicator 接口，调整输出的格式
+
+1.7.30 fix: fix bond_cb_index_jsl interface
+
+    1. 修复 bond_cb_index_jsl 接口
+
+1.7.29 fix: fix stock_us_daily interface
+
+    1. 修复 stock_us_daily 接口，去除索引
+
+1.7.28 fix: fix stock_info_sh_name_code interface
+
+    1. 修复 stock_info_sh_name_code 接口
+
+1.7.27 fix: fix stock_qsjy_em interface
+
+    1. 修复 stock_qsjy_em 接口
+
+1.7.26 add: add bond_new_composite_index_cbond interface
+
+    1. 新增 bond_new_composite_index_cbond 接口
+
+1.7.25 add: add news_trade_notify_dividend_baidu interface
+
+    1. 新增 news_trade_notify_dividend_baidu 接口
+
+1.7.24 fix: fix amac_manager_classify_info interface
+
+    1. 修复 amac_manager_classify_info 接口，增加输出字段及规范输出字段格式
+
+1.7.23 fix: fix rename futures_pig_info and futures_pig_rank interface
+
+    1. 修复 futures_pig_info 重命名为 futures_hog_info
+    2. 修复 futures_pig_rank 重命名为 futures_hog_info
+
+1.7.22 add: add index_investing_global_area_index_name_url interface
+
+    1. 新增 index_investing_global_area_index_name_url 接口
+
+1.7.21 fix: fix futures_hog_info interface
+
+    1. 修复 futures_hog_info 接口，同意目标网站地址
+
+1.7.20 fix: fix crypto_js_spot interface
+
+    1. 修复 crypto_js_spot 接口
+
+1.7.19 fix: fix index_value_name_funddb interface
+
+    1. 修复 index_value_name_funddb 接口，新增字段及文档说明
+
+1.7.18 fix: fix stock_lhb_jgmmtj_em interface
+
+    1. 修复 stock_lhb_jgmmtj_em 接口
+
+1.7.17 fix: fix bond_cb_jsl interface
+
+    1. 修复 bond_cb_jsl 接口
+
+1.7.16 fix: fix crypto_js_spot interface
+
+    1. 修复 crypto_js_spot 接口
 
 1.7.15 fix: fix news_economic_baidu interface
 
@@ -1167,6 +1323,82 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.7.53 add: add stock_buffett_index_lg interface
+
+1.7.52 fix: fix stock_sse_summary interface
+
+1.7.51 fix: fix stock_a_lg_indicator interface
+
+1.7.50 add: add stock_hot_search_baidu interface
+
+1.7.49 add: add futures_news_baidu interface
+
+1.7.48 add: add stock_zh_vote_baidu interface
+
+1.7.47 add: add stock_zh_valuation_baidu interface
+
+1.7.46 fix: fix stock_hk_valuation_baidu interface
+
+1.7.45 add: add stock_hk_valuation_baidu interface
+
+1.7.44 add: add stock_allotment_cninfo interface
+
+1.7.43 fix: fix stock_a_all_pb interface
+
+1.7.42 add: add stock_sgt_reference_exchange_rate_szse interface
+
+1.7.41 add: add stock_sgt_reference_exchange_rate_sse interface
+
+1.7.40 add: add stock_sgt_settlement_exchange_rate_sse interface
+
+1.7.39 add: add stock_sgt_settlement_exchange_rate_szse interface
+
+1.7.38 add: add sw_index_second_info interface
+
+1.7.37 add: add sw_index_first_info interface
+
+1.7.36 fix: fix rename branch master to main
+
+1.7.35 fix: fix stock_market_fund_flow interface
+
+1.7.34 fix: fix bond_cb_jsl interface
+
+1.7.33 fix: fix stock_zh_ah_daily interface
+
+1.7.32 fix: fix stock_a_ttm_lyr interface
+
+1.7.31 fix: fix stock_a_lg_indicator interface
+
+1.7.30 fix: fix bond_cb_index_jsl interface
+
+1.7.29 fix: fix stock_us_daily interface
+
+1.7.28 fix: fix stock_info_sh_name_code interface
+
+1.7.27 fix: fix stock_qsjy_em interface
+
+1.7.26 add: add bond_new_composite_index_cbond interface
+
+1.7.25 add: add news_trade_notify_dividend_baidu interface
+
+1.7.24 fix: fix amac_manager_classify_info interface
+
+1.7.23 fix: fix rename futures_pig_info and futures_pig_rank interface
+
+1.7.22 add: add index_investing_global_area_index_name_url interface
+
+1.7.21 fix: fix futures_hog_info interface
+
+1.7.20 fix: fix crypto_js_spot interface
+
+1.7.19 fix: fix index_value_name_funddb interface
+
+1.7.18 fix: fix stock_lhb_jgmmtj_em interface
+
+1.7.17 fix: fix bond_cb_jsl interface
+
+1.7.16 fix: fix crypto_js_spot interface
 
 1.7.15 fix: fix news_economic_baidu interface
 

@@ -1278,16 +1278,16 @@ print(futures_shfe_warehouse_receipt_df)
 
 #### 日线行情K线
 
-通过采集交易所官网信息, 可以获得各合约日线行情, 以及根据持仓量加权的指数行情, 用法如下:
+通过采集交易所官网信息, 可以获得各合约日线行情, 用法如下:
 
 ```python
 import akshare as ak
-get_futures_daily_df = ak.get_futures_daily(start_date="20190107", end_date="20190108", market="SHFE", index_bar=True)
+
+get_futures_daily_df = ak.get_futures_daily(start_date="20190107", end_date="20190108", market="SHFE")
 print(get_futures_daily_df)
 ```
 
 market 可以添为四个交易所的简称, 即 "DCE" 代表大商所; "INE" 代表能源所; "SHFE" 代表上期所; "CZCE" 代表郑商所, 时间需要大于20100824; "CFFEX" 代表中金所.
-index_bar 为 True 时, 在生成的 pandas.DataFrame 中通过持仓量加权合成指数合约, 如 RB99.
 
 #### 期转现-大商所
 
@@ -2241,7 +2241,6 @@ print(futures_zh_daily_sina_df)
 | start_date | str | start_date="20200701"                                           |
 | end_date   | str | end_date="20200716"                                             |
 | market     | str | market="DCE"; choice of {"CFFEX", "INE", "CZCE", "DCE", "SHFE"} |
-| index_bar  | str | index_bar=False; 是否合成指数                                         |
 
 输出参数
 
@@ -3670,9 +3669,9 @@ print(futures_comex_inventory_df)
 
 ### 生猪信息
 
-接口: futures_pig_info
+接口: futures_hog_info
 
-目标地址: https://zhujia.zhuwang.cc/
+目标地址: https://zhujia.zhuwang.com.cn
 
 描述: 养猪数据中心-猪肉价格信息数据
 
@@ -3696,8 +3695,8 @@ print(futures_comex_inventory_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="猪肉批发价")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="猪肉批发价")
+print(futures_hog_info_df)
 ```
 
 数据示例-猪肉批发价
@@ -3729,8 +3728,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="仔猪价格")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="仔猪价格")
+print(futures_hog_info_df)
 ```
 
 数据示例-仔猪价格
@@ -3774,8 +3773,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="生猪期货指数")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="生猪期货指数")
+print(futures_hog_info_df)
 ```
 
 数据示例-生猪期货指数
@@ -3807,8 +3806,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="二元母猪价格")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="二元母猪价格")
+print(futures_hog_info_df)
 ```
 
 数据示例-二元母猪价格
@@ -3843,8 +3842,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="生猪产能数据")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="生猪产能数据")
+print(futures_hog_info_df)
 ```
 
 数据示例-生猪产能数据
@@ -3882,8 +3881,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="饲料原料数据")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="饲料原料数据")
+print(futures_hog_info_df)
 ```
 
 数据示例-饲料原料数据
@@ -3911,8 +3910,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="中央储备冻猪肉")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="中央储备冻猪肉")
+print(futures_hog_info_df)
 ```
 
 数据示例-中央储备冻猪肉
@@ -3958,8 +3957,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="白条肉")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="白条肉")
+print(futures_hog_info_df)
 ```
 
 数据示例-白条肉
@@ -3994,8 +3993,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="育肥猪配合饲料")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="育肥猪配合饲料")
+print(futures_hog_info_df)
 ```
 
 数据示例-白条肉
@@ -4027,8 +4026,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="肉类价格指数")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="肉类价格指数")
+print(futures_hog_info_df)
 ```
 
 数据示例-肉类价格指数
@@ -4072,8 +4071,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="猪粮比价")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="猪粮比价")
+print(futures_hog_info_df)
 ```
 
 数据示例-猪粮比价
@@ -4108,8 +4107,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="猪企销售简报-销售量")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="猪企销售简报-销售量")
+print(futures_hog_info_df)
 ```
 
 数据示例-猪企销售简报-销售量
@@ -4139,8 +4138,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="猪企销售简报-销售额")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="猪企销售简报-销售额")
+print(futures_hog_info_df)
 ```
 
 数据示例-猪企销售简报-销售额
@@ -4170,8 +4169,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_info_df = ak.futures_pig_info(symbol="猪企销售简报-销售均价")
-print(futures_pig_info_df)
+futures_hog_info_df = ak.futures_hog_info(symbol="猪企销售简报-销售均价")
+print(futures_hog_info_df)
 ```
 
 数据示例-猪企销售简报-销售均价
@@ -4188,7 +4187,7 @@ print(futures_pig_info_df)
 
 ### 生猪价格排行
 
-接口: futures_pig_rank
+接口: futures_hog_rank
 
 目标地址: https://zhujia.zhuwang.cc/lists.shtml
 
@@ -4217,8 +4216,8 @@ print(futures_pig_info_df)
 ```python
 import akshare as ak
 
-futures_pig_rank_df = ak.futures_pig_rank(symbol="外三元")
-print(futures_pig_rank_df)
+futures_hog_rank_df = ak.futures_hog_rank(symbol="外三元")
+print(futures_hog_rank_df)
 ```
 
 数据示例-外三元
@@ -4273,8 +4272,8 @@ print(futures_pig_rank_df)
 ```python
 import akshare as ak
 
-futures_pig_rank_df = ak.futures_pig_rank(symbol="内三元")
-print(futures_pig_rank_df)
+futures_hog_rank_df = ak.futures_hog_rank(symbol="内三元")
+print(futures_hog_rank_df)
 ```
 
 数据示例-内三元
@@ -4329,8 +4328,8 @@ print(futures_pig_rank_df)
 ```python
 import akshare as ak
 
-futures_pig_rank_df = ak.futures_pig_rank(symbol="土杂猪")
-print(futures_pig_rank_df)
+futures_hog_rank_df = ak.futures_hog_rank(symbol="土杂猪")
+print(futures_hog_rank_df)
 ```
 
 数据示例-土杂猪
@@ -4385,8 +4384,8 @@ print(futures_pig_rank_df)
 ```python
 import akshare as ak
 
-futures_pig_rank_df = ak.futures_pig_rank(symbol="玉米")
-print(futures_pig_rank_df)
+futures_hog_rank_df = ak.futures_hog_rank(symbol="玉米")
+print(futures_hog_rank_df)
 ```
 
 数据示例-玉米
@@ -4441,8 +4440,8 @@ print(futures_pig_rank_df)
 ```python
 import akshare as ak
 
-futures_pig_rank_df = ak.futures_pig_rank(symbol="豆粕")
-print(futures_pig_rank_df)
+futures_hog_rank_df = ak.futures_hog_rank(symbol="豆粕")
+print(futures_hog_rank_df)
 ```
 
 数据示例-豆粕
@@ -4689,4 +4688,54 @@ print(futures_news_shmet_df)
 997 2022-07-29 11:41:22+08:00  【《中国矿产供应链尽责管理指南》正式获得LME负责任供应链的有条件合规资格】中国五矿化工进出...
 998 2022-07-29 11:51:28+08:00  【SHMET铜现货报价】上海金属网讯：截止11:30分，上海金属网1#电解铜报价60180-...
 999 2022-07-29 11:56:38+08:00  【期铜偏强 现货市场成交一般】今日上海金属网1#电解铜报价60180-60450元/吨，均价...
+```
+
+### 期货新闻
+
+接口: futures_news_baidu
+
+目标地址: https://gushitong.baidu.com/futures/ab-CJ888
+
+描述: 百度股市通-期货-新闻
+
+限量: 指定 symbol 的近期新闻数据
+
+输入参数
+
+| 名称     | 类型  | 描述                  |
+|--------|-----|---------------------|
+| symbol | str | symbol="AL"; 期货品种代码 |
+
+输出参数
+
+| 名称   | 类型     | 描述  |
+|------|--------|-----|
+| 标题   | object | -   |
+| 发布时间 | object | -   |
+| 新闻链接 | object | -   |
+
+接口示例
+
+```python
+import akshare as ak
+
+futures_news_baidu_df = ak.futures_news_baidu(symbol="AL")
+print(futures_news_baidu_df)
+```
+
+数据示例
+
+```
+                                              标题  ...                                               新闻链接
+0                       伦敦金属交易所(LME)：铝库存增加15300吨  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
+1                   商品期货收盘普遍上涨，不锈钢涨4％，沪铝、沪铜等涨超2%  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
+2                 【仓单】10月14日上期所沪铝期货仓单较上一日增加1377吨  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
+3             【收评】沪铝日内上涨2.37% 机构称关注俄铝相关动态 铝价偏强震荡  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
+4       安信证券：LME发布俄罗斯金属禁令征求意见稿 具备低成本的一体化电解铝标的或受益  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
+..                                           ...  ...                                                ...
+409                         【持仓分析】沪铝前20期商净空头持仓上升  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
+410  【SMM金属早参】原油续跌 伦镍跌超9% 内盘沪铝涨超1%\| 产业链供应情况调研一览  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
+411                 【调研报告――铝】广东铝下游调研―消费乏力，旺季有待检验  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
+412                       【调研报告】铝：铝价年内将以震荡偏弱走势为主  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
+413                  刷新认知！上市公司董事长带队炒期货  4个月暴赚近7亿  ...  https://fupage.10jqka.com.cn/activity-v2/pc-ne...
 ```

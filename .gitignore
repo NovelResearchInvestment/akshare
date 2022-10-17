@@ -25,15 +25,9 @@ colors
 
 # IDE
 .idea/
-.vscode/
 
 # jupyter
 .ipynb_checkpoints
 #docs/source/_static/
 #docs/source/_templates/
-
-
-# other
 .DS_Store
-*.tmp
-

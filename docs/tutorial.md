@@ -531,7 +531,7 @@
  # 美股港股目标价
  "stock_price_js"  # 美股港股目标价
  # 券商业绩月报
- "stock_em_qsjy"  # 券商业绩月报
+ "stock_qsjy_em"  # 券商业绩月报
  # 彭博亿万富豪指数
  "index_bloomberg_billionaires"  # 彭博亿万富豪指数
  "index_bloomberg_billionaires_hist"  # 彭博亿万富豪历史指数
@@ -847,8 +847,8 @@
  "macro_australia_ppi_quarterly"  # 生产者物价指数季率
  "macro_australia_retail_rate_monthly"  # 零售销售月率
  # 养猪数据中心
- "futures_pig_info"  # 生猪信息
- "futures_pig_rank"  # 生猪价格排行
+ "futures_hog_info"  # 生猪信息
+ "futures_hog_rank"  # 生猪价格排行
  # 宏观-加拿大
  "macro_canada_new_house_rate"  # 新屋开工
  "macro_canada_unemployment_rate"  # 失业率
@@ -1123,6 +1123,32 @@
  "stock_telegraph_cls"  # 咨询-财联社-电报
  # 上海金属网
  "futures_news_shmet"  # 上海金属网-快讯
+ # 分红配股
+ "news_trade_notify_dividend_baidu"  # 分红配股
+ # 中国债券信息网-中债指数-中债指数族系-总指数-综合类指数
+ "bond_new_composite_index_cbond"  # 中债-新综合指数
+ "bond_composite_index_cbond"  # 中债-综合指数
+ # 沪深港股通-参考汇率和结算汇率
+ "stock_sgt_settlement_exchange_rate_szse"  # 深港通-港股通业务信息-结算汇率
+ "stock_sgt_reference_exchange_rate_szse"  # 深港通-港股通业务信息-参考汇率
+ "stock_sgt_reference_exchange_rate_sse"  # 沪港通-港股通信息披露-参考汇率
+ "stock_sgt_settlement_exchange_rate_sse"  # 沪港通-港股通信息披露-结算汇兑
+ # 配股实施方案-巨潮资讯
+ "stock_allotment_cninfo"  # 配股实施方案-巨潮资讯
+ # 巨潮资讯-个股-公司概况
+ "stock_profile_cninfo"  # 巨潮资讯-个股-公司概况
+ # 百度股市通-港股-财务报表-估值数据
+ "stock_hk_valuation_baidu"  # 百度股市通-港股-财务报表-估值数据
+ # 百度股市通-A 股-财务报表-估值数据
+ "stock_zh_valuation_baidu"  # 百度股市通-A 股-财务报表-估值数据
+ # 百度股市通- A 股或指数-股评-投票
+ "stock_zh_vote_baidu"  # 百度股市通- A 股或指数-股评-投票
+ # 百度股市通-期货-新闻
+ "futures_news_baidu"  # 百度股市通-期货-新闻
+ # 百度股市通-热搜股票
+ "stock_hot_search_baidu"  # 百度股市通-热搜股票
+ # 乐估乐股-底部研究-巴菲特指标
+ "stock_buffett_index_lg"  # 乐估乐股-底部研究-巴菲特指标
 ```
 
 ## 案例演示
