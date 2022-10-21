@@ -37,6 +37,10 @@ def fund_etf_category_sina(symbol: str = "LOF基金") -> pd.DataFrame:
         "[object HTMLDivElement]": "qvvne",
     }
     r = requests.get(url, params=params)
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+    
     data_text = r.text
     data_json = demjson.decode(data_text[data_text.find("([") + 1 : -2])
     temp_df = pd.DataFrame(data_json)

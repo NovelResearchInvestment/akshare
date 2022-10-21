@@ -36,9 +36,14 @@ def stock_zt_pool_em(date: str = "20220426") -> pd.DataFrame:
         "_": "1621590489736",
     }
     r = requests.get(url, params=params)
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+
     data_json = r.json()
-    if data_json["data"] is None:
-        return pd.DataFrame()
+    if data_json['data'] is None:
+        return
+
     temp_df = pd.DataFrame(data_json["data"]["pool"])
     temp_df.reset_index(inplace=True)
     temp_df["index"] = range(1, len(temp_df) + 1)
@@ -120,9 +125,14 @@ def stock_zt_pool_previous_em(date: str = "20210521") -> pd.DataFrame:
         "_": "1621590489736",
     }
     r = requests.get(url, params=params)
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+
     data_json = r.json()
     if data_json["data"] is None:
-        return pd.DataFrame()
+        return
+    
     temp_df = pd.DataFrame(data_json["data"]["pool"])
     temp_df.reset_index(inplace=True)
     temp_df["index"] = range(1, len(temp_df) + 1)
@@ -194,9 +204,14 @@ def stock_zt_pool_strong_em(date: str = "20210521") -> pd.DataFrame:
         "_": "1621590489736",
     }
     r = requests.get(url, params=params)
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+
     data_json = r.json()
     if data_json["data"] is None:
-        return pd.DataFrame()
+        return
+
     temp_df = pd.DataFrame(data_json["data"]["pool"])
     temp_df.reset_index(inplace=True)
     temp_df["index"] = range(1, len(temp_df) + 1)
@@ -268,9 +283,14 @@ def stock_zt_pool_sub_new_em(date: str = "20210525") -> pd.DataFrame:
         "_": "1621590489736",
     }
     r = requests.get(url, params=params)
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+
     data_json = r.json()
     if data_json["data"] is None:
-        return pd.DataFrame()
+        return
+
     temp_df = pd.DataFrame(data_json["data"]["pool"])
     temp_df.reset_index(inplace=True)
     temp_df["index"] = range(1, len(temp_df) + 1)
@@ -345,9 +365,14 @@ def stock_zt_pool_zbgc_em(date: str = "20210525") -> pd.DataFrame:
         "_": "1621590489736",
     }
     r = requests.get(url, params=params)
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+
     data_json = r.json()
     if data_json["data"] is None:
-        return pd.DataFrame()
+        return
+
     temp_df = pd.DataFrame(data_json["data"]["pool"])
     temp_df.reset_index(inplace=True)
     temp_df["index"] = range(1, len(temp_df) + 1)
@@ -421,9 +446,14 @@ def stock_zt_pool_dtgc_em(date: str = "20220425") -> pd.DataFrame:
         "_": "1621590489736",
     }
     r = requests.get(url, params=params)
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+
     data_json = r.json()
     if data_json["data"] is None:
-        return pd.DataFrame()
+        return
+
     temp_df = pd.DataFrame(data_json["data"]["pool"])
     temp_df.reset_index(inplace=True)
     temp_df["index"] = range(1, len(temp_df) + 1)

@@ -301,7 +301,7 @@ def get_czce_daily(date: str = "20050525") -> pd.DataFrame:
                 html = str(r.content, encoding="gbk")
             else:
                 html = r.text
-        except requests.exceptions.HTTPError as reason:
+        except requests.HTTPError as reason:
             if reason.response.status_code != 404:
                 print(
                     cons.CZCE_DAILY_URL_3
@@ -309,14 +309,20 @@ def get_czce_daily(date: str = "20050525") -> pd.DataFrame:
                     reason,
                 )
             return
+
         if html.find("您的访问出错了") >= 0 or html.find("无期权每日行情交易记录") >= 0:
             return
+
         html = [
             i.replace(" ", "").split("|")
             for i in html.split("\n")[:-4]
             if i[0][0] != "小"
         ]
 
+        if len(html) == 0:
+            print(f"[{__name__}] --- Results of {date} is empty.")
+            return
+        
         if day > datetime.date(2015, 11, 11):
             if html[1][0] not in ["品种月份", "品种代码", "合约代码"]:
                 return

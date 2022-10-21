@@ -31,6 +31,10 @@ def stock_individual_info_em(symbol: str = "603777") -> pd.DataFrame:
         "_": "1640157544804",
     }
     r = requests.get(url, params=params)
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+
     data_json = r.json()
     temp_df = pd.DataFrame(data_json)
     temp_df.reset_index(inplace=True)

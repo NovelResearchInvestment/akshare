@@ -20,8 +20,7 @@ from akshare.futures.cons import (
     zh_match_main_contract_payload,
 )
 from akshare.futures.futures_contract_detail import futures_contract_detail
-from akshare.utils import demjson
-
+from akshare.utils import demjson 
 
 @lru_cache()
 def futures_symbol_mark() -> pd.DataFrame:
@@ -618,7 +617,19 @@ def futures_zh_minute_sina(
         "type": period,
     }
     r = requests.get(url, params=params)
-    temp_df = pd.DataFrame(json.loads(r.text.split("=(")[1].split(");")[0]))
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+    
+    page_text = r.content.decode("utf8")
+    if "拒绝访问" in page_text:
+        raise requests.HTTPError(f"Status: {r.response} \nPage Content{page_text}")
+    
+    results = json.loads(r.text.split("=(")[1].split(");")[0])
+    if len(results) == 0:
+        return
+
+    temp_df = pd.DataFrame(results)
     temp_df.columns = [
         "datetime",
         "open",

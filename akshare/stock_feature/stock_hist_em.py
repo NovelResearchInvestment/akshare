@@ -1105,7 +1105,14 @@ def stock_zh_a_hist_pre_min_em(
         "_": "1623766962675",
     }
     r = requests.get(url, params=params)
+    if r.status_code >= 300:
+        page_text = r.content.decode("utf8")
+        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+
     data_json = r.json()
+    if data_json['data'] is None:
+        return
+
     temp_df = pd.DataFrame(
         [item.split(",") for item in data_json["data"]["trends"]]
     )

@@ -107,6 +107,7 @@ def index_zh_a_hist(
     code_id_dict = index_code_id_map_em()
     period_dict = {"daily": "101", "weekly": "102", "monthly": "103"}
     url = "http://push2his.eastmoney.com/api/qt/stock/kline/get"
+    OUT_COLUMNS = ["日期", "开盘", "收盘", "最高", "最低", "成交量", "成交额", "振幅", "涨跌幅", "涨跌额", "换手率"]
     try:
         params = {
             "secid": f"{code_id_dict[symbol]}.{symbol}",
@@ -179,36 +180,25 @@ def index_zh_a_hist(
             "_": "1623766962675",
         }
         r = requests.get(url, params=params)
+        if r.status_code >= 300:
+            page_text = r.content.decode("utf8")
+            raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
+
         data_json = r.json()
+        if data_json['data'] is None:
+            return
+        
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["klines"]]
         )
-    temp_df.columns = [
-        "日期",
-        "开盘",
-        "收盘",
-        "最高",
-        "最低",
-        "成交量",
-        "成交额",
-        "振幅",
-        "涨跌幅",
-        "涨跌额",
-        "换手率",
-    ]
+
+    temp_df.columns = OUT_COLUMNS
     temp_df.index = pd.to_datetime(temp_df["日期"])
-    temp_df = temp_df[start_date:end_date]
+    temp_df = temp_df[start_date:end_date].copy()
     temp_df.reset_index(inplace=True, drop=True)
-    temp_df["开盘"] = pd.to_numeric(temp_df["开盘"])
-    temp_df["收盘"] = pd.to_numeric(temp_df["收盘"])
-    temp_df["最高"] = pd.to_numeric(temp_df["最高"])
-    temp_df["最低"] = pd.to_numeric(temp_df["最低"])
-    temp_df["成交量"] = pd.to_numeric(temp_df["成交量"])
-    temp_df["成交额"] = pd.to_numeric(temp_df["成交额"])
-    temp_df["振幅"] = pd.to_numeric(temp_df["振幅"])
-    temp_df["涨跌幅"] = pd.to_numeric(temp_df["涨跌幅"])
-    temp_df["涨跌额"] = pd.to_numeric(temp_df["涨跌额"])
-    temp_df["换手率"] = pd.to_numeric(temp_df["换手率"])
+    numeric_keys = ["开盘", "收盘", "最高", "最低", "成交量", "成交额", "振幅", "涨跌幅", "涨跌额", "换手率"]
+    for k in numeric_keys:
+        temp_df[k] = pd.to_numeric(temp_df[k])
     return temp_df
 
 
@@ -269,6 +259,9 @@ def index_zh_a_hist_min_em(
                 }
         r = requests.get(url, params=params)
         data_json = r.json()
+        if data_json['data'] is None:
+            return
+
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["trends"]]
         )
