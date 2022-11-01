@@ -2171,9 +2171,30 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.7.51 fix: fix stock_a_lg_indicator interface
 1.7.52 fix: fix stock_sse_summary interface
 1.7.53 add: add stock_buffett_index_lg interface
+1.7.54 fix: fix stock_a_lg_indicator interface
+1.7.55 add: add fx_quote_baidu interface
+1.7.56 fix: fix stock_buffett_index_lg interface
+1.7.57 fix: fix stock_a_high_low_statistics interface
+1.7.58 fix: fix bond_cb_redeem_jsl interface
+1.7.59 fix: fix stock_a_high_low_statistics interface
+1.7.60 fix: fix stock_zh_a_spot_em interface
+1.7.61 add: add option_50etf_qvix interface
+1.7.62 add: add option_300etf_qvix interface
+1.7.63 add: add option_300etf_min_qvix interface
+1.7.64 add: add option_50etf_min_qvix interface
+1.7.65 fix: fix futures_rule interface
+1.7.66 add: add index_realtime_sw interface
+1.7.67 fix: fix xincaifu_rank interface
+1.7.68 fix: fix hurun_rank interface
+1.7.69 add: add index_hist_sw interface
+1.7.70 fix: fix index_hist_sw interface
+1.7.71 add: add support for Python 3.11
+1.7.72 add: add index_min_sw interface
+1.7.73 fix: fix stock_zh_index_daily_tx interface
+1.7.74 fix: fix futures_news_baidu interface
 """
 
-__version__ = "1.7.53"
+__version__ = "1.7.74"
 __author__ = "AKFamily"
 
 import sys
@@ -2183,6 +2204,32 @@ if sys.version_info < (3, 7):
     sys.exit(1)
 
 del sys
+
+
+"""
+申万宏源研究-指数系列
+"""
+from akshare.index.index_sw_research import (
+    index_realtime_sw,
+    index_hist_sw,
+    index_component_sw,
+    index_min_sw,
+)
+
+"""
+50ETF 期权波动率指数
+"""
+from akshare.option.option_qvix import (
+    option_50etf_qvix,
+    option_300etf_min_qvix,
+    option_300etf_qvix,
+    option_50etf_min_qvix,
+)
+
+"""
+百度股市通-外汇-行情榜单
+"""
+from akshare.fx.fx_quote_baidu import fx_quote_baidu
 
 """
 乐估乐股-底部研究-巴菲特指标
@@ -2231,7 +2278,7 @@ from akshare.stock_feature.stock_hsgt_exchange_rate import (
     stock_sgt_reference_exchange_rate_sse,
     stock_sgt_settlement_exchange_rate_sse,
     stock_sgt_reference_exchange_rate_szse,
-    stock_sgt_settlement_exchange_rate_szse
+    stock_sgt_settlement_exchange_rate_szse,
 )
 
 """
@@ -3967,7 +4014,7 @@ from akshare.stock.stock_zh_a_tick_tx_163 import (
 """
 新浪-指数实时行情和历史行情
 """
-from akshare.index.zh_stock_index_sina import (
+from akshare.index.stock_zh_index_sina import (
     stock_zh_index_daily,
     stock_zh_index_spot,
     stock_zh_index_daily_tx,

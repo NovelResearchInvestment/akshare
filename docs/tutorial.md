@@ -1149,6 +1149,22 @@
  "stock_hot_search_baidu"  # 百度股市通-热搜股票
  # 乐估乐股-底部研究-巴菲特指标
  "stock_buffett_index_lg"  # 乐估乐股-底部研究-巴菲特指标
+ # 百度股市通-外汇-行情榜单
+ "fx_quote_baidu"  # 百度股市通-外汇-行情榜单
+ # 50ETF 期权波动率指数
+ "option_50etf_qvix"  # 50ETF 期权波动率指数
+ # 300 ETF 期权波动率指数
+ "option_300etf_qvix"  # 300 ETF 期权波动率指数
+ # 300 ETF 期权波动率指数 QVIX-分时
+ "option_300etf_min_qvix"  # 300 ETF 期权波动率指数 QVIX-分时
+ # 申万指数实时行情
+ "index_realtime_sw"  # 申万指数实时行情
+ # 申万指数历史行情
+ "index_hist_sw"  # 申万指数历史行情
+ # 申万指数分时行情
+ "index_min_sw"  # 申万指数分时行情
+ # 申万指数成分股
+ "index_component_sw"  # 申万指数成分股
 ```
 
 ## 案例演示

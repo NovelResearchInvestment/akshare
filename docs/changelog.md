@@ -34,6 +34,90 @@
 
 ## 更新说明
 
+1.7.74 fix: fix futures_news_baidu interface
+
+    1. 修复 futures_news_baidu 接口
+
+1.7.73 fix: fix stock_zh_index_daily_tx interface
+
+    1. 修复 stock_zh_index_daily_tx 接口
+
+1.7.72 add: add index_min_sw interface
+
+    1. 新增 index_min_sw 接口
+
+1.7.71 add: add support for Python 3.11
+
+    1. 增加对 Python 3.11 的支持
+
+1.7.70 fix: fix index_hist_sw interface
+
+    1. 修复 index_hist_sw 接口
+
+1.7.69 add: add index_hist_sw interface
+
+    1. 新增 index_hist_sw 接口
+
+1.7.68 fix: fix hurun_rank interface
+
+    1. 修复 hurun_rank 接口
+
+1.7.67 fix: fix xincaifu_rank interface
+
+    1. 修复 xincaifu_rank 接口
+
+1.7.66 add: add index_realtime_sw interface
+
+    1. 新增 index_realtime_sw 接口
+
+1.7.65 fix: fix futures_rule interface
+
+    1. 修复 futures_rule 接口
+
+1.7.64 add: add option_50etf_min_qvix interface
+
+    1. 新增 option_50etf_min_qvix 接口
+
+1.7.63 add: add option_300etf_min_qvix interface
+
+    1. 新增 option_300etf_min_qvix 接口
+
+1.7.62 add: add option_300etf_qvix interface
+    
+    1. 新增 option_300etf_qvix 接口
+
+1.7.61 add: add option_50etf_qvix interface
+
+    1. 新增 option_50etf_qvix 接口
+
+1.7.60 fix: fix stock_zh_a_spot_em interface
+
+    1. 修复 stock_zh_a_spot_em 接口
+
+1.7.59 fix: fix stock_a_high_low_statistics interface
+
+    1. 修复 stock_a_high_low_statistics 接口
+
+1.7.58 fix: fix bond_cb_redeem_jsl interface
+
+    1. 修复 bond_cb_redeem_jsl 接口
+
+1.7.57 fix: fix stock_a_high_low_statistics interface
+
+    1. 修复 stock_a_high_low_statistics 接口
+
+1.7.56 fix: fix stock_buffett_index_lg interface
+
+    1. 修复 stock_buffett_index_lg 接口
+
+1.7.55 add: add fx_quote_baidu interface
+
+    1. 新增 fx_quote_baidu 接口
+
+1.7.54 fix: fix stock_a_lg_indicator interface
+
+    1. 修复 stock_a_lg_indicator 接口
+
 1.7.53 add: add stock_buffett_index_lg interface
 
     1. 新增 stock_buffett_index_lg 接口
@@ -1323,6 +1407,48 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.7.74 fix: fix futures_news_baidu interface
+
+1.7.73 fix: fix stock_zh_index_daily_tx interface
+
+1.7.72 add: add index_min_sw interface
+
+1.7.71 add: add support for Python 3.11
+
+1.7.70 fix: fix index_hist_sw interface
+
+1.7.69 add: add index_hist_sw interface
+
+1.7.68 fix: fix hurun_rank interface
+
+1.7.67 fix: fix xincaifu_rank interface
+
+1.7.66 add: add index_realtime_sw interface
+
+1.7.65 fix: fix futures_rule interface
+
+1.7.64 add: add option_50etf_min_qvix interface
+
+1.7.63 add: add option_300etf_min_qvix interface
+
+1.7.62 add: add option_300etf_qvix interface
+
+1.7.61 add: add option_50etf_qvix interface
+
+1.7.60 fix: fix stock_zh_a_spot_em interface
+
+1.7.59 fix: fix stock_a_high_low_statistics interface
+
+1.7.58 fix: fix bond_cb_redeem_jsl interface
+
+1.7.57 fix: fix stock_a_high_low_statistics interface
+
+1.7.56 fix: fix stock_buffett_index_lg interface
+
+1.7.55 add: add fx_quote_baidu interface
+
+1.7.54 fix: fix stock_a_lg_indicator interface
 
 1.7.53 add: add stock_buffett_index_lg interface
 
