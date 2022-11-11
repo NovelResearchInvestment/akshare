@@ -1116,6 +1116,9 @@ def stock_zh_a_hist_pre_min_em(
     temp_df = pd.DataFrame(
         [item.split(",") for item in data_json["data"]["trends"]]
     )
+    if len(temp_df) == 0:
+        return
+
     temp_df.columns = [
         "时间",
         "开盘",
