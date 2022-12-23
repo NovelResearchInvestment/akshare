@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2022/10/29 19:00
+Date: 2022/11/4 16:00
 Desc: 申万宏源研究-指数系列
 https://www.swhyresearch.com/institute_sw/allIndex/releasedIndex
 """
@@ -63,7 +63,7 @@ def index_hist_sw(symbol: str = "801030", period: str = "day") -> pd.DataFrame:
             "成交额",
         ]
     ]
-    temp_df['日期'] = pd.to_datetime(temp_df['日期']).dt.date
+    temp_df["日期"] = pd.to_datetime(temp_df["日期"]).dt.date
     return temp_df
 
 
@@ -76,7 +76,9 @@ def index_min_sw(symbol: str = "801001") -> pd.DataFrame:
     :return: 指数分时数据
     :rtype: pandas.DataFrame
     """
-    url = "https://www.swhyresearch.com/institute-sw/api/index_publish/details/timelines/"
+    url = (
+        "https://www.swhyresearch.com/institute-sw/api/index_publish/details/timelines/"
+    )
     params = {
         "swindexcode": symbol,
     }
@@ -102,8 +104,8 @@ def index_min_sw(symbol: str = "801001") -> pd.DataFrame:
             "时间",
         ]
     ]
-    temp_df['日期'] = pd.to_datetime(temp_df['日期']).dt.date
-    temp_df['价格'] = pd.to_numeric(temp_df['价格'])
+    temp_df["日期"] = pd.to_datetime(temp_df["日期"]).dt.date
+    temp_df["价格"] = pd.to_numeric(temp_df["价格"])
     return temp_df
 
 
@@ -117,16 +119,12 @@ def index_component_sw(symbol: str = "801001") -> pd.DataFrame:
     :rtype: pandas.DataFrame
     """
     url = "https://www.swhyresearch.com/institute-sw/api/index_publish/details/component_stocks/"
-    params = {
-        "swindexcode": symbol,
-        'page': '1',
-        'page_size': '10000'
-    }
+    params = {"swindexcode": symbol, "page": "1", "page_size": "10000"}
     r = requests.get(url, params=params)
     data_json = r.json()
-    temp_df = pd.DataFrame(data_json["data"]['results'])
+    temp_df = pd.DataFrame(data_json["data"]["results"])
     temp_df.reset_index(inplace=True)
-    temp_df['index'] = temp_df['index'] + 1
+    temp_df["index"] = temp_df["index"] + 1
     temp_df.rename(
         columns={
             "index": "序号",
@@ -146,8 +144,8 @@ def index_component_sw(symbol: str = "801001") -> pd.DataFrame:
             "计入日期",
         ]
     ]
-    temp_df['计入日期'] = pd.to_datetime(temp_df['计入日期']).dt.date
-    temp_df['最新权重'] = pd.to_numeric(temp_df['最新权重'])
+    temp_df["计入日期"] = pd.to_datetime(temp_df["计入日期"]).dt.date
+    temp_df["最新权重"] = pd.to_numeric(temp_df["最新权重"])
     return temp_df
 
 
@@ -207,6 +205,242 @@ def index_realtime_sw(symbol: str = "二级行业") -> pd.DataFrame:
     return big_df
 
 
+def index_analysis_daily_sw(
+    symbol: str = "市场表征",
+    start_date: str = "20221103",
+    end_date: str = "20221103",
+) -> pd.DataFrame:
+    """
+    申万宏源研究-指数分析
+    https://www.swhyresearch.com/institute_sw/allIndex/analysisIndex
+    :param symbol: choice of {"市场表征", "一级行业", "二级行业", "风格指数"}
+    :type symbol: str
+    :param start_date: 开始日期
+    :type start_date: str
+    :param end_date: 结束日期
+    :type end_date: str
+    :return: 指数分析
+    :rtype: pandas.DataFrame
+    """
+    url = "https://www.swhyresearch.com/institute-sw/api/index_analysis/index_analysis_report/"
+    params = {
+        "page": "1",
+        "page_size": "50",
+        "index_type": symbol,
+        "start_date": "-".join([start_date[:4], start_date[4:6], start_date[6:]]),
+        "end_date": "-".join([end_date[:4], end_date[4:6], end_date[6:]]),
+        "type": 'DAY',
+        "swindexcode": "all",
+    }
+    r = requests.get(url, params=params)
+    data_json = r.json()
+    total_num = data_json["data"]["count"]
+    total_page = math.ceil(total_num / 50)
+    big_df = pd.DataFrame()
+    for page in tqdm(range(1, total_page + 1), leave=False):
+        params.update({"page": page})
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        temp_df = pd.DataFrame(data_json["data"]["results"])
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+    big_df.rename(
+        columns={
+            "swindexcode": "指数代码",
+            "swindexname": "指数名称",
+            "bargaindate": "发布日期",
+            "closeindex": "收盘指数",
+            "bargainamount": "成交量",
+            "markup": "涨跌幅",
+            "turnoverrate": "换手率",
+            "pe": "市盈率",
+            "pb": "市净率",
+            "meanprice": "均价",
+            "bargainsumrate": "成交额占比",
+            "negotiablessharesum1": "流通市值",
+            "negotiablessharesum2": "平均流通市值",
+            "dp": "股息率",
+        },
+        inplace=True,
+    )
+    big_df["发布日期"] = pd.to_datetime(big_df["发布日期"]).dt.date
+    big_df["收盘指数"] = pd.to_numeric(big_df["收盘指数"])
+    big_df["成交量"] = pd.to_numeric(big_df["成交量"])
+    big_df["涨跌幅"] = pd.to_numeric(big_df["涨跌幅"])
+    big_df["换手率"] = pd.to_numeric(big_df["换手率"])
+    big_df["市盈率"] = pd.to_numeric(big_df["市盈率"])
+    big_df["市净率"] = pd.to_numeric(big_df["市净率"])
+    big_df["均价"] = pd.to_numeric(big_df["均价"])
+    big_df["成交额占比"] = pd.to_numeric(big_df["成交额占比"])
+    big_df["流通市值"] = pd.to_numeric(big_df["流通市值"])
+    big_df["平均流通市值"] = pd.to_numeric(big_df["平均流通市值"])
+    big_df["股息率"] = pd.to_numeric(big_df["股息率"])
+
+    big_df.sort_values(['发布日期'], inplace=True, ignore_index=True)
+    return big_df
+
+
+def index_analysis_week_month_sw(symbol: str = "month") -> pd.DataFrame:
+    """
+    申万宏源研究-周/月报表-日期序列
+    https://www.swhyresearch.com/institute_sw/allIndex/analysisIndex
+    :param symbol: choice of {"week", "month"}
+    :type symbol: str
+    :return: 日期序列
+    :rtype: pandas.DataFrame
+    """
+    url = "https://www.swhyresearch.com/institute-sw/api/index_analysis/week_month_datetime/"
+    params = {
+        'type': symbol.upper()
+    }
+    r = requests.get(url, params=params)
+    data_json = r.json()
+    temp_df = pd.DataFrame(data_json['data'])
+    temp_df['bargaindate'] = pd.to_datetime(temp_df['bargaindate']).dt.date
+    temp_df.columns = ['date']
+    temp_df.sort_values(['date'], inplace=True, ignore_index=True)
+    return temp_df
+
+
+def index_analysis_weekly_sw(
+    symbol: str = "市场表征",
+    date: str = "20221104",
+) -> pd.DataFrame:
+    """
+    申万宏源研究-指数分析-周报告
+    https://www.swhyresearch.com/institute_sw/allIndex/analysisIndex
+    :param symbol: choice of {"市场表征", "一级行业", "二级行业", "风格指数"}
+    :type symbol: str
+    :param date: 查询日期; 通过调用 ak.index_analysis_week_month_sw(date="20221104") 接口获取
+    :type date: str
+    :return: 指数分析
+    :rtype: pandas.DataFrame
+    """
+    url = "https://www.swhyresearch.com/institute-sw/api/index_analysis/index_analysis_reports/"
+    params = {
+        "page": "1",
+        "page_size": "50",
+        "index_type": symbol,
+        "bargaindate": "-".join([date[:4], date[4:6], date[6:]]),
+        "type": "WEEK",
+        "swindexcode": "all",
+    }
+    r = requests.get(url, params=params)
+    data_json = r.json()
+    total_num = data_json["data"]["count"]
+    total_page = math.ceil(total_num / 50)
+    big_df = pd.DataFrame()
+    for page in tqdm(range(1, total_page + 1), leave=False):
+        params.update({"page": page})
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        temp_df = pd.DataFrame(data_json["data"]["results"])
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+    big_df.rename(
+        columns={
+            "swindexcode": "指数代码",
+            "swindexname": "指数名称",
+            "bargaindate": "发布日期",
+            "closeindex": "收盘指数",
+            "bargainamount": "成交量",
+            "markup": "涨跌幅",
+            "turnoverrate": "换手率",
+            "pe": "市盈率",
+            "pb": "市净率",
+            "meanprice": "均价",
+            "bargainsumrate": "成交额占比",
+            "negotiablessharesum1": "流通市值",
+            "negotiablessharesum2": "平均流通市值",
+            "dp": "股息率",
+        },
+        inplace=True,
+    )
+    big_df["发布日期"] = pd.to_datetime(big_df["发布日期"]).dt.date
+    big_df["收盘指数"] = pd.to_numeric(big_df["收盘指数"])
+    big_df["成交量"] = pd.to_numeric(big_df["成交量"])
+    big_df["涨跌幅"] = pd.to_numeric(big_df["涨跌幅"])
+    big_df["换手率"] = pd.to_numeric(big_df["换手率"])
+    big_df["市盈率"] = pd.to_numeric(big_df["市盈率"])
+    big_df["市净率"] = pd.to_numeric(big_df["市净率"])
+    big_df["均价"] = pd.to_numeric(big_df["均价"])
+    big_df["成交额占比"] = pd.to_numeric(big_df["成交额占比"])
+    big_df["流通市值"] = pd.to_numeric(big_df["流通市值"])
+    big_df["平均流通市值"] = pd.to_numeric(big_df["平均流通市值"])
+    big_df["股息率"] = pd.to_numeric(big_df["股息率"])
+
+    big_df.sort_values(['发布日期'], inplace=True, ignore_index=True)
+    return big_df
+
+
+def index_analysis_monthly_sw(
+    symbol: str = "市场表征",
+    date: str = "20221031",
+) -> pd.DataFrame:
+    """
+    申万宏源研究-指数分析-月报告
+    https://www.swhyresearch.com/institute_sw/allIndex/analysisIndex
+    :param symbol: choice of {"市场表征", "一级行业", "二级行业", "风格指数"}
+    :type symbol: str
+    :param date: 查询日期; 通过调用 ak.index_analysis_week_month_sw() 接口获取
+    :type date: str
+    :return: 指数分析
+    :rtype: pandas.DataFrame
+    """
+    url = "https://www.swhyresearch.com/institute-sw/api/index_analysis/index_analysis_reports/"
+    params = {
+        "page": "1",
+        "page_size": "50",
+        "index_type": symbol,
+        "bargaindate": "-".join([date[:4], date[4:6], date[6:]]),
+        "type": "MONTH",
+        "swindexcode": "all",
+    }
+    r = requests.get(url, params=params)
+    data_json = r.json()
+    total_num = data_json["data"]["count"]
+    total_page = math.ceil(total_num / 50)
+    big_df = pd.DataFrame()
+    for page in tqdm(range(1, total_page + 1), leave=False):
+        params.update({"page": page})
+        r = requests.get(url, params=params)
+        data_json = r.json()
+        temp_df = pd.DataFrame(data_json["data"]["results"])
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+    big_df.rename(
+        columns={
+            "swindexcode": "指数代码",
+            "swindexname": "指数名称",
+            "bargaindate": "发布日期",
+            "closeindex": "收盘指数",
+            "bargainamount": "成交量",
+            "markup": "涨跌幅",
+            "turnoverrate": "换手率",
+            "pe": "市盈率",
+            "pb": "市净率",
+            "meanprice": "均价",
+            "bargainsumrate": "成交额占比",
+            "negotiablessharesum1": "流通市值",
+            "negotiablessharesum2": "平均流通市值",
+            "dp": "股息率",
+        },
+        inplace=True,
+    )
+    big_df["发布日期"] = pd.to_datetime(big_df["发布日期"]).dt.date
+    big_df["收盘指数"] = pd.to_numeric(big_df["收盘指数"])
+    big_df["成交量"] = pd.to_numeric(big_df["成交量"])
+    big_df["涨跌幅"] = pd.to_numeric(big_df["涨跌幅"])
+    big_df["换手率"] = pd.to_numeric(big_df["换手率"])
+    big_df["市盈率"] = pd.to_numeric(big_df["市盈率"])
+    big_df["市净率"] = pd.to_numeric(big_df["市净率"])
+    big_df["均价"] = pd.to_numeric(big_df["均价"])
+    big_df["成交额占比"] = pd.to_numeric(big_df["成交额占比"])
+    big_df["流通市值"] = pd.to_numeric(big_df["流通市值"])
+    big_df["平均流通市值"] = pd.to_numeric(big_df["平均流通市值"])
+    big_df["股息率"] = pd.to_numeric(big_df["股息率"])
+
+    big_df.sort_values(['发布日期'], inplace=True, ignore_index=True)
+    return big_df
+
+
 if __name__ == "__main__":
     index_hist_sw_df = index_hist_sw(symbol="801193", period="day")
     print(index_hist_sw_df)
@@ -219,3 +453,17 @@ if __name__ == "__main__":
 
     index_realtime_sw_df = index_realtime_sw(symbol="市场表征")
     print(index_realtime_sw_df)
+
+    index_analysis_daily_sw_df = index_analysis_daily_sw(
+        symbol="市场表征", start_date="20211003", end_date="20221103"
+    )
+    print(index_analysis_daily_sw_df)
+
+    index_analysis_week_month_sw_df = index_analysis_week_month_sw(symbol="month")
+    print(index_analysis_week_month_sw_df)
+
+    index_analysis_weekly_sw_df = index_analysis_weekly_sw(symbol="市场表征", date="20221104")
+    print(index_analysis_weekly_sw_df)
+
+    index_analysis_monthly_sw_df = index_analysis_monthly_sw(symbol="市场表征", date="20221031")
+    print(index_analysis_monthly_sw_df)

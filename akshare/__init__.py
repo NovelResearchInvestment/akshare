@@ -2192,9 +2192,69 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.7.72 add: add index_min_sw interface
 1.7.73 fix: fix stock_zh_index_daily_tx interface
 1.7.74 fix: fix futures_news_baidu interface
+1.7.75 add: add index_component_sw interface
+1.7.76 fix: fix macro_euro_gdp_yoy interface
+1.7.77 fix: fix index_value_hist_funddb interface
+1.7.78 add: add index_analysis_sw interface
+1.7.79 fix: fix macro_germany interface
+1.7.80 fix: fix stock_a_below_net_asset_statistics interface
+1.7.81 fix: fix macro_swiss_svme interface
+1.7.82 fix: fix index_analysis_daily_sw interface
+1.7.83 fix: fix macro_japan interface
+1.7.84 add: add bond_info_cm interface
+1.7.85 fix: fix stock_board_industry_hist_em interface
+1.7.86 fix: fix bond_info_cm interface
+1.7.87 fix: fix macro_uk interface
+1.7.88 fix: fix stock_news_em interface
+1.7.89 fix: fix stock_zh_index_daily_tx interface
+1.7.90 fix: fix stock_yjbb_em interface
+1.7.91 fix: fix futures_price_index_nh interface
+1.7.92 fix: fix fund_portfolio_hold_em interface
+1.7.93 fix: fix sw_index_third_cons interface
+1.7.94 fix: fix fund_portfolio_hold_em interface
+1.7.95 fix: fix spot_golden_benchmark_sge interface
+1.7.96 fix: fix futures_hog_info interface
+1.7.97 add: add index_hog_spot_price interface
+1.7.98 fix: fix stock_zh_a_gdhs interface
+1.7.99 fix: fix stock_lhb_detail_daily_sina interface
+1.8.1 fix: fix stock_dxsyl_em interface
+1.8.2 fix: fix fund_portfolio_hold_em interface
+1.8.3 fix: fix stock_pg_em interface
+1.8.4 fix: fix macro_china_hgjck interface
+1.8.5 fix: fix stock_a_lg_indicator interface
+1.8.6 fix: fix stock_market_activity_legu interface
+1.8.7 fix: fix stock_a_below_net_asset_statistics interface
+1.8.8 fix: fix macro_china_gdp interface
+1.8.9 fix: fix stock_a_ttm_lyr interface
+1.8.10 fix: fix stock_a_all_pb interface
+1.8.11 fix: fix macro_china_ppi interface
+1.8.12 fix: fix stock_yjyg_em interface
+1.8.13 fix: fix macro_china_new_house_price interface
+1.8.14 add: add stock_board_industry_summary_ths interface
+1.8.15 fix: fix stock_price_js interface
+1.8.16 fix: fix macro_china_swap_rate interface
+1.8.17 fix: fix macro_china_fdi interface
+1.8.18 add: add stock_hsgt_fund_flow_summary_em interface
+1.8.19 fix: fix stock_balance_sheet_by_yearly_em interface
+1.8.20 fix: fix stock_board_concept_hist_em interface
+1.8.21 fix: fix stock_board_concept_hist_em interface
+1.8.22 fix: fix stock_margin_detail_szse interface
+1.8.23 add: add stock_restricted_release_summary_em interface
+1.8.24 fix: fix stock_ipo_benefit_ths interface
+1.8.25 fix: fix stock_circulate_stock_holder interface
+1.8.26 fix: fix bond_china_close_return_map interface
+1.8.27 fix: fix fund_cf_em interface
+1.8.28 fix: fix fund_fh_rank_em interface
+1.8.29 fix: fix baidu_search_index interface
+1.8.30 fix: fix index_value_name_funddb interface
+1.8.31 fix: fix get_dce_daily interface
+1.8.32 fix: fix js_news interface
+1.8.33 fix: fix stock_hot_rank_em interface
+1.8.34 add: add stock_a_gxl_lg interface
+1.8.35 add: add stock_hk_gxl_lg interface
 """
 
-__version__ = "1.7.74"
+__version__ = "1.8.35"
 __author__ = "AKFamily"
 
 import sys
@@ -2205,6 +2265,41 @@ if sys.version_info < (3, 7):
 
 del sys
 
+"""
+乐咕乐股-股息率-A 股股息率
+"""
+from akshare.stock_feature.stock_gxl_lg import stock_a_gxl_lg, stock_hk_gxl_lg
+
+"""
+东方财富-限售解禁股
+"""
+from akshare.stock_fundamental.stock_restricted_em import (
+    stock_restricted_release_stockholder_em,
+    stock_restricted_release_summary_em,
+    stock_restricted_release_detail_em,
+    stock_restricted_release_queue_em,
+)
+
+"""
+同花顺行业一览表
+"""
+from akshare.stock_feature.stock_board_industry_ths import (
+    stock_board_industry_summary_ths,
+)
+
+"""
+生猪市场价格指数
+"""
+from akshare.index.index_hog import index_hog_spot_price
+
+"""
+债券信息查询
+"""
+from akshare.bond.bond_info_cm import (
+    bond_info_detail_cm,
+    bond_info_cm,
+    bond_info_cm_query,
+)
 
 """
 申万宏源研究-指数系列
@@ -2214,6 +2309,10 @@ from akshare.index.index_sw_research import (
     index_hist_sw,
     index_component_sw,
     index_min_sw,
+    index_analysis_daily_sw,
+    index_analysis_weekly_sw,
+    index_analysis_monthly_sw,
+    index_analysis_week_month_sw,
 )
 
 """
@@ -2573,12 +2672,13 @@ from akshare.stock_feature.stock_technology_ths import (
 from akshare.stock_feature.stock_hsgt_em import (
     stock_hsgt_individual_em,
     stock_hsgt_individual_detail_em,
+    stock_hsgt_fund_flow_summary_em,
 )
 
 """
 指数估值
 """
-from akshare.index.zh_stock_index_csindex import (
+from akshare.index.stock_zh_index_csindex import (
     index_value_hist_funddb,
     index_value_name_funddb,
 )
@@ -2749,7 +2849,7 @@ from akshare.economic.macro_canada import (
 """
 猪肉价格信息
 """
-from akshare.futures_derivative.futures_pig import (
+from akshare.futures_derivative.futures_hog import (
     futures_hog_info,
     futures_hog_rank,
 )
@@ -2952,7 +3052,7 @@ from akshare.economic.macro_china_hk import (
 """
 增发和配股
 """
-from akshare.stock_feature.stock_zf_pg import stock_em_qbzf, stock_em_pg
+from akshare.stock_feature.stock_zf_pg import stock_qbzf_em, stock_pg_em
 
 """
 平均持仓
@@ -2974,7 +3074,7 @@ from akshare.index.index_cflp import index_cflp_price, index_cflp_volume
 """
 赚钱效应分析
 """
-from akshare.stock_feature.stock_legu_market import stock_market_activity_legu
+from akshare.stock_feature.stock_market_legu import stock_market_activity_legu
 
 """
 浙江省排污权交易指数
@@ -3300,18 +3400,18 @@ from akshare.stock_fundamental.stock_register import (
 """
 新浪财经-龙虎榜
 """
-from akshare.stock_feature.stock_sina_lhb import (
-    stock_sina_lhb_detail_daily,
-    stock_sina_lhb_ggtj,
-    stock_sina_lhb_jgmx,
-    stock_sina_lhb_jgzz,
-    stock_sina_lhb_yytj,
+from akshare.stock_feature.stock_lhb_sina import (
+    stock_lhb_detail_daily_sina,
+    stock_lhb_ggtj_sina,
+    stock_lhb_jgmx_sina,
+    stock_lhb_jgzz_sina,
+    stock_lhb_yytj_sina,
 )
 
 """
 中证指数
 """
-from akshare.index.zh_stock_index_csindex import (
+from akshare.index.stock_zh_index_csindex import (
     stock_zh_index_hist_csindex,
     stock_zh_index_value_csindex,
 )
@@ -3463,7 +3563,7 @@ from akshare.stock_fundamental.stock_finance import (
     stock_history_dividend_detail,
     stock_history_dividend,
     stock_circulate_stock_holder,
-    stock_restricted_shares,
+    stock_restricted_release_queue_sina,
     stock_fund_stock_holder,
     stock_main_stock_holder,
 )
@@ -4014,7 +4114,7 @@ from akshare.stock.stock_zh_a_tick_tx_163 import (
 """
 新浪-指数实时行情和历史行情
 """
-from akshare.index.stock_zh_index_sina import (
+from akshare.index.index_stock_zh import (
     stock_zh_index_daily,
     stock_zh_index_spot,
     stock_zh_index_daily_tx,
