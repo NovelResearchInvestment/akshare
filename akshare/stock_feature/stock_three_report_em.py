@@ -111,9 +111,9 @@ def stock_balance_sheet_by_yearly_em(symbol: str = "SH600036") -> pd.DataFrame:
         params.update({"companyType": company_type})
         r = requests.get(url, params=params)
         data_json = r.json()
-        if "data" in data_json:
-            if len(data_json["data"]) > 0:
-                break
+        # if "data" in data_json:
+        #     if len(data_json["data"]) > 0:
+        #         break
                 
     if "data" not in data_json:
         print(f"{symbol} has no results.")
