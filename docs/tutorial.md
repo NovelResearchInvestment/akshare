@@ -1,10 +1,10 @@
-# [AKShare](https://github.com/akfamily/akshare) 快速入门
+# [AKShare](https://github.com/akfamily/akshare/) 快速入门
 
 ## 查看数据
 
-具体函数使用详情, 请查看 [AKShare 文档](https://akshare.readthedocs.io/) 每个接口的示例代码
+具体函数使用详情, 请查看 [AKShare 文档](https://akshare.akfamily.xyz/) 每个接口的示例代码
 
-[AKShare](https://github.com/akfamily/akshare) 数据接口一览
+[AKShare](https://github.com/akfamily/akshare/) 数据接口一览
 
 ```
  # 交易所期货数据
@@ -13,6 +13,7 @@
  "get_czce_daily",  # 郑州商品交易所每日交易数据
  "get_czce_rank_table",  # 获取郑州商品交易所前20会员持仓数据明细
  "get_dce_daily",  # 获取大连商品交易所每日交易数据
+ "get_gfex_daily",  # 获取广州期货交易所每日交易数据
  "get_ine_daily",  # 获取上海国际能源交易中心每日交易数据
  "futures_sgx_daily",  # 获取新加坡交易所每日交易数据
  "get_dce_rank_table",  #获取大连商品交易所前20会员持仓数据明细
@@ -64,14 +65,9 @@
  # 宏观-欧洲
  "macro_euro_interest_rate"  # 欧洲央行决议报告
  # 宏观-主要机构
- "macro_cons_gold_amount"  # 全球最大黄金ETF—SPDR Gold Trust持仓报告-总价值
- "macro_cons_gold_change"  # 全球最大黄金ETF—SPDR Gold Trust持仓报告-增持/减持
- "macro_cons_gold_volume"  # 全球最大黄金ETF—SPDR Gold Trust持仓报告-总库存
- "macro_cons_opec_month"  # 欧佩克报告-差异
- "macro_cons_opec_near_change"  # 欧佩克报告-月份
- "macro_cons_silver_amount"  # 全球最大白银ETF--iShares Silver Trust持仓报告-总价值
- "macro_cons_silver_change"  # 全球最大白银ETF--iShares Silver Trust持仓报告-增持/减持
- "macro_cons_silver_volume"  # 全球最大白银ETF--iShares Silver Trust持仓报告-总库存
+ "macro_cons_gold"  # 全球最大黄金ETF—SPDR Gold Trust持仓报告
+ "macro_cons_silver"  # 全球最大白银ETF--iShares Silver Trust持仓报告
+ "macro_cons_opec_month"  # 欧佩克报告
  # 期货-仓单有效期
  "get_receipt_date"  # 期货仓单有效期数据
  # 新浪财经-期货
@@ -348,7 +344,6 @@
  "macro_cons_silver_volume"  # 全球最大白银ETF--iShares Silver Trust持仓报告
  "macro_cons_silver_change"  # 全球最大白银ETF--iShares Silver Trust持仓报告
  "macro_cons_silver_amount"  # 全球最大白银ETF--iShares Silver Trust持仓报告
- "macro_cons_opec_month"  # 欧佩克报告-月度
  # 伦敦金属交易所(LME)
  "macro_euro_lme_holding"  # 伦敦金属交易所(LME)-持仓报告
  "macro_euro_lme_stock"  # 伦敦金属交易所(LME)-库存报告
@@ -393,6 +388,9 @@
  "bond_cb_index_jsl"  # 可转债-集思录可转债等权指数
  "bond_cb_redeem_jsl"  # 可转债-集思录可转债-强赎
  # 金融期权-新浪
+ "option_cffex_sz50_list_sina"  # 上证50期权列表
+  "option_cffex_sz50_spot_sina"  # 沪深300期权实时行情
+ "option_cffex_sz50_daily_sina"  # 沪深300期权历史行情-日频
  "option_cffex_hs300_list_sina"  # 沪深300期权列表
  "option_cffex_hs300_spot_sina"  # 沪深300期权实时行情
  "option_cffex_hs300_daily_sina"  # 沪深300期权历史行情-日频
@@ -475,8 +473,9 @@
  "energy_oil_detail"  # 地区油价
  # 现货与股票
  "futures_spot_stock"  # 现货与股票接口
- # 中国期货市场监控中心
- "futures_index_cscidx"  # 中国期货市场监控中心-指数
+ # 中证商品指数
+ "futures_index_ccidx"  # 中证商品指数
+ "futures_index_min_ccidx"  # 中证商品指数-分时
  # 打新收益率
  "stock_dxsyl_em"  # 打新收益率
  "stock_xgsglb_em"  # 新股申购与中签查询
@@ -543,7 +542,10 @@
  # A 股市盈率和市净率
  "stock_a_pb"  # A 股市净率
  "stock_a_pe"  # A 股市盈率
- "stock_a_pe_and_pb"  # A 股市盈率和市净率
+ "stock_market_pe_lg"  # 乐咕乐股-主板市盈率
+ "stock_index_pe_lg"  # 乐咕乐股-指数市盈率
+ "stock_market_pb_lg"  # 乐咕乐股-主板市净率
+ "stock_index_pb_lg"  # 乐咕乐股-指数市净率
  "stock_a_lg_indicator"  # A 股个股市盈率、市净率和股息率指标
  "stock_hk_eniu_indicator"  # 港股股个股市盈率、市净率和股息率指标
  "stock_a_high_low_statistics"  # 创新高和新低的股票数量
@@ -551,8 +553,11 @@
  # 交易日历
  "tool_trade_date_hist"  # 新浪财经-交易日历
  # 基金行情
- "fund_etf_category_sina"  # 基金列表
- "fund_etf_hist_sina"  # 基金行情
+ "fund_etf_category_sina"  # 基金实时行情-新浪
+ "fund_etf_hist_sina"  # 基金行情-新浪
+ "fund_etf_hist_em"  # 基金历史行情-东财
+ "fund_etf_hist_min_em"  # 基金分时行情-东财
+ "fund_etf_spot_em"  # 基金实时行情-东财
  # 股票财务报告-预约披露
  "stock_report_disclosure"  # 股票财务报告-预约披露时间
  # 基金持股
@@ -649,8 +654,6 @@
  "stock_zh_kcb_report_em"  # 科创板报告
  # 东方财富-期权
  "option_current_em"  # 东方财富-期权
- # 金十数据-新闻资讯
- "js_news"  # 金十数据-新闻资讯
  # 国证指数
  "index_all_cni"  # 国证指数-所有指数
  "index_hist_cni"  # 国证指数-指数行情
@@ -783,6 +786,7 @@
  "stock_zh_a_hist"  # A 股日频率数据-东方财富
  # 盘口异动
  "stock_changes_em"  # 盘口异动
+ "stock_board_change_em"  # 板块异动
  # CME 比特币成交量
  "crypto_bitcoin_cme"  # CME 比特币成交量
  # 加密货币全球市场指数
@@ -1114,7 +1118,8 @@
  # 人民币汇率中间价
  "currency_boc_safe"  # 人民币汇率中间价
  # 主营构成
- "stock_zygc_ym"  # 主营构成
+ "stock_zygc_ym"  # 主营构成-益盟
+ "stock_zygc_em"  # 主营构成-东财
  # 管理层讨论与分析
  "stock_mda_ym"  # 管理层讨论与分析
  # 行业分类数据
@@ -1183,6 +1188,13 @@
  # 乐咕乐股-股息率-A 股股息率
  "stock_a_gxl_lg"  # 乐咕乐股-股息率-A 股股息率
  "stock_hk_gxl_lg"  # 乐咕乐股-股息率-恒生指数股息率
+ # 乐咕乐股-大盘拥挤度
+ "stock_a_congestion_lg"  # 乐咕乐股-大盘拥挤度
+ # 乐咕乐股-基金仓位
+ "fund_stock_position_lg"  # 乐咕乐股-基金仓位-股票型基金仓位
+ "fund_balance_position_lg"  # 乐咕乐股-基金仓位-平衡混合型基金仓位
+ "fund_linghuo_position_lg"  # 乐咕乐股-基金仓位-灵活配置型基金仓位
+ "stock_zyjs_ths"  # 主营介绍
 ```
 
 ## 案例演示
