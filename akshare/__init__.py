@@ -2294,9 +2294,30 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.8.75 add: add stock_cy_a_spot_em interface
 1.8.76 remove: remove js_news and ws interface
 1.8.77 fix: fix stock_analyst_rank_em interface
+1.8.78 fix: fix stock_profit_forecast interface
+1.8.79 fix: fix stock_hk_valuation_baidu interface
+1.8.80 fix: fix stock_profit_forecast interface
+1.8.81 fix: fix futures_hog_info interface
+1.8.82 fix: fix stock_fund_stock_holder interface
+1.8.83 fix: fix stock_info_sh_name_code interface
+1.8.84 remove: remove stock_zh_a_scr_report interface
+1.8.85 fix: fix stock_info_sh_name_code interface
+1.8.86 fix: fix stock_info_sh_delist interface
+1.8.87 fix: fix stock_info_sz_change_name interface
+1.8.88 fix: fix stock_info_sz_delist interface
+1.8.89 fix: fix sunrise_city_list interface
+1.8.90 fix: fix bond_info_detail_cm interface
+1.8.91 fix: fix sunrise_monthly interface
+1.8.92 fix: fix stock_institute_hold interface
+1.8.93 fix: fix stock_gdfx_holding_detail_em interface
+1.8.94 fix: fix Dockerfile
+1.8.95 fix: fix index_zh_a_hist interface
+1.8.96 fix: fix option_finance_board interface
+1.8.97 fix: fix futures_egg_price_yearly interface
+1.8.98 fix: fix stock_info_sz_delist interface
 """
 
-__version__ = "1.8.77"
+__version__ = "1.8.98"
 __author__ = "AKFamily"
 
 import sys
@@ -4185,7 +4206,7 @@ from akshare.air.air_hebei import air_quality_hebei
 """
 timeanddate-日出和日落
 """
-from akshare.air.time_and_date import sunrise_daily, sunrise_monthly
+from akshare.air.sunrise_tad import sunrise_daily, sunrise_monthly
 
 """
 新浪-指数实时行情和历史行情
@@ -4302,11 +4323,6 @@ from akshare.futures_derivative.sys_spot_futures import (
 和讯财经-行情及历史数据
 """
 from akshare.stock.stock_us_zh_hx import stock_us_zh_spot, stock_us_zh_daily
-
-"""
-和讯财经-企业社会责任
-"""
-from akshare.stock.stock_zh_zrbg_hx import stock_zh_a_scr_report
 
 """
 全球宏观-机构宏观

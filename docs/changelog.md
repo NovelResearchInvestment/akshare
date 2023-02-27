@@ -49,6 +49,92 @@
 
 ## 更新说明
 
+1.8.98 fix: fix stock_info_sz_delist interface
+
+    1. 修复 stock_info_sz_delist 接口
+
+1.8.97 fix: fix futures_egg_price_yearly interface
+
+    1. 修复 futures_egg_price_yearly 接口
+    2. 修复 futures_egg_price_area 接口
+    3. 修复 futures_egg_price 接口
+
+1.8.96 fix: fix option_finance_board interface
+
+    1. 修复 option_finance_board 接口
+
+1.8.95 fix: fix index_zh_a_hist interface
+
+    1. 修复 index_zh_a_hist 接口
+
+1.8.94 fix: fix Dockerfile
+    
+    1. 修复 Dockerfile
+
+1.8.93 fix: fix stock_gdfx_holding_detail_em interface
+
+    1. 修复 stock_gdfx_holding_detail_em 接口
+
+1.8.92 fix: fix stock_institute_hold interface
+
+    1. 修复 stock_institute_hold 接口
+
+1.8.91 fix: fix sunrise_monthly interface
+
+    1. 修复 sunrise_monthly 接口
+
+1.8.90 fix: fix bond_info_detail_cm interface
+
+    1. 修复 bond_info_detail_cm 接口
+
+1.8.89 fix: fix sunrise_city_list interface
+
+    1. 修复 sunrise_city_list 接口
+
+1.8.88 fix: fix stock_info_sz_delist interface
+
+    1. 修复 stock_info_sz_delist 接口
+
+1.8.87 fix: fix stock_info_sz_change_name interface
+
+    1. 修复 stock_info_sz_change_name 接口
+
+1.8.86 fix: fix stock_info_sh_delist interface
+
+    1. 修复 stock_info_sh_delist 接口
+
+1.8.85 fix: fix stock_info_sh_name_code interface
+
+    1. 修复 stock_info_sh_name_code 接口
+
+1.8.84 remove: remove stock_zh_a_scr_report interface
+
+    1. 移除 stock_zh_a_scr_report 接口
+
+1.8.83 fix: fix stock_info_sh_name_code interface
+
+    1. 修复 stock_info_sh_name_code 接口
+
+1.8.82 fix: fix stock_fund_stock_holder interface
+
+    1. 修复 stock_fund_stock_holder 接口
+
+1.8.81 fix: fix futures_hog_info interface
+
+    1. 修复 futures_hog_info 接口
+
+1.8.80 fix: fix stock_profit_forecast interface
+
+    1. 修复 stock_profit_forecast 接口
+
+1.8.79 fix: fix stock_hk_valuation_baidu interface
+
+    1. 修复 stock_hk_valuation_baidu 接口
+
+1.8.78 fix: fix stock_profit_forecast interface
+
+    1. 修复 stock_profit_forecast 接口
+
 1.8.77 fix: fix stock_analyst_rank_em interface
 
     1. 修复 stock_analyst_rank_em 接口
@@ -1857,6 +1943,48 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.8.98 fix: fix stock_info_sz_delist interface
+
+1.8.97 fix: fix futures_egg_price_yearly interface
+
+1.8.96 fix: fix option_finance_board interface
+
+1.8.95 fix: fix index_zh_a_hist interface
+
+1.8.94 fix: fix Dockerfile
+
+1.8.93 fix: fix stock_gdfx_holding_detail_em interface
+
+1.8.92 fix: fix stock_institute_hold interface
+
+1.8.91 fix: fix sunrise_monthly interface
+
+1.8.90 fix: fix bond_info_detail_cm interface
+
+1.8.89 fix: fix sunrise_city_list interface
+
+1.8.88 fix: fix stock_info_sz_delist interface
+
+1.8.87 fix: fix stock_info_sz_change_name interface
+
+1.8.86 fix: fix stock_info_sh_delist interface
+
+1.8.85 fix: fix stock_info_sh_name_code interface
+
+1.8.84 remove: remove stock_zh_a_scr_report interface
+
+1.8.83 fix: fix stock_info_sh_name_code interface
+
+1.8.82 fix: fix stock_fund_stock_holder interface
+
+1.8.81 fix: fix futures_hog_info interface
+
+1.8.80 fix: fix stock_profit_forecast interface
+
+1.8.79 fix: fix stock_hk_valuation_baidu interface
+
+1.8.78 fix: fix stock_profit_forecast interface
 
 1.8.77 fix: fix stock_analyst_rank_em interface
 
