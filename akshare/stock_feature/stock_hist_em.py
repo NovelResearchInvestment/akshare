@@ -34,6 +34,7 @@ def stock_zh_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -146,6 +147,7 @@ def stock_sh_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -258,6 +260,7 @@ def stock_sz_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -370,6 +373,7 @@ def stock_bj_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -483,6 +487,7 @@ def stock_new_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -600,6 +605,7 @@ def stock_cy_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -713,6 +719,7 @@ def stock_kc_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -825,6 +832,7 @@ def stock_zh_b_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -938,6 +946,7 @@ def code_id_map_em() -> dict:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return dict()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df["market_id"] = 1
@@ -959,6 +968,7 @@ def code_id_map_em() -> dict:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
+        print(f"{symbol} has no results.")
         return dict()
     temp_df_sz = pd.DataFrame(data_json["data"]["diff"])
     temp_df_sz["sz_id"] = 0
@@ -1027,7 +1037,9 @@ def stock_zh_a_hist(
     r = requests.get(url, params=params)
     data_json = r.json()
     if not (data_json["data"] and data_json["data"]["klines"]):
-        return pd.DataFrame()
+        print(f"{symbol} has no results.")
+        return pd.DataFrame([])
+
     temp_df = pd.DataFrame(
         [item.split(",") for item in data_json["data"]["klines"]]
     )
@@ -1103,6 +1115,10 @@ def stock_zh_a_hist_min_em(
         }
         r = requests.get(url, params=params)
         data_json = r.json()
+        if len(data_json["data"]["trends"]) == 0:
+            print(f"{symbol} has no results.")
+            return pd.DataFrame([])
+
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["trends"]]
         )
@@ -1143,6 +1159,10 @@ def stock_zh_a_hist_min_em(
         }
         r = requests.get(url, params=params)
         data_json = r.json()
+        if len(data_json["data"]["trends"]) == 0:
+            print(f"{symbol} has no results.")
+            return pd.DataFrame([])
+
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["klines"]]
         )
@@ -1226,14 +1246,13 @@ def stock_zh_a_hist_pre_min_em(
         raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
 
     data_json = r.json()
-    if data_json['data'] is None:
-        return
+    if data_json["data"]["trends"] is None:
+        print(f"{symbol} has no results.")
+        return pd.DataFrame([])
 
     temp_df = pd.DataFrame(
         [item.split(",") for item in data_json["data"]["trends"]]
     )
-    if len(temp_df) == 0:
-        return
 
     temp_df.columns = [
         "时间",
@@ -1285,6 +1304,9 @@ def stock_hk_spot_em() -> pd.DataFrame:
     }
     r = requests.get(url, params=params)
     data_json = r.json()
+    if len(data_json["data"]["diff"]) == 0:
+        print(f"{symbol} has no results.")
+        return pd.DataFrame([])
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
         "_",
@@ -1390,6 +1412,9 @@ def stock_hk_hist(
     }
     r = requests.get(url, params=params)
     data_json = r.json()
+    if len(data_json["data"]["klines"]) == 0:
+        print(f"{symbol} has no results.")
+        return pd.DataFrame([])
     temp_df = pd.DataFrame(
         [item.split(",") for item in data_json["data"]["klines"]]
     )
@@ -1507,6 +1532,9 @@ def stock_hk_hist_min_em(
         }
         r = requests.get(url, params=params)
         data_json = r.json()
+        if len(data_json["data"]["klines"]) == 0:
+            print(f"{symbol} has no results.")
+            return pd.DataFrame([])
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["klines"]]
         )
@@ -1757,8 +1785,9 @@ def stock_us_hist_min_em(
     }
     r = requests.get(url, params=params)
     data_json = r.json()
-    if not data_json["data"]["trends"]:
-        return pd.DataFrame()
+    if len(data_json["data"]["trends"]) == 0:
+        print(f"{symbol} has no results.")
+        return pd.DataFrame([])
     temp_df = pd.DataFrame(
         [item.split(",") for item in data_json["data"]["trends"]]
     )

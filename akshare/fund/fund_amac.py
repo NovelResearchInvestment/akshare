@@ -77,7 +77,7 @@ def amac_member_info() -> pd.DataFrame:
         "markStar",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "机构（会员）名称",
         "会员代表",
@@ -138,7 +138,7 @@ def amac_person_fund_org_list(symbol: str = "公募基金管理公司") -> pd.Da
         "fundManagerNum",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.reset_index(inplace=True)
     manager_data_out['index'] = manager_data_out.index + 1
     manager_data_out.columns = [
@@ -229,7 +229,7 @@ def amac_manager_info() -> pd.DataFrame:
         "registerDate",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "私募基金管理人名称",
         "法定代表人/执行事务合伙人(委派代表)姓名",
@@ -287,7 +287,7 @@ def amac_manager_classify_info() -> pd.DataFrame:
         "hasCreditTips",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "私募基金管理人名称",
         "法定代表人/执行事务合伙人(委派代表)姓名",
@@ -348,7 +348,7 @@ def amac_member_sub_info() -> pd.DataFrame:
         "primaryInvestType",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "机构（会员）名称",
         "会员代表",
@@ -406,7 +406,7 @@ def amac_fund_info(start_page: str = '1', end_page: str = "2000") -> pd.DataFram
         "establishDate",
         "mandatorName",
     ]  # 定义要取的 value 的 keys
-    manager_data_out = big_df[keys_list]
+    manager_data_out = big_df[keys_list].copy()
     manager_data_out.columns = [
         "基金名称",
         "私募基金管理人名称",
@@ -464,7 +464,7 @@ def amac_securities_info() -> pd.DataFrame:
         "yzzt",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "产品名称",
         "产品编码",
@@ -513,7 +513,7 @@ def amac_aoin_info() -> pd.DataFrame:
         "createDate",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "产品编码",
         "产品名称",
@@ -559,7 +559,7 @@ def amac_fund_sub_info() -> pd.DataFrame:
         "registeredDate",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "产品编码",
         "产品名称",
@@ -605,7 +605,7 @@ def amac_fund_account_info() -> pd.DataFrame:
         "manager",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "成立日期",
         "产品编码",
@@ -713,7 +713,7 @@ def amac_futures_info() -> pd.DataFrame:
         "fundStatus",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "产品名称",
         "产品编码",
@@ -766,7 +766,7 @@ def amac_manager_cancelled_info() -> pd.DataFrame:
         "status",
     ]  # 定义要取的 value 的 keys
     manager_data_out = pd.DataFrame(big_df)
-    manager_data_out = manager_data_out[keys_list]
+    manager_data_out = manager_data_out[keys_list].copy()
     manager_data_out.columns = [
         "管理人名称",
         "统一社会信用代码",
