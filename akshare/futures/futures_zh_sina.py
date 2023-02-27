@@ -626,8 +626,8 @@ def futures_zh_minute_sina(
         raise requests.HTTPError(f"Status: {r.response} \nPage Content{page_text}")
     
     results = json.loads(r.text.split("=(")[1].split(");")[0])
-    if len(results) == 0:
-        return
+    if results is None:
+        return pd.DataFrame([])
 
     temp_df = pd.DataFrame(results)
     temp_df.columns = [
