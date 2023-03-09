@@ -49,6 +49,34 @@
 
 ## 更新说明
 
+1.9.6 fix: fix futures_hog_info interface
+
+    1. 修复 futures_hog_info 接口
+
+1.9.5 fix: fix stock_info_a_code_name interface
+
+    1. 修复 stock_info_a_code_name 接口
+
+1.9.4 fix: fix drewry_wci_index interface
+
+    1. 修复 drewry_wci_index 接口
+
+1.9.3 fix: fix fx_quote_baidu interface
+
+    1. 修复 fx_quote_baidu 接口
+
+1.9.2 fix: fix stock_xgsglb_em interface
+
+    1. 修复 stock_xgsglb_em 接口
+
+1.9.1 fix: fix index_value_name_funddb interface
+
+    1. 修复 index_value_name_funddb 接口
+
+1.8.99 add: add futures_news_shmet interface
+
+    1. 新增 futures_news_shmet 接口
+
 1.8.98 fix: fix stock_info_sz_delist interface
 
     1. 修复 stock_info_sz_delist 接口
@@ -1943,6 +1971,20 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.9.6 fix: fix futures_hog_info interface
+
+1.9.5 fix: fix stock_info_a_code_name interface
+
+1.9.4 fix: fix drewry_wci_index interface
+
+1.9.3 fix: fix fx_quote_baidu interface
+
+1.9.2 fix: fix stock_xgsglb_em interface
+
+1.9.1 fix: fix index_value_name_funddb interface
+
+1.8.99 add: add futures_news_shmet interface
 
 1.8.98 fix: fix stock_info_sz_delist interface
 

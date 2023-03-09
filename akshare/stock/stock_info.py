@@ -151,8 +151,9 @@ def stock_info_sh_name_code(symbol: str = "主板A股") -> pd.DataFrame:
     r = requests.get(url, params=params, headers=headers)
     data_json = r.json()
     temp_df = pd.DataFrame(data_json["result"])
+    col_stock_code = "B_STOCK_CODE" if symbol == "主板B股" else "A_STOCK_CODE"
     temp_df.rename(columns={
-        "A_STOCK_CODE": "证券代码",
+        col_stock_code: "证券代码",
         "COMPANY_ABBR": "证券简称",
         "FULL_NAME": "公司全称",
         "LIST_DATE": "上市日期",
@@ -183,14 +184,17 @@ def stock_info_bj_name_code() -> pd.DataFrame:
         "sortfield": "xxzqdm",
         "sorttype": "asc",
     }
-    r = requests.post(url, data=payload)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+    }
+    r = requests.post(url, data=payload, headers=headers)
     data_text = r.text
     data_json = json.loads(data_text[data_text.find("[") : -1])
     total_page = data_json[0]["totalPages"]
     big_df = pd.DataFrame()
     for page in tqdm(range(total_page), leave=False):
         payload.update({"page": page})
-        r = requests.post(url, data=payload)
+        r = requests.post(url, data=payload, headers=headers)
         data_text = r.text
         data_json = json.loads(data_text[data_text.find("[") : -1])
         temp_df = data_json[0]["content"]
