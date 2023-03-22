@@ -1428,20 +1428,8 @@ def macro_china_market_margin_sh() -> pd.DataFrame:
         "_": str(int(round(t * 1000))),
     }
     headers = {
-        "accept": "*/*",
-        "accept-encoding": "gzip, deflate, br",
-        "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
-        "cache-control": "no-cache",
-        "origin": "https://datacenter.jin10.com",
-        "pragma": "no-cache",
-        "referer": "https://datacenter.jin10.com/reportType/dc_market_margin_sse",
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-site",
-        "x-app-id": "rU6QIu7JHe2gOUeR",
-        "x-csrf-token": "",
-        "x-version": "1.0.0",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36",
+        'x-app-id': 'rU6QIu7JHe2gOUeR',
+        'x-version': '1.0.0'
     }
     r = requests.get(url, params=params, headers=headers)
     temp_df = pd.DataFrame(r.json()["data"]["values"])
@@ -1470,6 +1458,9 @@ def macro_china_market_margin_sh() -> pd.DataFrame:
     value_df = pd.concat([value_df, big_df])
     value_df.drop_duplicates(inplace=True)
     value_df.sort_index(inplace=True)
+    value_df.reset_index(inplace=True)
+    value_df.rename(columns={"index": "日期"}, inplace=True)
+    value_df['日期'] = pd.to_datetime(value_df['日期']).dt.date
     return value_df
 
 
