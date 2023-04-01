@@ -480,9 +480,7 @@ class TrendReq(object):
         )["default"]["trendingSearchesDays"][0]["trendingSearches"]
         result_df = pd.DataFrame()
         # parse the returned json
-        sub_df = pd.DataFrame()
-        for trend in req_json:
-            sub_df = sub_df.append(trend["title"], ignore_index=True)
+        sub_df = pd.concat([trend["title"] for trend in req_json], ignore_index=True)
         result_df = pd.concat([result_df, sub_df])
         return result_df.iloc[:, -1]
 
@@ -578,7 +576,7 @@ class TrendReq(object):
             try:
                 self.build_payload(keywords, cat, tf, geo, gprop)
                 week_df = self.interest_over_time()
-                df = df.append(week_df)
+                df = pd.concat([df, week_df])
             except Exception as e:
                 print(e)
                 pass
@@ -597,7 +595,7 @@ class TrendReq(object):
                 try:
                     self.build_payload(keywords, cat, tf, geo, gprop)
                     week_df = self.interest_over_time()
-                    df = df.append(week_df)
+                    df = pd.concat([df, week_df])
                 except Exception as e:
                     print(e)
                     pass

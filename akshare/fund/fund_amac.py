@@ -365,7 +365,7 @@ def amac_member_sub_info() -> pd.DataFrame:
 
 # 中国证券投资基金业协会-信息公示-基金产品
 # 中国证券投资基金业协会-信息公示-基金产品-私募基金管理人基金产品
-def amac_fund_info(start_page: str = '1', end_page: str = "2000") -> pd.DataFrame:
+def amac_fund_info(start_page: str = '1', end_page: str = "10000") -> pd.DataFrame:
     """
     中国证券投资基金业协会-信息公示-基金产品-私募基金管理人基金产品
     http://gs.amac.org.cn/amac-infodisc/res/pof/fund/index.html
@@ -398,6 +398,7 @@ def amac_fund_info(start_page: str = '1', end_page: str = "2000") -> pd.DataFram
         big_df_list.append(temp_df)
     big_df = pd.concat(big_df_list, ignore_index=True)
     keys_list = [
+        "fundNo",
         "fundName",
         "managerName",
         "managerType",
@@ -408,6 +409,7 @@ def amac_fund_info(start_page: str = '1', end_page: str = "2000") -> pd.DataFram
     ]  # 定义要取的 value 的 keys
     manager_data_out = big_df[keys_list].copy()
     manager_data_out.columns = [
+        "基金编号",
         "基金名称",
         "私募基金管理人名称",
         "私募基金管理人类型",

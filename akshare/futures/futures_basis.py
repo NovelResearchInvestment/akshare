@@ -177,7 +177,7 @@ def _check_information(df_data, date):
                 symbol == "FG"
             ):  # 上表中现货单位为元/平方米, 期货单位为元/吨. 换算公式：元/平方米*80=元/吨(http://www.100ppi.com/sf/959.html)
                 record.loc[:, "spot_price"] = float(record["spot_price"]) * 80
-            records = records.append(record)
+            records = pd.concat([records, record])
 
     records.loc[
         :, ["near_contract_price", "dominant_contract_price", "spot_price"]

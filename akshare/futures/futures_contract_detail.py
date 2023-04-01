@@ -21,7 +21,12 @@ def futures_contract_detail(symbol: str = 'AP2101') -> pd.DataFrame:
     url = f"https://finance.sina.com.cn/futures/quotes/{symbol}.shtml"
     r = requests.get(url)
     r.encoding = 'gb2312'
-    temp_df = pd.read_html(r.text)[6]
+    try:
+        temp_df = pd.read_html(r.text)[6]
+    except IndexError as e:
+        r_text = r.text
+        print(f"{e} \n [{symbol}]: {r_text}")
+        return pd.DataFrame([])
     data_one = temp_df.iloc[:, :2]
     data_one.columns = ['item', 'value']
     data_two = temp_df.iloc[:, 2:4]

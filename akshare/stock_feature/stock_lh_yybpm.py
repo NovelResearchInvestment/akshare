@@ -25,7 +25,7 @@ def stock_lh_yyb_most() -> pd.DataFrame:
         url = f'http://data.10jqka.com.cn/ifmarket/lhbyyb/type/1/tab/sbcs/field/sbcs/sort/desc/page/{page}/'
         r = requests.get(url, headers=headers)
         temp_df = pd.read_html(r.text)[0]
-        big_df = big_df.append(temp_df)
+        big_df = pd.concat([big_df, temp_df])
     big_df.reset_index(inplace=True, drop=True)
     return big_df
 
@@ -45,7 +45,7 @@ def stock_lh_yyb_capital() -> pd.DataFrame:
         url = f'http://data.10jqka.com.cn/ifmarket/lhbyyb/type/1/tab/zjsl/field/zgczje/sort/desc/page/{page}/'
         r = requests.get(url, headers=headers)
         temp_df = pd.read_html(r.text)[0]
-        big_df = big_df.append(temp_df)
+        big_df = pd.concat([big_df, temp_df])
     big_df.reset_index(inplace=True, drop=True)
     return big_df
 
@@ -65,7 +65,7 @@ def stock_lh_yyb_control() -> pd.DataFrame:
         url = f'http://data.10jqka.com.cn/ifmarket/lhbyyb/type/1/tab/btcz/field/xsjs/sort/desc/page/{page}/'
         r = requests.get(url, headers=headers)
         temp_df = pd.read_html(r.text)[0]
-        big_df = big_df.append(temp_df)
+        big_df = pd.concat([big_df, temp_df])
     big_df.reset_index(inplace=True, drop=True)
     return big_df
 

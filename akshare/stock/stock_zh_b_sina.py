@@ -62,7 +62,7 @@ def stock_zh_b_spot() -> pd.DataFrame:
         zh_sina_stock_payload_copy.update({"page": page})
         r = requests.get(zh_sina_a_stock_url, params=zh_sina_stock_payload_copy)
         data_json = demjson.decode(r.text)
-        big_df = big_df.append(pd.DataFrame(data_json), ignore_index=True)
+        big_df = pd.concat([big_df, pd.DataFrame(data_json)], ignore_index=True)
     big_df = big_df.astype(
         {
             "trade": "float",
