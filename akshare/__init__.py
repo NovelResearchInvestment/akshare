@@ -2322,9 +2322,31 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.9.4 fix: fix drewry_wci_index interface
 1.9.5 fix: fix stock_info_a_code_name interface
 1.9.6 fix: fix futures_hog_info interface
+1.9.7 add: add stock_profit_forecast_ths interface
+1.9.8 fix: fix stock_hk_valuation_baidu interface
+1.9.9 add: add macro_shipping_bci interface
+1.9.10 add: add macro_shipping_bcti interface
+1.9.11 add: add stock_sector_fund_flow_hist interface
+1.9.12 fix: fix stock_hot_rank_wc interface
+1.9.13 fix: fix stock_zh_valuation_baidu interface
+1.9.14 fix: fix option_risk_analysis_em interface
+1.9.15 fix: fix stock_hk_daily interface
+1.9.16 fix: fix stock_financial_abstract interface
+1.9.17 add: add stock_board_industry_spot_em interface
+1.9.18 fix: fix macro_china_market_margin_sh interface
+1.9.19 fix: fix macro_cnbs interface
+1.9.20 fix: fix fund_financial_fund_info_em interface
+1.9.21 fix: fix fund_financial_fund_info_em interface
+1.9.22 fix: fix fund_hk_fund_hist_em interface
+1.9.23 fix: fix bond_cb_redeem_jsl interface
+1.9.24 fix: fix bond_cb_adj_logs_jsl interface
+1.9.25 add: add stock_hk_hot_rank_em interface
+1.9.26 fix: fix bond_cb_jsl interface
+1.9.27 fix: fix fund_exchange_rank_em interface
+1.9.28 fix: fix stock_financial_report_sina interface
 """
 
-__version__ = "1.9.6"
+__version__ = "1.9.28"
 __author__ = "AKFamily"
 
 import sys
@@ -2335,6 +2357,11 @@ if sys.version_info < (3, 8):
     # sys.exit(1)
 
 del sys
+
+"""
+同花顺-盈利预测
+"""
+from akshare.stock_fundamental.stock_profit_forecast_ths import stock_profit_forecast_ths
 
 """
 期货资讯
@@ -2603,7 +2630,7 @@ from akshare.index.index_zh_em import (
 )
 
 """
-东方财富个股人气榜
+东方财富个股人气榜-A股
 """
 from akshare.stock.stock_hot_rank_em import (
     stock_hot_rank_detail_em,
@@ -2612,6 +2639,16 @@ from akshare.stock.stock_hot_rank_em import (
     stock_hot_rank_relate_em,
     stock_hot_keyword_em,
     stock_hot_rank_latest_em,
+)
+
+"""
+东方财富个股人气榜-港股
+"""
+from akshare.stock.stock_hk_hot_rank_em import (
+    stock_hk_hot_rank_detail_em,
+    stock_hk_hot_rank_latest_em,
+    stock_hk_hot_rank_detail_realtime_em,
+    stock_hk_hot_rank_em,
 )
 
 """
@@ -2725,6 +2762,7 @@ from akshare.stock.stock_board_industry_em import (
     stock_board_industry_hist_em,
     stock_board_industry_hist_min_em,
     stock_board_industry_name_em,
+    stock_board_industry_spot_em,
 )
 
 """
@@ -2916,7 +2954,7 @@ from akshare.stock.stock_us_pink import stock_us_pink_spot_em
 """
 REITs
 """
-from akshare.reits.reits_basic import reits_info_jsl, reits_realtime_em
+from akshare.reits.reits_basic import reits_realtime_em
 
 """
 鸡蛋价格数据
@@ -3303,8 +3341,8 @@ from akshare.bond.bond_em import bond_zh_us_rate
 """
 盈利预测
 """
-from akshare.stock_fundamental.stock_profit_forecast import (
-    stock_profit_forecast,
+from akshare.stock_fundamental.stock_profit_forecast_em import (
+    stock_profit_forecast_em,
 )
 
 """
@@ -3434,11 +3472,11 @@ from akshare.rate.repo_rate import repo_rate_hist
 公募基金排行
 """
 from akshare.fund.fund_rank_em import (
-    fund_em_exchange_rank,
-    fund_em_money_rank,
+    fund_exchange_rank_em,
+    fund_money_rank_em,
     fund_open_fund_rank_em,
-    fund_em_hk_rank,
-    fund_em_lcx_rank,
+    fund_hk_rank_em,
+    fund_lcx_rank_em,
 )
 
 """
@@ -3697,6 +3735,8 @@ from akshare.stock.stock_fund import (
     stock_market_fund_flow,
     stock_sector_fund_flow_rank,
     stock_individual_fund_flow_rank,
+    stock_sector_fund_flow_summary,
+    stock_sector_fund_flow_hist,
 )
 
 """
@@ -4482,6 +4522,10 @@ from akshare.economic.macro_china import (
     macro_china_real_estate,
     macro_china_qyspjg,
     macro_china_fdi,
+    macro_shipping_bci,
+    macro_shipping_bcti,
+    macro_shipping_bdi,
+    macro_shipping_bpi,
 )
 
 """

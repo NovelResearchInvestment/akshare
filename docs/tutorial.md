@@ -489,6 +489,8 @@
  "stock_individual_fund_flow_rank"  # 个股资金流排名
  "stock_market_fund_flow"  # 大盘资金流
  "stock_sector_fund_flow_rank"  # 板块资金流排名
+ "stock_sector_fund_flow_summary"  # xx行业个股资金流
+ "stock_sector_fund_flow_hist"  # 行业历史资金流
  # 股票基本面数据
  "stock_financial_abstract"  # 财务摘要
  "stock_financial_report_sina"  # 三大财务报表
@@ -695,7 +697,8 @@
  # 基金经理
  "fund_manager"  # 基金经理-基金经理大全
  # 盈利预测
- "stock_profit_forecast"  # 盈利预测
+ "stock_profit_forecast_em"  # 盈利预测-东财
+ "stock_profit_forecast_ths"  # 盈利预测-同花顺
  # 中美国债收益率
  "bond_zh_us_rate"  # 中美国债收益率
  # 分红配送
@@ -880,7 +883,6 @@
  "futures_egg_price"  # 2015-2021年鸡蛋价格走势图
  "futures_egg_price_area"  # 各主产区鸡蛋均价
  # REITs
- "reits_info_jsl"  #  REITs-信息
  "reits_realtime_em"  #  REITs-行情
  # A 股分时数据
  "stock_zh_a_hist_min_em"  # 东财-股票分时
@@ -1045,13 +1047,18 @@
  "index_zh_a_hist"  # 中国股票指数历史数据
  # 指数分时数据
  "index_zh_a_hist_min_em"  # 中国股票指数-指数分时数据
- # 东方财富-个股人气榜
+ # 东方财富-个股人气榜-A股
  "stock_hot_rank_em"  # 东方财富-个股人气榜-人气榜
  "stock_hot_rank_detail_em"  # 东方财富-个股人气榜-历史趋势及粉丝特征
  "stock_hot_rank_detail_realtime_em"  # 东方财富-个股人气榜-实时变动
  "stock_hot_keyword_em"  # 东方财富-个股人气榜-关键词
  "stock_hot_rank_latest_em"  # 东方财富-个股人气榜-最新排名
  "stock_hot_rank_relate_em"  # 东方财富-个股人气榜-相关股票
+ # 东方财富-个股人气榜-港股
+ "stock_hk_hot_rank_em"  # 东方财富-个股人气榜-人气榜-港股
+ "stock_hk_hot_rank_detail_em"  # 东方财富-个股人气榜-历史趋势-港股
+ "stock_hk_hot_rank_detail_realtime_em"  # 东方财富-个股人气榜-实时变动-港股
+ "stock_hk_hot_rank_latest_em"  # 东方财富-个股人气榜-最新排名-港股
  # 网易财经-行情首页-沪深 A 股-每日行情
  "stock_zh_a_hist_163"  # 网易财经-行情首页-沪深 A 股-每日行情
  # 东方财富-股票数据-龙虎榜

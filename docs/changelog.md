@@ -4,6 +4,11 @@
 
 | AKShare 版本 | 旧接口名称                                       | 新接口名称                                       | 修改日期     |
 |------------|---------------------------------------------|---------------------------------------------|----------|
+| 1.9.27     | fund_em_hk_rank                             | fund_hk_rank_em                             | 20230330 |
+| 1.9.27     | fund_em_lcx_rank                            | fund_lcx_rank_em                            | 20230330 |
+| 1.9.27     | fund_em_money_rank                          | fund_money_rank_em                          | 20230330 |
+| 1.9.27     | fund_em_exchange_rank                       | fund_exchange_rank_em                       | 20230330 |
+| 1.9.7      | stock_profit_forecast                       | stock_profit_forecast_em                    | 20230330 |
 | 1.8.38     | macro_cons_silver_amount                    | macro_cons_silver                           | 20221227 |
 | 1.8.38     | macro_cons_silver_change                    | macro_cons_silver                           | 20221227 |
 | 1.8.38     | macro_cons_silver_volume                    | macro_cons_silver                           | 20221227 |
@@ -48,6 +53,105 @@
 | 1.4.86     | fund_em_aum                                 | fund_aum_em                                 | 20220322 |
 
 ## 更新说明
+
+1.9.28 fix: fix stock_financial_report_sina interface
+
+    1. 修复 stock_financial_report_sina 接口
+
+1.9.27 fix: fix fund_exchange_rank_em interface
+
+    1. 修复 fund_exchange_rank_em 接口
+    2. 修复 fund_money_rank_em 接口
+    3. 修复 fund_hk_rank_em 接口
+    4. 修复 fund_lcx_rank_em 接口
+
+1.9.26 fix: fix bond_cb_jsl interface
+
+    1. 修复 bond_cb_jsl 接口
+
+1.9.25 add: add stock_hk_hot_rank_em interface
+
+    1. 新增 stock_hk_hot_rank_em 接口
+    2. 新增 stock_hk_hot_rank_detail_em 接口
+    3. 新增 stock_hk_hot_rank_latest_em 接口
+    4. 新增 stock_hk_hot_rank_detail_realtime_em 接口
+
+1.9.24 fix: fix bond_cb_adj_logs_jsl interface
+
+    1. 修复 bond_cb_adj_logs_jsl 接口
+
+1.9.23 fix: fix bond_cb_redeem_jsl interface
+
+    1. 修复 bond_cb_redeem_jsl 接口
+
+1.9.22 fix: fix fund_hk_fund_hist_em interface
+
+    1. 修复 fund_hk_fund_hist_em 接口
+
+1.9.21 fix: fix fund_financial_fund_info_em interface
+
+    1. 修复 fund_financial_fund_info_em 接口
+
+1.9.20 fix: fix fund_financial_fund_info_em interface
+
+    1. 修复 fund_financial_fund_info_em 接口
+
+1.9.19 fix: fix macro_cnbs interface
+
+    1. 修复 macro_cnbs 接口
+
+1.9.18 fix: fix macro_china_market_margin_sh interface
+
+    1. 修复 macro_china_market_margin_sh 接口
+
+1.9.17 add: add stock_board_industry_spot_em interface
+
+    1. 新增 stock_board_industry_spot_em 接口
+
+1.9.16 fix: fix stock_financial_abstract interface
+
+    1. 修复 stock_financial_abstract 接口
+
+1.9.15 fix: fix stock_hk_daily interface
+
+    1. 修复 stock_hk_daily 接口
+
+1.9.14 fix: fix option_risk_analysis_em interface
+
+    1. 修复 option_risk_analysis_em 接口
+
+1.9.13 fix: fix stock_zh_valuation_baidu interface
+
+    1. 修复 stock_zh_valuation_baidu 接口
+
+1.9.12 fix: fix stock_hot_rank_wc interface
+
+    1. 修复 stock_hot_rank_wc 接口
+
+1.9.11 add: add stock_sector_fund_flow_hist interface
+
+    1. 新增 stock_sector_fund_flow_hist 接口
+    2. 新增 stock_sector_fund_flow_summary 接口
+
+1.9.10 add: add macro_shipping_bcti interface
+
+    1. 新增 macro_shipping_bcti 接口
+
+1.9.9 add: add macro_shipping_bci interface
+
+    1. 新增 macro_shipping_bci 接口
+    2. 新增 macro_shipping_bdi 接口
+    3. 新增 macro_shipping_bpi 接口
+    4. 新增 macro_shipping_bcti 接口
+
+1.9.8 fix: fix stock_hk_valuation_baidu interface
+
+    1. 修复 stock_hk_valuation_baidu 接口
+
+1.9.7 add: add stock_profit_forecast_ths interface
+
+    1. 新增 stock_profit_forecast_ths 接口
+    2. 重命名 stock_profit_forecast 为 stock_profit_forecast_em
 
 1.9.6 fix: fix futures_hog_info interface
 
@@ -1971,6 +2075,50 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.9.28 fix: fix stock_financial_report_sina interface
+
+1.9.27 fix: fix fund_exchange_rank_em interface
+
+1.9.26 fix: fix bond_cb_jsl interface
+
+1.9.25 add: add stock_hk_hot_rank_em interface
+
+1.9.24 fix: fix bond_cb_adj_logs_jsl interface
+
+1.9.23 fix: fix bond_cb_redeem_jsl interface
+
+1.9.22 fix: fix fund_hk_fund_hist_em interface
+
+1.9.21 fix: fix fund_financial_fund_info_em interface
+
+1.9.20 fix: fix fund_financial_fund_info_em interface
+
+1.9.19 fix: fix macro_cnbs interface
+
+1.9.18 fix: fix macro_china_market_margin_sh interface
+
+1.9.17 add: add stock_board_industry_spot_em interface
+
+1.9.16 fix: fix stock_financial_abstract interface
+
+1.9.15 fix: fix stock_hk_daily interface
+
+1.9.14 fix: fix option_risk_analysis_em interface
+
+1.9.13 fix: fix stock_zh_valuation_baidu interface
+
+1.9.12 fix: fix stock_hot_rank_wc interface
+
+1.9.11 add: add stock_sector_fund_flow_hist interface
+
+1.9.10 add: add macro_shipping_bcti interface
+
+1.9.9 add: add macro_shipping_bci interface
+
+1.9.8 fix: fix stock_hk_valuation_baidu interface
+
+1.9.7 add: add stock_profit_forecast_ths interface
 
 1.9.6 fix: fix futures_hog_info interface
 
