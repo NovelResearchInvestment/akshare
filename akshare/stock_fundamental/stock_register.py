@@ -53,7 +53,7 @@ def stock_register_kcb() -> pd.DataFrame:
         r = requests.get(url, params=params, headers=headers)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json['result']["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.reset_index(inplace=True)
     big_df['index'] = range(1, len(big_df) + 1)
     big_df.columns = [
@@ -137,7 +137,7 @@ def stock_register_cyb() -> pd.DataFrame:
         r = requests.get(url, params=params, headers=headers)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json['result']["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.reset_index(inplace=True)
     big_df['index'] = big_df.index + 1
     big_df.columns = [
@@ -212,7 +212,7 @@ def stock_register_db() -> pd.DataFrame:
         r = requests.get(url, params=params, headers=headers)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json['result']['data'])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.reset_index(inplace=True)
     big_df['index'] = range(1, len(big_df) + 1)
     big_df.columns = [

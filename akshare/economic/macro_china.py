@@ -411,7 +411,7 @@ def macro_china_cpi_monthly() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -472,7 +472,7 @@ def macro_china_ppi_yearly() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -532,7 +532,7 @@ def macro_china_exports_yoy() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -592,7 +592,7 @@ def macro_china_imports_yoy() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -652,7 +652,7 @@ def macro_china_trade_balance() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -712,7 +712,7 @@ def macro_china_industrial_production_yoy() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -773,7 +773,7 @@ def macro_china_pmi_yearly() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -834,7 +834,7 @@ def macro_china_cx_pmi_yearly() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -895,7 +895,7 @@ def macro_china_cx_services_pmi_yearly() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -956,7 +956,7 @@ def macro_china_non_man_pmi() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -1017,7 +1017,7 @@ def macro_china_fx_reserves_yearly() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -1078,7 +1078,7 @@ def macro_china_m2_yearly() -> pd.DataFrame:
     temp_se = pd.DataFrame(r.json()["data"]["values"]).iloc[:, :2]
     temp_se.index = pd.to_datetime(temp_se.iloc[:, 0])
     temp_se = temp_se.iloc[:, 1]
-    temp_df = temp_df.append(temp_se)
+    temp_df = pd.concat([temp_df, temp_se])
     temp_df.dropna(inplace=True)
     temp_df.sort_index(inplace=True)
     temp_df = temp_df.reset_index()
@@ -1465,9 +1465,9 @@ def macro_china_market_margin_sh() -> pd.DataFrame:
         temp_df.index = pd.to_datetime(temp_df.iloc[:, 0])
         temp_df = temp_df.iloc[:, 1:]
         temp_df.columns = [item["name"] for item in r.json()["data"]["keys"]][1:]
-        big_df = big_df.append(temp_df)
+        big_df = pd.concat([big_df, temp_df])
 
-    value_df = value_df.append(big_df)
+    value_df = pd.concat([value_df, big_df])
     value_df.drop_duplicates(inplace=True)
     value_df.sort_index(inplace=True)
     return value_df
@@ -3293,7 +3293,7 @@ def macro_china_hb(symbol: str = "weekly") -> pd.DataFrame:
     #         }
     #         r = requests.post(url, params=params, data=payload)
     #         temp_df = pd.DataFrame(r.json()["data"]["resultList"])
-    #         big_df = big_df.append(temp_df, ignore_index=True)
+    #         big_df = pd.concat([big_df, temp_df], ignore_index=True)
     #     big_df = big_df.sort_values(by=["startDate"])
     #     big_df.reset_index(inplace=True, drop=True)
     #     big_df.columns = ["日期", "投放量", "回笼量", "净投放", "开始日期", "结束日期"]
@@ -3321,7 +3321,7 @@ def macro_china_hb(symbol: str = "weekly") -> pd.DataFrame:
     #         }
     #         r = requests.post(url, params=params, data=payload)
     #         temp_df = pd.DataFrame(r.json()["data"]["resultList"])
-    #         big_df = big_df.append(temp_df, ignore_index=True)
+    #         big_df = pd.concat([big_df, temp_df], ignore_index=True)
     #     big_df.columns = ["日期", "投放量", "回笼量", "净投放", "-", "-"]
     #     big_df = big_df[["日期", "投放量", "回笼量", "净投放"]]
     #     big_df["投放量"] = pd.to_numeric(big_df["投放量"])
@@ -3372,7 +3372,7 @@ def macro_china_gksccz() -> pd.DataFrame:
     #     r = requests.post(url, params=params, data=payload)
     #     data_json = r.json()
     #     temp_df = pd.DataFrame(data_json["data"]["resultList"])
-    #     big_df = big_df.append(temp_df, ignore_index=True)
+    #     big_df = pd.concat([big_df, temp_df], ignore_index=True)
     # big_df.columns = [
     #     "操作日期",
     #     "期限",
@@ -3679,7 +3679,7 @@ def macro_china_society_electricity() -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -3])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
 
     big_df.columns = [
         "统计时间",
@@ -3796,7 +3796,7 @@ def macro_china_international_tourism_fx() -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -3])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
     return big_df
 
@@ -3828,7 +3828,7 @@ def macro_china_passenger_load_factor() -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -3])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
     return big_df
 
@@ -3860,7 +3860,7 @@ def _macro_china_freight_index() -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -3])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
     return big_df
 
@@ -3927,7 +3927,7 @@ def macro_china_central_bank_balance() -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -3])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
     return big_df
 
@@ -3959,7 +3959,7 @@ def macro_china_insurance() -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -3])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
     return big_df
 
@@ -3991,7 +3991,7 @@ def macro_china_supply_of_money() -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -3])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
     return big_df
 
@@ -4141,7 +4141,7 @@ def macro_china_foreign_exchange_gold() -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -3])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
     return big_df
 
@@ -4173,7 +4173,7 @@ def macro_china_retail_price_index() -> pd.DataFrame:
         data_text = r.text
         data_json = demjson.decode(data_text[data_text.find("{") : -3])
         temp_df = pd.DataFrame(data_json["data"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
     return big_df
 

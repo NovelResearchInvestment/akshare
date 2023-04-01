@@ -50,7 +50,7 @@ def index_kq_fz(symbol: str = "价格指数") -> pd.DataFrame:
         r = session.get(url, params=params)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["result"])
-        big_df = big_df.append(temp_df, ignore_index=True)
+        big_df = pd.concat([big_df, temp_df], ignore_index=True)
     if symbol == "价格指数":
         big_df.columns = [
             "期次",

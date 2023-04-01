@@ -55,9 +55,10 @@ def get_bond_bank(page_num: int = 1):
     r = requests.post(BOND_BANK_URL, data=payload, headers=bond_bank_headers)
     data_json = r.json()  # 数据类型为 json 格式
     for item in data_json["rows"]:  # 遍历 json 的具体格式
-        temp_df = temp_df.append(
-            pd.DataFrame.from_dict(item, orient="index").T, sort=False
-        )
+        temp_df = pd.concat([
+            temp_df,
+            pd.DataFrame.from_dict(item, orient="index").T
+        ], sort=False)
     temp_df.reset_index(inplace=True, drop=True)  # 重新设置索引
     temp_df.drop_duplicates(inplace=True)
     return temp_df[

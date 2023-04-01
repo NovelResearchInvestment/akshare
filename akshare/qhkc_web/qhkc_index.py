@@ -131,9 +131,10 @@ def get_qhkc_index_trend(name: AnyStr = "奇货商品", url: AnyStr = QHKC_INDEX
         money = item["money"]
         order_money = item["order_money"]
         variety = item["variety"]
-        df_temp = df_temp.append(
-            pd.DataFrame([broker, grade, money, order_money, variety]).T
-        )
+        df_temp = pd.concat([
+            df_temp,
+            pd.DataFrame([broker, grade, money, order_money, variety]).T,
+        ])
     df_temp.columns = ["broker", "grade", "money", "open_order", "variety"]
     df_temp.reset_index(drop=True, inplace=True)
     return df_temp

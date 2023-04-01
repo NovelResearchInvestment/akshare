@@ -141,7 +141,7 @@ def stock_em_sy_yq_list(symbol: str = "沪市主板", trade_date: str = "2019-12
         res = requests.get(url, params=params)
         data_text = res.text
         data_json = demjson.decode(data_text[data_text.find("={") + 1:])
-        temp_df = temp_df.append(pd.DataFrame(data_json["data"]), ignore_index=True)
+        temp_df = pd.concat([temp_df, pd.DataFrame(data_json["data"])], ignore_index=True)
     temp_df.columns = [
         "股票代码",
         "COMPANYCODE",
@@ -251,7 +251,7 @@ def stock_em_sy_jz_list(symbol: str = "沪市主板", trade_date: str = "2019-06
         res = requests.get(url, params=params)
         data_text = res.text
         data_json = demjson.decode(data_text[data_text.find("={") + 1 :])
-        temp_df = temp_df.append(pd.DataFrame(data_json["data"]), ignore_index=True)
+        temp_df = pd.concat([temp_df, pd.DataFrame(data_json["data"])], ignore_index=True)
     temp_df.columns = [
         "股票代码",
         "COMPANYCODE",
@@ -364,7 +364,7 @@ def stock_em_sy_list(symbol: str = "深市主板", trade_date: str = "2019-12-31
         res = requests.get(url, params=params)
         data_text = res.text
         data_json = demjson.decode(data_text[data_text.find("{"): -1])
-        temp_df = temp_df.append(pd.DataFrame(data_json["result"]["data"]), ignore_index=True)
+        temp_df = pd.concat([temp_df, pd.DataFrame(data_json["result"]["data"])], ignore_index=True)
     temp_df.columns = [
         "_",
         "股票代码",
@@ -458,7 +458,7 @@ def stock_em_sy_hy_list(trade_date: str = "2019-09-30") -> pd.DataFrame:
         res = requests.get(url, params=params)
         data_text = res.text
         data_json = demjson.decode(data_text[data_text.find("={") + 1 :])
-        temp_df = temp_df.append(pd.DataFrame(data_json["data"]), ignore_index=True)
+        temp_df = pd.concat([temp_df, pd.DataFrame(data_json["data"])], ignore_index=True)
     temp_df.columns = [
         "行业名称",
         "HYCode",

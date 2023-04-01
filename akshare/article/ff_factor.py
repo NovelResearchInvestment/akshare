@@ -137,11 +137,8 @@ def article_ff_crr() -> pd.DataFrame:
     temp_df.index = temp_df.iloc[:, 0]
     temp_df = temp_df.iloc[:, 1:]
     # concat
-    all_df = pd.DataFrame()
-    all_df = all_df.append(table_one)
-    all_df = all_df.append(table_two)
     temp_df.columns = table_two.columns
-    all_df = all_df.append(temp_df)
+    all_df = pd.concat([table_one, table_two, temp_df])
     return all_df
 
 
