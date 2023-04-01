@@ -350,11 +350,13 @@ def fund_open_fund_info_em(
         try:
             data_json = demjson.decode(
                 data_text[
-                    data_text.find("Data_netWorthTrend")
-                    + 21 : data_text.find("Data_ACWorthTrend")
-                    - 15
+                    (data_text.find("Data_netWorthTrend")
+                    + 21) : (data_text.find("Data_ACWorthTrend")
+                    - 15)
                 ]
             )
+            if len(data_json) == 0:
+                return pd.DataFrame()
         except:
             return pd.DataFrame()
         temp_df = pd.DataFrame(data_json)
@@ -390,6 +392,8 @@ def fund_open_fund_info_em(
                     - 16
                 ]
             )
+            if len(data_json) == 0:
+                return pd.DataFrame()
         except:
             return pd.DataFrame()
         temp_df = pd.DataFrame(data_json)
@@ -416,13 +420,18 @@ def fund_open_fund_info_em(
 
     # 累计收益率走势
     if indicator == "累计收益率走势":
-        data_json = demjson.decode(
-            data_text[
-                data_text.find("Data_grandTotal")
-                + 18 : data_text.find("Data_rateInSimilarType")
-                - 15
-            ]
-        )
+        try:
+            data_json = demjson.decode(
+                data_text[
+                    data_text.find("Data_grandTotal")
+                    + 18 : data_text.find("Data_rateInSimilarType")
+                    - 15
+                ]
+            )
+            if len(data_json) == 0:
+                return pd.DataFrame()
+        except:
+            return pd.DataFrame()
         temp_df_main = pd.DataFrame(data_json[0]["data"])  # 本产品
         # temp_df_mean = pd.DataFrame(data_json[1]["data"])  # 同类平均
         # temp_df_hs = pd.DataFrame(data_json[2]["data"])  # 沪深300
@@ -447,13 +456,18 @@ def fund_open_fund_info_em(
 
     # 同类排名走势
     if indicator == "同类排名走势":
-        data_json = demjson.decode(
-            data_text[
-                data_text.find("Data_rateInSimilarType")
-                + 25 : data_text.find("Data_rateInSimilarPersent")
-                - 16
-            ]
-        )
+        try:
+            data_json = demjson.decode(
+                data_text[
+                    data_text.find("Data_rateInSimilarType")
+                    + 25 : data_text.find("Data_rateInSimilarPersent")
+                    - 16
+                ]
+            )
+            if len(data_json) == 0:
+                return pd.DataFrame()
+        except:
+            return pd.DataFrame()
         temp_df = pd.DataFrame(data_json)
         temp_df["x"] = pd.to_datetime(
             temp_df["x"], unit="ms", utc=True
@@ -478,13 +492,18 @@ def fund_open_fund_info_em(
 
     # 同类排名百分比
     if indicator == "同类排名百分比":
-        data_json = demjson.decode(
-            data_text[
-                data_text.find("Data_rateInSimilarPersent")
-                + 26 : data_text.find("Data_fluctuationScale")
-                - 23
-            ]
-        )
+        try:
+            data_json = demjson.decode(
+                data_text[
+                    data_text.find("Data_rateInSimilarPersent")
+                    + 26 : data_text.find("Data_fluctuationScale")
+                    - 23
+                ]
+            )
+            if len(data_json) == 0:
+                return pd.DataFrame()
+        except:
+            return pd.DataFrame()
         temp_df = pd.DataFrame(data_json)
         temp_df.columns = ["x", "y"]
         temp_df["x"] = pd.to_datetime(

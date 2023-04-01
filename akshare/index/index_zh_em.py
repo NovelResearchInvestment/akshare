@@ -4,6 +4,8 @@
 Date: 2023/2/23 11:20
 Desc: 东方财富网-指数行情数据
 """
+import warnings
+
 import requests
 import pandas as pd
 from functools import lru_cache
@@ -202,11 +204,18 @@ def index_zh_a_hist(
 
         data_json = r.json()
         if data_json['data'] is None:
+            msg = f"got empty dataframe from: {symbol}, {period}, {start_date}, {end_date}"
+            warnings.warn(msg)
             return
         
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["klines"]]
         )
+
+    if temp_df.shape[0] == 0:
+        msg = f"got empty dataframe from: {symbol}, {period}, {start_date}, {end_date}"
+        warnings.warn(msg)
+        return
 
     temp_df.columns = OUT_COLUMNS
     temp_df.index = pd.to_datetime(temp_df["日期"])
