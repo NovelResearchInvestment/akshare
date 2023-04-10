@@ -731,6 +731,7 @@ def get_futures_daily(
 
     if len(df_list) > 0:
         temp_df = pd.concat(df_list).reset_index(drop=True)
+        temp_df["symbol"] = temp_df["symbol"].astype(str)
         temp_df = temp_df[~temp_df["symbol"].str.contains("efp")]
         return temp_df
 
