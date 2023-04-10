@@ -87,6 +87,9 @@
  # 新浪财经-港股
  "stock_hk_spot"  # 获取港股的历史行情数据(包括前后复权因子)
  "stock_hk_daily"  # 获取港股的实时行情数据(也可以用于获得所有港股代码)
+ # 东方财富
+ "stock_hk_spot_em"  # 港股实时行情
+ "stock_hk_main_board_spot_em"  # 港股主板实时行情
  # 新浪财经-美股
  "get_us_stock_name"  # 获得美股的所有股票代码
  "stock_us_spot"  # 获取美股行情报价
@@ -126,7 +129,6 @@
  # 股票分笔数据
  "stock_zh_a_tick_tx"  # A 股票分笔行情数据(近2年)-腾讯
  "stock_zh_a_tick_tx_js"  # A 股票分笔行情数据(近2年)-腾讯-当日数据
- "stock_zh_a_tick_163"  # A 股票分笔行情数据(近5个交易日)-163
  # 世界各地区日出和日落数据-日
  "weather_daily"  # 每日日出和日落数据
  # 世界各地区日出和日落数据-月
@@ -540,14 +542,12 @@
  "index_bloomberg_billionaires"  # 彭博亿万富豪指数
  "index_bloomberg_billionaires_hist"  # 彭博亿万富豪历史指数
  # A 股市盈率和市净率
- "stock_a_pb"  # A 股市净率
- "stock_a_pe"  # A 股市盈率
  "stock_market_pe_lg"  # 乐咕乐股-主板市盈率
  "stock_index_pe_lg"  # 乐咕乐股-指数市盈率
  "stock_market_pb_lg"  # 乐咕乐股-主板市净率
  "stock_index_pb_lg"  # 乐咕乐股-指数市净率
- "stock_a_lg_indicator"  # A 股个股市盈率、市净率和股息率指标
- "stock_hk_eniu_indicator"  # 港股股个股市盈率、市净率和股息率指标
+ "stock_a_indicator_lg"  # A 股个股市盈率、市净率和股息率指标
+ "stock_hk_indicator_eniu"  # 港股股个股市盈率、市净率和股息率指标
  "stock_a_high_low_statistics"  # 创新高和新低的股票数量
  "stock_a_below_net_asset_statistics"  # 破净股统计
  # 交易日历
@@ -1059,8 +1059,6 @@
  "stock_hk_hot_rank_detail_em"  # 东方财富-个股人气榜-历史趋势-港股
  "stock_hk_hot_rank_detail_realtime_em"  # 东方财富-个股人气榜-实时变动-港股
  "stock_hk_hot_rank_latest_em"  # 东方财富-个股人气榜-最新排名-港股
- # 网易财经-行情首页-沪深 A 股-每日行情
- "stock_zh_a_hist_163"  # 网易财经-行情首页-沪深 A 股-每日行情
  # 东方财富-股票数据-龙虎榜
  "stock_lhb_detail_em"  # 东方财富网-数据中心-龙虎榜单-龙虎榜详情
  "stock_lhb_stock_statistic_em"  # 东方财富网-数据中心-龙虎榜单-个股上榜统计
@@ -1200,6 +1198,8 @@
  "fund_balance_position_lg"  # 乐咕乐股-基金仓位-平衡混合型基金仓位
  "fund_linghuo_position_lg"  # 乐咕乐股-基金仓位-灵活配置型基金仓位
  "stock_zyjs_ths"  # 主营介绍
+ # 东方财富-行情报价
+ "stock_bid_ask_em"  # 东方财富-行情报价
 ```
 
 ## 案例演示

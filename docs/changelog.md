@@ -4,6 +4,8 @@
 
 | AKShare 版本 | 旧接口名称                                       | 新接口名称                                       | 修改日期     |
 |------------|---------------------------------------------|---------------------------------------------|----------|
+| 1.9.41     | stock_a_lg_indicator                        | stock_a_indicator_lg                        | 20230406 |
+| 1.9.37     | stock_hk_eniu_indicator                     | stock_hk_indicator_eniu                     | 20230404 |
 | 1.9.27     | fund_em_hk_rank                             | fund_hk_rank_em                             | 20230330 |
 | 1.9.27     | fund_em_lcx_rank                            | fund_lcx_rank_em                            | 20230330 |
 | 1.9.27     | fund_em_money_rank                          | fund_money_rank_em                          | 20230330 |
@@ -53,6 +55,91 @@
 | 1.4.86     | fund_em_aum                                 | fund_aum_em                                 | 20220322 |
 
 ## 更新说明
+
+1.9.47 fix: fix option_dce_daily interface
+
+    1. 修复 option_dce_daily 接口
+
+1.9.46 fix: fix stock_a_gxl_lg interface
+
+    1. 修复 stock_a_gxl_lg 接口
+
+1.9.45 add: add stock_fhps_detail_ths interface
+
+    1. 新增 stock_fhps_detail_ths 接口
+
+1.9.44 fix: fix stock_a_high_low_statistics interface
+
+    1. 修复 stock_a_high_low_statistics 接口
+
+1.9.43 fix: fix stock_a_congestion_lg interface
+
+    1. 修复 stock_a_congestion_lg 接口
+
+1.9.42 add: add stock_bid_ask_em interface
+
+    1. 新增 stock_bid_ask_em 接口
+
+1.9.41 fix: fix stock_a_indicator_lg interface
+
+    1. 修复 stock_a_indicator_lg 接口
+
+1.9.40 fix: fix stock_profit_forecast_em interface
+
+    1. 修复 stock_profit_forecast_em 接口
+    2. 修复 stock_index_pb_lg 接口
+    3. 修复 stock_index_pe_lg 接口
+
+1.9.39 fix: fix fund_stock_position_lg interface
+
+    1. 修复 fund_stock_position_lg 接口
+    2. 修复 fund_balance_position_lg 接口
+    3. 修复 fund_linghuo_position_lg 接口
+    4. 修复 stock_ebs_lg 接口
+    5. 修复 stock_buffett_index_lg 接口
+
+1.9.38 fix: fix stock_a_lg_indicator interface
+
+    1. 修复 stock_a_lg_indicator 接口
+
+1.9.37 fix: fix stock_hk_indicator_eniu interface
+
+    1. 修复 stock_hk_indicator_eniu 接口
+
+1.9.36 fix: fix stock_market_pe_lg interface
+
+    1. 修复 stock_market_pe_lg 接口
+    2. 修复 stock_market_pb_lg 接口
+    3. 修复 stock_index_pb_lg 接口
+    4. 修复 stock_index_pe_lg 接口
+
+1.9.35 fix: fix stock_a_lg_indicator interface
+
+    1. 修复 stock_a_lg_indicator 接口
+
+1.9.34 fix: fix stock_zh_a_tick_tx_js interface
+    
+    1. 修复 stock_zh_a_tick_tx_js 接口
+
+1.9.33 add: add stock_hk_main_board_spot_em interface
+
+    1. 新增 stock_hk_main_board_spot_em 接口
+
+1.9.32 fix: fix bank_fjcf_table_detail interface
+
+    1. 修复 bank_fjcf_table_detail 接口
+
+1.9.31 fix: fix amac_fund_info interface
+
+    1. 修复 amac_fund_info 接口
+
+1.9.30 fix: fix stock_a_lg_indicator interface
+
+    1. 修复 stock_a_lg_indicator 接口 
+
+1.9.29 fix: fix stock_a_lg_indicator interface
+
+    1. 修复 stock_a_lg_indicator 接口
 
 1.9.28 fix: fix stock_financial_report_sina interface
 
@@ -2075,6 +2162,44 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.9.47 fix: fix option_dce_daily interface
+
+1.9.46 fix: fix stock_a_gxl_lg interface
+
+1.9.45 add: add stock_fhps_detail_ths interface
+
+1.9.44 fix: fix stock_a_high_low_statistics interface
+
+1.9.43 fix: fix stock_a_congestion_lg interface
+
+1.9.42 add: add stock_bid_ask_em interface
+
+1.9.41 fix: fix stock_a_indicator_lg interface
+
+1.9.40 fix: fix stock_profit_forecast_em interface
+
+1.9.39 fix: fix fund_stock_position_lg interface
+
+1.9.38 fix: fix stock_a_lg_indicator interface
+
+1.9.37 fix: fix stock_hk_indicator_eniu interface
+
+1.9.36 fix: fix stock_market_pe_lg interface
+
+1.9.35 fix: fix stock_a_lg_indicator interface
+
+1.9.34 fix: fix stock_zh_a_tick_tx_js interface
+
+1.9.33 add: add stock_hk_main_board_spot_em interface
+
+1.9.32 fix: fix bank_fjcf_table_detail interface
+
+1.9.31 fix: fix amac_fund_info interface
+
+1.9.30 fix: fix stock_a_lg_indicator interface
+
+1.9.29 fix: fix stock_a_lg_indicator interface
 
 1.9.28 fix: fix stock_financial_report_sina interface
 

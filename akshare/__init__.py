@@ -2344,9 +2344,28 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.9.26 fix: fix bond_cb_jsl interface
 1.9.27 fix: fix fund_exchange_rank_em interface
 1.9.28 fix: fix stock_financial_report_sina interface
+1.9.29 fix: fix stock_a_lg_indicator interface
+1.9.30 fix: fix stock_a_lg_indicator interface
+1.9.31 fix: fix amac_fund_info interface
+1.9.32 fix: fix bank_fjcf_table_detail interface
+1.9.33 add: add stock_hk_main_board_spot_em interface
+1.9.34 fix: fix stock_zh_a_tick_tx_js interface
+1.9.35 fix: fix stock_a_lg_indicator interface
+1.9.36 fix: fix stock_market_pe_lg interface
+1.9.37 fix: fix stock_hk_indicator_eniu interface
+1.9.38 fix: fix stock_a_lg_indicator interface
+1.9.39 fix: fix fund_stock_position_lg interface
+1.9.40 fix: fix stock_profit_forecast_em interface
+1.9.41 fix: fix stock_a_indicator_lg interface
+1.9.42 add: add stock_bid_ask_em interface
+1.9.43 fix: fix stock_a_congestion_lg interface
+1.9.44 fix: fix stock_a_high_low_statistics interface
+1.9.45 add: add stock_fhps_detail_ths interface
+1.9.46 fix: fix stock_a_gxl_lg interface
+1.9.47 fix: fix option_dce_daily interface
 """
 
-__version__ = "1.9.28"
+__version__ = "1.9.47"
 __author__ = "AKFamily"
 
 import sys
@@ -2357,6 +2376,16 @@ if sys.version_info < (3, 8):
     # sys.exit(1)
 
 del sys
+
+"""
+同花顺-分红融资
+"""
+from akshare.stock_feature.stock_fhps_ths import stock_fhps_detail_ths
+
+"""
+东方财富-行情报价
+"""
+from akshare.stock.stock_ask_bid_em import stock_bid_ask_em
 
 """
 同花顺-盈利预测
@@ -2614,11 +2643,6 @@ from akshare.stock_feature.stock_lhb_em import (
     stock_lhb_stock_statistic_em,
     stock_lhb_stock_detail_date_em,
 )
-
-"""
-网易财经-行情首页-沪深 A 股-每日行情
-"""
-from akshare.stock.stock_hist_163 import stock_zh_a_hist_163
 
 """
 指数行情数据
@@ -3132,6 +3156,7 @@ from akshare.stock_feature.stock_hist_em import (
     stock_zh_b_spot_em,
     stock_zh_a_hist,
     stock_hk_spot_em,
+    stock_hk_main_board_spot_em,
     stock_hk_hist,
     stock_us_spot_em,
     stock_us_hist,
@@ -3331,7 +3356,7 @@ from akshare.stock_feature.stock_board_concept_ths import (
 """
 分红配送
 """
-from akshare.stock_feature.stock_fhps_em import stock_fhps_em
+from akshare.stock_feature.stock_fhps_em import stock_fhps_em, stock_fhps_detail_em
 
 """
 中美国债收益率
@@ -3612,8 +3637,6 @@ from akshare.option.option_commodity_sina import (
 """
 A 股PE和PB
 """
-from akshare.stock_feature.stock_a_pb import stock_a_pb
-from akshare.stock_feature.stock_a_pe import stock_a_pe
 from akshare.stock_feature.stock_a_pe_and_pb import (
     stock_market_pb_lg,
     stock_index_pb_lg,
@@ -3621,8 +3644,8 @@ from akshare.stock_feature.stock_a_pe_and_pb import (
     stock_index_pe_lg,
 )
 from akshare.stock_feature.stock_a_indicator import (
-    stock_a_lg_indicator,
-    stock_hk_eniu_indicator,
+    stock_a_indicator_lg,
+    stock_hk_indicator_eniu,
 )
 from akshare.stock_feature.stock_a_high_low import stock_a_high_low_statistics
 from akshare.stock_feature.stock_a_below_net_asset_statistics import (
@@ -4263,11 +4286,9 @@ from akshare.air.sunrise_tad import sunrise_daily, sunrise_monthly
 """
 新浪-指数实时行情和历史行情
 """
-from akshare.stock.stock_zh_a_tick_tx_163 import (
+from akshare.stock.stock_zh_a_tick_tx import (
     stock_zh_a_tick_tx,
     stock_zh_a_tick_tx_js,
-    stock_zh_a_tick_163,
-    stock_zh_a_tick_163_now,
 )
 
 """
