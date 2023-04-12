@@ -16,6 +16,19 @@ import pandas as pd
 import requests
 
 from akshare.utils import demjson
+from retrying import retry
+
+
+def retry_get_url_if_error(exception):
+    """Return True if we should retry, false otherwise"""
+    print("重新获取，最多五次")
+    return isinstance(exception, Exception)
+
+
+@retry(retry_on_exception=retry_get_url_if_error, stop_max_attempt_number=5)
+def get_url(url, headers):
+    data_text = requests.get(url, headers=headers)
+    return data_text
 
 
 def fund_purchase_em() -> pd.DataFrame:
@@ -103,7 +116,7 @@ def fund_name_em() -> pd.DataFrame:
 
 
 def fund_info_index_em(
-    symbol: str = "沪深指数", indicator: str = "被动指数型"
+        symbol: str = "沪深指数", indicator: str = "被动指数型"
 ) -> pd.DataFrame:
     """
     东方财富网站-天天基金网-基金数据-基金信息-指数型
@@ -326,7 +339,7 @@ def fund_open_fund_daily_em() -> pd.DataFrame:
 
 
 def fund_open_fund_info_em(
-    fund: str = "000002", indicator: str = "单位净值走势"
+        fund: str = "000002", indicator: str = "单位净值走势"
 ) -> pd.DataFrame:
     """
     东方财富网-天天基金网-基金数据-开放式基金净值
@@ -343,7 +356,7 @@ def fund_open_fund_info_em(
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
     }
-    r = requests.get(url, headers=headers)
+    r = get_url(url, headers)
     data_text = r.text
 
     # 单位净值走势
@@ -351,9 +364,9 @@ def fund_open_fund_info_em(
         try:
             data_json = demjson.decode(
                 data_text[
-                    (data_text.find("Data_netWorthTrend")
-                    + 21) : (data_text.find("Data_ACWorthTrend")
-                    - 15)
+                (data_text.find("Data_netWorthTrend")
+                 + 21): (data_text.find("Data_ACWorthTrend")
+                         - 15)
                 ]
             )
             if len(data_json) == 0:
@@ -388,9 +401,9 @@ def fund_open_fund_info_em(
         try:
             data_json = demjson.decode(
                 data_text[
-                    data_text.find("Data_ACWorthTrend")
-                    + 20 : data_text.find("Data_grandTotal")
-                    - 16
+                data_text.find("Data_ACWorthTrend")
+                + 20: data_text.find("Data_grandTotal")
+                      - 16
                 ]
             )
             if len(data_json) == 0:
@@ -424,9 +437,9 @@ def fund_open_fund_info_em(
         try:
             data_json = demjson.decode(
                 data_text[
-                    data_text.find("Data_grandTotal")
-                    + 18 : data_text.find("Data_rateInSimilarType")
-                    - 15
+                data_text.find("Data_grandTotal")
+                + 18: data_text.find("Data_rateInSimilarType")
+                      - 15
                 ]
             )
             if len(data_json) == 0:
@@ -460,9 +473,9 @@ def fund_open_fund_info_em(
         try:
             data_json = demjson.decode(
                 data_text[
-                    data_text.find("Data_rateInSimilarType")
-                    + 25 : data_text.find("Data_rateInSimilarPersent")
-                    - 16
+                data_text.find("Data_rateInSimilarType")
+                + 25: data_text.find("Data_rateInSimilarPersent")
+                      - 16
                 ]
             )
             if len(data_json) == 0:
@@ -496,9 +509,9 @@ def fund_open_fund_info_em(
         try:
             data_json = demjson.decode(
                 data_text[
-                    data_text.find("Data_rateInSimilarPersent")
-                    + 26 : data_text.find("Data_fluctuationScale")
-                    - 23
+                data_text.find("Data_rateInSimilarPersent")
+                + 26: data_text.find("Data_fluctuationScale")
+                      - 23
                 ]
             )
             if len(data_json) == 0:
@@ -610,7 +623,7 @@ def fund_money_fund_info_em(fund: str = "000009") -> pd.DataFrame:
     }
     r = requests.get(url, params=params, headers=headers)
     text_data = r.text
-    data_json = demjson.decode(text_data[text_data.find("{") : -1])
+    data_json = demjson.decode(text_data[text_data.find("{"): -1])
     temp_df = pd.DataFrame(data_json["Data"]["LSJZList"])
     temp_df.columns = [
         "净值日期",
@@ -729,7 +742,7 @@ def fund_financial_fund_info_em(symbol: str = "000134") -> pd.DataFrame:
     }
     r = requests.get(url, params=params, headers=headers)
     text_data = r.text
-    data_json = demjson.decode(text_data[text_data.find("{") : -1])
+    data_json = demjson.decode(text_data[text_data.find("{"): -1])
     temp_df = pd.DataFrame(data_json["Data"]["LSJZList"])
     temp_df.columns = [
         "净值日期",
@@ -848,7 +861,7 @@ def fund_graded_fund_info_em(fund: str = "150232") -> pd.DataFrame:
     }
     r = requests.get(url, params=params, headers=headers)
     text_data = r.text
-    data_json = demjson.decode(text_data[text_data.find("{") : -1])
+    data_json = demjson.decode(text_data[text_data.find("{"): -1])
     temp_df = pd.DataFrame(data_json["Data"]["LSJZList"])
     temp_df.columns = [
         "净值日期",
@@ -906,9 +919,9 @@ def fund_etf_fund_daily_em() -> pd.DataFrame:
 
 
 def fund_etf_fund_info_em(
-    fund: str = "511280",
-    start_date: str = "20000101",
-    end_date: str = "20500101",
+        fund: str = "511280",
+        start_date: str = "20000101",
+        end_date: str = "20500101",
 ) -> pd.DataFrame:
     """
     东方财富网站-天天基金网-基金数据-场内交易基金-历史净值明细
@@ -1054,7 +1067,7 @@ def fund_value_estimation_em(symbol: str = "全部") -> pd.DataFrame:
 
 
 def fund_hk_fund_hist_em(
-    code: str = "1002200683", symbol: str = "历史净值明细"
+        code: str = "1002200683", symbol: str = "历史净值明细"
 ) -> pd.DataFrame:
     """
     东方财富网-天天基金网-基金数据-香港基金-历史净值明细(分红送配详情)
