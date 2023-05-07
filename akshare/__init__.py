@@ -2363,9 +2363,35 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.9.45 add: add stock_fhps_detail_ths interface
 1.9.46 fix: fix stock_a_gxl_lg interface
 1.9.47 fix: fix option_dce_daily interface
+1.9.48 fix: fix index_stock_cons interface
+1.9.49 add: add stock_lhb_yybph_em interface
+1.9.50 fix: fix stock_a_all_pb interface
+1.9.51 fix: fix get_shfe_daily interface
+1.9.52 fix: fix get_shfe_rank_table interface
+1.9.53 fix: fix get_ine_daily interface
+1.9.54 fix: fix stock_board_concept_cons_ths interface
+1.9.55 fix: fix stock_zh_valuation_baidu interface
+1.9.56 fix: fix get_receipt interface
+1.9.57 fix: fix stock_lhb_detail_em interface
+1.9.58 add: add option_gfex_daily interface
+1.9.59 fix: fix stock_hot_search_baidu interface
+1.9.60 add: add stock_hk_fhpx_detail_ths interface
+1.9.61 fix: fix stock_lhb_detail_daily_sina interface
+1.9.62 fix: fix bond_zh_us_rate interface
+1.9.63 fix: fix get_czce_rank_table interface
+1.9.64 fix: fix stock_a_indicator_lg interface
+1.9.65 fix: fix stock_hot_search_baidu interface
+1.9.66 fix: fix match_main_contract interface
+1.9.67 fix: fix futures_zh_daily_sina interface
+1.9.68 fix: fix stock_lh_yyb_capital interface
+1.9.69 fix: fix stock_lh_yyb_capital interface
+1.9.70 fix: fix stock_szse_sector_summary interface
+1.9.71 fix: fix stock_lh_yyb_most interface
+1.9.72 fix: fix fund_manager interface
+1.9.73 add: add bond_zh_cov_info_ths interface
 """
 
-__version__ = "1.9.47"
+__version__ = "1.9.73"
 __author__ = "AKFamily"
 
 import sys
@@ -2376,6 +2402,16 @@ if sys.version_info < (3, 8):
     # sys.exit(1)
 
 del sys
+
+"""
+同花顺-数据中心-可转债
+"""
+from akshare.bond.bond_cb_ths import bond_zh_cov_info_ths
+
+"""
+同花顺-港股-分红派息
+"""
+from akshare.stock.stock_hk_fhpx_ths import stock_hk_fhpx_detail_ths
 
 """
 同花顺-分红融资
@@ -2642,6 +2678,9 @@ from akshare.stock_feature.stock_lhb_em import (
     stock_lhb_jgmmtj_em,
     stock_lhb_stock_statistic_em,
     stock_lhb_stock_detail_date_em,
+    stock_lhb_yybph_em,
+    stock_lhb_jgstatistic_em,
+    stock_lhb_traderstatistic_em,
 )
 
 """
@@ -4578,6 +4617,8 @@ from akshare.option.option_commodity import (
     option_dce_daily,
     option_czce_daily,
     option_shfe_daily,
+    option_gfex_vol_daily,
+    option_gfex_daily,
 )
 
 """
