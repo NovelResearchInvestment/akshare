@@ -102,7 +102,7 @@ def get_rank_sum_daily(
                     f"{start_day.strftime('%Y-%m-%d')}日交易所数据连接失败，已超过20次，您的地址被网站墙了，请保存好返回数据，稍后从该日期起重试"
                 )
                 return records.reset_index(drop=True)
-            records = pd.concat([records, data])
+            records = pd.concat([records, data], ignore_index=True)
         else:
             warnings.warn(f"{start_day.strftime('%Y%m%d')}非交易日")
         start_day += datetime.timedelta(days=1)
@@ -262,7 +262,7 @@ def get_rank_sum(
                     ].sum(),
                     "date": date.strftime("%Y%m%d"),
                 }
-                records = pd.concat([records, pd.DataFrame(big_dict, index=[0])])
+                records = pd.concat([records, pd.DataFrame(big_dict, index=[0])], ignore_index=True)
 
     if len(big_dict.items()) > 0:
         add_vars = [
@@ -277,7 +277,7 @@ def get_rank_sum(
             var_record = pd.DataFrame(records_cut.sum()).T
             var_record["date"] = date.strftime("%Y%m%d")
             var_record.loc[:, ["variety", "symbol"]] = var
-            records = pd.concat([records, var_record])
+            records = pd.concat([records, var_record], ignore_index=True)
 
     return records.reset_index(drop=True)
 
@@ -314,7 +314,7 @@ def get_shfe_rank_table(date=None, vars_list=cons.contract_symbols):
         warnings.warn("%s非交易日" % date.strftime("%Y%m%d"))
         return {}
     url = cons.SHFE_VOL_RANK_URL % (date.strftime("%Y%m%d"))
-    r = requests_link(url, "utf-8")
+    r = requests_link(url, "utf-8", headers=cons.shfe_headers)
     try:
         context = json.loads(r.text)
     except:
@@ -494,8 +494,8 @@ def get_czce_rank_table(
         big_dict[symbol_list[-1]] = inner_temp_df
     new_big_dict = {}
     for key, value in big_dict.items():
-        value["symbol"] = key
-        value["variety"] = re.compile(r"[a-zA-Z_]+").findall(key)[0]
+        value = value.assign(symbol=key)
+        value = value.assign(variety=re.compile(r"[a-zA-Z_]+").findall(key)[0])
         new_big_dict[key] = value
 
     return new_big_dict
@@ -1152,7 +1152,7 @@ if __name__ == "__main__":
 
     # 总接口
     get_rank_sum_daily_df = get_rank_sum_daily(
-        start_day="20210515", end_day="20210518", vars_list=["PF"]
+        start_day="20210515", end_day="20210518", vars_list=["MA"]
     )
     print(get_rank_sum_daily_df)
 

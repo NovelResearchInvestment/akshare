@@ -56,6 +56,114 @@
 
 ## 更新说明
 
+1.9.73 add: add bond_zh_cov_info_ths interface
+
+    1. 新增 bond_zh_cov_info_ths 接口
+
+1.9.72 fix: fix fund_manager interface
+
+    1. 修复 fund_manager 接口
+
+1.9.71 fix: fix stock_lh_yyb_most interface
+
+    1. 修复 stock_lh_yyb_most 接口
+
+1.9.70 fix: fix stock_szse_sector_summary interface
+    
+    1. 修复 stock_szse_sector_summary 接口
+
+1.9.69 fix: fix stock_lh_yyb_capital interface
+
+    1. 修复 stock_lh_yyb_capital 接口
+
+1.9.68 fix: fix stock_lh_yyb_capital interface
+
+    1. 修复 stock_lh_yyb_capital 接口
+
+1.9.67 fix: fix futures_zh_daily_sina interface
+
+    1. 修复 futures_zh_daily_sina 接口
+
+1.9.66 fix: fix match_main_contract interface
+
+    1. 修复 match_main_contract 接口
+
+1.9.65 fix: fix stock_hot_search_baidu interface
+
+    1. 修复 stock_hot_search_baidu 接口
+
+1.9.64 fix: fix stock_a_indicator_lg interface
+
+    1. 修复 stock_a_indicator_lg 接口
+
+1.9.63 fix: fix get_czce_rank_table interface
+
+    1. 修复 get_czce_rank_table 接口
+
+1.9.62 fix: fix bond_zh_us_rate interface
+
+    1. 修复 bond_zh_us_rate 接口
+
+1.9.61 fix: fix stock_lhb_detail_daily_sina interface
+
+    1. 修复 stock_lhb_detail_daily_sina 接口
+
+1.9.60 add: add stock_hk_fhpx_detail_ths interface
+
+    1. 新增 stock_hk_fhpx_detail_ths 接口
+
+1.9.59 fix: fix stock_hot_search_baidu interface
+
+    1. 修复 stock_hot_search_baidu 接口
+
+1.9.58 add: add option_gfex_daily interface
+
+    1. 新增 option_gfex_daily 接口
+    2. 新增 option_gfex_vol_daily 接口
+
+1.9.57 fix: fix stock_lhb_detail_em interface
+
+    1. 修复 stock_lhb_detail_em 接口
+
+1.9.56 fix: fix get_receipt interface
+
+    1. 修复 get_receipt 接口
+
+1.9.55 fix: fix stock_zh_valuation_baidu interface
+
+    1. 修复 stock_zh_valuation_baidu 接口
+
+1.9.54 fix: fix stock_board_concept_cons_ths interface
+
+    1. 修复 stock_board_concept_cons_ths 接口
+
+1.9.53 fix: fix get_ine_daily interface
+
+    1. 修复 get_ine_daily 接口
+
+1.9.52 fix: fix get_shfe_rank_table interface
+
+    1. 修复 get_shfe_rank_table 接口
+
+1.9.51 fix: fix get_shfe_daily interface
+
+    1. 修复 get_shfe_daily 接口
+
+1.9.50 fix: fix stock_a_all_pb interface
+
+    1. 修复 stock_a_all_pb 接口
+    2. 修复 stock_a_ttm_lyr 接口
+
+1.9.49 add: add stock_lhb_yybph_em interface
+
+    1. 新增 stock_lhb_yybph_em 接口
+    2. 新增 stock_lhb_jgstatistic_em 接口
+    3. 新增 stock_lhb_traderstatistic_em 接口
+
+1.9.48 fix: fix index_stock_cons interface
+
+    1. 修复 index_stock_cons 接口
+
 1.9.47 fix: fix option_dce_daily interface
 
     1. 修复 option_dce_daily 接口
@@ -2162,6 +2270,58 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.9.73 add: add bond_zh_cov_info_ths interface
+
+1.9.72 fix: fix fund_manager interface
+
+1.9.71 fix: fix stock_lh_yyb_most interface
+
+1.9.70 fix: fix stock_szse_sector_summary interface
+
+1.9.69 fix: fix stock_lh_yyb_capital interface
+
+1.9.68 fix: fix stock_lh_yyb_capital interface
+
+1.9.67 fix: fix futures_zh_daily_sina interface
+
+1.9.66 fix: fix match_main_contract interface
+
+1.9.65 fix: fix stock_hot_search_baidu interface
+
+1.9.64 fix: fix stock_a_indicator_lg interface
+
+1.9.63 fix: fix get_czce_rank_table interface
+
+1.9.62 fix: fix bond_zh_us_rate interface
+
+1.9.61 fix: fix stock_lhb_detail_daily_sina interface
+
+1.9.60 add: add stock_hk_fhpx_detail_ths interface
+
+1.9.59 fix: fix stock_hot_search_baidu interface
+
+1.9.58 add: add option_gfex_daily interface
+
+1.9.57 fix: fix stock_lhb_detail_em interface
+
+1.9.56 fix: fix get_receipt interface
+
+1.9.55 fix: fix stock_zh_valuation_baidu interface
+
+1.9.54 fix: fix stock_board_concept_cons_ths interface
+
+1.9.53 fix: fix get_ine_daily interface
+
+1.9.52 fix: fix get_shfe_rank_table interface
+
+1.9.51 fix: fix get_shfe_daily interface
+
+1.9.50 fix: fix stock_a_all_pb interface
+
+1.9.49 add: add stock_lhb_yybph_em interface
+
+1.9.48 fix: fix index_stock_cons interface
 
 1.9.47 fix: fix option_dce_daily interface
 

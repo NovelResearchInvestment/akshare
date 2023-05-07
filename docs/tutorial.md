@@ -53,6 +53,8 @@
  "option_dce_daily"  # 提供大连商品交易所商品期权数据
  "option_czce_daily"  # 提供郑州商品交易所商品期权数据
  "option_shfe_daily"  # 提供上海期货交易所商品期权数据
+ "option_gfex_daily"  # 提供广州期货交易所商品期权数据
+ "option_gfex_vol_daily"  # 提供广州期货交易所-合约隐含波动率数据
  # 中国银行间市场债券行情数据
  "get_bond_market_quote"  # 债券市场行情-现券市场成交行情数据
  "get_bond_market_trade"  # 债券市场行情-现券市场做市报价数据
@@ -1065,6 +1067,9 @@
  "stock_lhb_stock_detail_em"  # 东方财富网-数据中心-龙虎榜单-个股龙虎榜详情
  "stock_lhb_jgmmtj_em"  # 东方财富网-数据中心-龙虎榜单-机构买卖每日统计
  "stock_lhb_hyyyb_em"  # 东方财富网-数据中心-龙虎榜单-每日活跃营业部
+ "stock_lhb_yybph_em"  # 东方财富网-数据中心-龙虎榜单-营业部排行
+ "stock_lhb_jgstatistic_em"  # 东方财富网-数据中心-龙虎榜单-机构席位追踪
+ "stock_lhb_traderstatistic_em"  # 东方财富网-数据中心-龙虎榜单-营业部统计
  # 投资组合-基金持仓
  "fund_portfolio_hold_em"  # 天天基金网-基金档案-投资组合-基金持仓
  "fund_portfolio_bond_hold_em"  # 天天基金网-基金档案-投资组合-债券持仓
@@ -1200,6 +1205,8 @@
  "stock_zyjs_ths"  # 主营介绍
  # 东方财富-行情报价
  "stock_bid_ask_em"  # 东方财富-行情报价
+ # 可转债
+ "bond_zh_cov_info_ths"  # 同花顺-数据中心-可转债
 ```
 
 ## 案例演示
