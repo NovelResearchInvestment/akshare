@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2022/6/19 15:26
+Date: 2023/6/7 16:26
 Desc: 东方财富网-行情首页-沪深京 A 股
 """
 import requests
@@ -34,7 +34,6 @@ def stock_zh_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -147,7 +146,6 @@ def stock_sh_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -260,7 +258,6 @@ def stock_sz_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -373,7 +370,6 @@ def stock_bj_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -487,7 +483,6 @@ def stock_new_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -605,7 +600,6 @@ def stock_cy_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -719,7 +713,6 @@ def stock_kc_a_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -832,7 +825,6 @@ def stock_zh_b_spot_em() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return pd.DataFrame()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
@@ -946,7 +938,6 @@ def code_id_map_em() -> dict:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return dict()
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df["market_id"] = 1
@@ -968,7 +959,6 @@ def code_id_map_em() -> dict:
     r = requests.get(url, params=params)
     data_json = r.json()
     if not data_json["data"]["diff"]:
-        print(f"{symbol} has no results.")
         return dict()
     temp_df_sz = pd.DataFrame(data_json["data"]["diff"])
     temp_df_sz["sz_id"] = 0
@@ -1037,12 +1027,8 @@ def stock_zh_a_hist(
     r = requests.get(url, params=params)
     data_json = r.json()
     if not (data_json["data"] and data_json["data"]["klines"]):
-        print(f"{symbol} has no results.")
-        return pd.DataFrame([])
-
-    temp_df = pd.DataFrame(
-        [item.split(",") for item in data_json["data"]["klines"]]
-    )
+        return pd.DataFrame()
+    temp_df = pd.DataFrame([item.split(",") for item in data_json["data"]["klines"]])
     temp_df.columns = [
         "日期",
         "开盘",
@@ -1056,20 +1042,17 @@ def stock_zh_a_hist(
         "涨跌额",
         "换手率",
     ]
-    temp_df.index = pd.to_datetime(temp_df["日期"])
-    temp_df.reset_index(inplace=True, drop=True)
-
-    temp_df["开盘"] = pd.to_numeric(temp_df["开盘"])
-    temp_df["收盘"] = pd.to_numeric(temp_df["收盘"])
-    temp_df["最高"] = pd.to_numeric(temp_df["最高"])
-    temp_df["最低"] = pd.to_numeric(temp_df["最低"])
-    temp_df["成交量"] = pd.to_numeric(temp_df["成交量"])
-    temp_df["成交额"] = pd.to_numeric(temp_df["成交额"])
-    temp_df["振幅"] = pd.to_numeric(temp_df["振幅"])
-    temp_df["涨跌幅"] = pd.to_numeric(temp_df["涨跌幅"])
-    temp_df["涨跌额"] = pd.to_numeric(temp_df["涨跌额"])
-    temp_df["换手率"] = pd.to_numeric(temp_df["换手率"])
-
+    temp_df["日期"] = pd.to_datetime(temp_df["日期"]).dt.date
+    temp_df["开盘"] = pd.to_numeric(temp_df["开盘"], errors="coerce")
+    temp_df["收盘"] = pd.to_numeric(temp_df["收盘"], errors="coerce")
+    temp_df["最高"] = pd.to_numeric(temp_df["最高"], errors="coerce")
+    temp_df["最低"] = pd.to_numeric(temp_df["最低"], errors="coerce")
+    temp_df["成交量"] = pd.to_numeric(temp_df["成交量"], errors="coerce")
+    temp_df["成交额"] = pd.to_numeric(temp_df["成交额"], errors="coerce")
+    temp_df["振幅"] = pd.to_numeric(temp_df["振幅"], errors="coerce")
+    temp_df["涨跌幅"] = pd.to_numeric(temp_df["涨跌幅"], errors="coerce")
+    temp_df["涨跌额"] = pd.to_numeric(temp_df["涨跌额"], errors="coerce")
+    temp_df["换手率"] = pd.to_numeric(temp_df["换手率"], errors="coerce")
     return temp_df
 
 
@@ -1115,10 +1098,6 @@ def stock_zh_a_hist_min_em(
         }
         r = requests.get(url, params=params)
         data_json = r.json()
-        if len(data_json["data"]["trends"]) == 0:
-            print(f"{symbol} has no results.")
-            return pd.DataFrame([])
-
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["trends"]]
         )
@@ -1133,7 +1112,7 @@ def stock_zh_a_hist_min_em(
             "最新价",
         ]
         temp_df.index = pd.to_datetime(temp_df["时间"])
-        temp_df = temp_df[start_date:end_date].copy()
+        temp_df = temp_df[start_date:end_date]
         temp_df.reset_index(drop=True, inplace=True)
         temp_df["开盘"] = pd.to_numeric(temp_df["开盘"])
         temp_df["收盘"] = pd.to_numeric(temp_df["收盘"])
@@ -1159,10 +1138,6 @@ def stock_zh_a_hist_min_em(
         }
         r = requests.get(url, params=params)
         data_json = r.json()
-        if len(data_json["data"]["trends"]) == 0:
-            print(f"{symbol} has no results.")
-            return pd.DataFrame([])
-
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["klines"]]
         )
@@ -1241,19 +1216,8 @@ def stock_zh_a_hist_pre_min_em(
         "_": "1623766962675",
     }
     r = requests.get(url, params=params)
-    if r.status_code >= 300:
-        page_text = r.content.decode("utf8")
-        raise requests.HTTPError(f"Status: {r.status_code} \nPage Content{page_text}")
-
     data_json = r.json()
-    if data_json["data"]["trends"] is None:
-        print(f"{symbol} has no results.")
-        return pd.DataFrame([])
-
-    temp_df = pd.DataFrame(
-        [item.split(",") for item in data_json["data"]["trends"]]
-    )
-
+    temp_df = pd.DataFrame([item.split(",") for item in data_json["data"]["trends"]])
     temp_df.columns = [
         "时间",
         "开盘",
@@ -1266,9 +1230,7 @@ def stock_zh_a_hist_pre_min_em(
     ]
     temp_df.index = pd.to_datetime(temp_df["时间"])
     date_format = temp_df.index[0].date().isoformat()
-    temp_df = temp_df[
-        date_format + " " + start_time : date_format + " " + end_time
-    ]
+    temp_df = temp_df[date_format + " " + start_time : date_format + " " + end_time]
     temp_df.reset_index(drop=True, inplace=True)
     temp_df["开盘"] = pd.to_numeric(temp_df["开盘"])
     temp_df["收盘"] = pd.to_numeric(temp_df["收盘"])
@@ -1304,9 +1266,6 @@ def stock_hk_spot_em() -> pd.DataFrame:
     }
     r = requests.get(url, params=params)
     data_json = r.json()
-    if len(data_json["data"]["diff"]) == 0:
-        print(f"{symbol} has no results.")
-        return pd.DataFrame([])
     temp_df = pd.DataFrame(data_json["data"]["diff"])
     temp_df.columns = [
         "_",
@@ -1501,12 +1460,7 @@ def stock_hk_hist(
     }
     r = requests.get(url, params=params)
     data_json = r.json()
-    if len(data_json["data"]["klines"]) == 0:
-        print(f"{symbol} has no results.")
-        return pd.DataFrame([])
-    temp_df = pd.DataFrame(
-        [item.split(",") for item in data_json["data"]["klines"]]
-    )
+    temp_df = pd.DataFrame([item.split(",") for item in data_json["data"]["klines"]])
     if temp_df.empty:
         return pd.DataFrame()
     temp_df.columns = [
@@ -1621,9 +1575,6 @@ def stock_hk_hist_min_em(
         }
         r = requests.get(url, params=params)
         data_json = r.json()
-        if len(data_json["data"]["klines"]) == 0:
-            print(f"{symbol} has no results.")
-            return pd.DataFrame([])
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["klines"]]
         )
@@ -1812,9 +1763,7 @@ def stock_us_hist(
     data_json = r.json()
     if not data_json["data"]["klines"]:
         return pd.DataFrame()
-    temp_df = pd.DataFrame(
-        [item.split(",") for item in data_json["data"]["klines"]]
-    )
+    temp_df = pd.DataFrame([item.split(",") for item in data_json["data"]["klines"]])
     temp_df.columns = [
         "日期",
         "开盘",
@@ -1874,12 +1823,9 @@ def stock_us_hist_min_em(
     }
     r = requests.get(url, params=params)
     data_json = r.json()
-    if len(data_json["data"]["trends"]) == 0:
-        print(f"{symbol} has no results.")
-        return pd.DataFrame([])
-    temp_df = pd.DataFrame(
-        [item.split(",") for item in data_json["data"]["trends"]]
-    )
+    if not data_json["data"]["trends"]:
+        return pd.DataFrame()
+    temp_df = pd.DataFrame([item.split(",") for item in data_json["data"]["trends"]])
     temp_df.columns = [
         "时间",
         "开盘",
@@ -2003,9 +1949,7 @@ if __name__ == "__main__":
     stock_us_hist_min_em_df = stock_us_hist_min_em(symbol="106.TTE")
     print(stock_us_hist_min_em_df)
 
-    stock_zh_a_hist_min_em_df = stock_zh_a_hist_min_em(
-        symbol="000001", period='1'
-    )
+    stock_zh_a_hist_min_em_df = stock_zh_a_hist_min_em(symbol="000001", period="1")
     print(stock_zh_a_hist_min_em_df)
 
     stock_zh_a_hist_df = stock_zh_a_hist(
