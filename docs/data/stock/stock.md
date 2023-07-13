@@ -10308,11 +10308,19 @@ print(stock_cash_flow_sheet_by_quarterly_em_df)
 
 输出参数
 
-| 名称   | 类型                | 描述      |
-|------|-------------------|---------|
-| 日期索引 | datetime     报告日期 |
-| 流动资产 | str               | 注意单位: 亿 |
-| ...  | str               | 多项财务指标  |
+| 名称                 | 类型      | 描述 |
+|--------------------|---------|----|
+| SECUCODE           | object  | -  |
+| SECURITY_CODE      | object  | -  |
+| SECURITY_NAME_ABBR | object  | -  |
+| ORG_CODE           | object  | -  |
+| REPORT_DATE        | object  | -  |
+| DATE_TYPE_CODE     | object  | -  |
+| FISCAL_YEAR        | object  | -  |
+| STD_ITEM_CODE      | object  | -  |
+| STD_ITEM_NAME      | object  | -  |
+| AMOUNT             | float64 | -  |
+| STD_REPORT_DATE    | object  | -  |
 
 ```python
 import akshare as ak
@@ -10324,10 +10332,19 @@ print(stock_financial_hk_report_em_df)
 数据示例
 
 ```
-	      流动资产|1	现金及现金等价物	...
-2020-12-31	--	2212.85亿	...
-2019-12-31	--	1799.02亿	...
-2018-12-31	--	1607.32亿	...
+     SECUCODE SECURITY_CODE  ...        AMOUNT      STD_REPORT_DATE
+0    00700.HK         00700  ...  5.397800e+10  2022-12-31 00:00:00
+1    00700.HK         00700  ...  5.590000e+08  2022-12-31 00:00:00
+2    00700.HK         00700  ...  1.618020e+11  2022-12-31 00:00:00
+3    00700.HK         00700  ...  1.804600e+10  2022-12-31 00:00:00
+4    00700.HK         00700  ...  9.229000e+09  2022-12-31 00:00:00
+..        ...           ...  ...           ...                  ...
+965  00700.HK         00700  ...  4.817800e+07  2001-12-31 00:00:00
+966  00700.HK         00700  ...  4.832400e+07  2001-12-31 00:00:00
+967  00700.HK         00700  ...  4.832400e+07  2001-12-31 00:00:00
+968  00700.HK         00700  ...  4.832400e+07  2001-12-31 00:00:00
+969  00700.HK         00700  ...  6.554200e+07  2001-12-31 00:00:00
+[970 rows x 11 columns]
 ```
 
 #### 关键指标-新浪
@@ -10605,37 +10622,68 @@ print(stock_financial_analysis_indicator_df)
 
 输出参数
 
-| 名称         | 类型     | 描述     |
-|------------|--------|--------|
-| 周期         | object | -      |
-| 基本每股收益(元)  | object | -      |
-| 稀释每股收益(元)  | object | -      |
-| TTM每股收益(元) | object | -      |
-| ...        | object | 多项财务指标 |
+| 名称                  | 类型      | 描述 |
+|---------------------|---------|----|
+| SECUCODE            | object  | -  |
+| SECURITY_CODE       | object  | -  |
+| SECURITY_NAME_ABBR  | object  | -  |
+| ORG_CODE            | object  | -  |
+| REPORT_DATE         | object  | -  |
+| DATE_TYPE_CODE      | object  | -  |
+| PER_NETCASH_OPERATE | float64 | -  |
+| PER_OI              | float64 | -  |
+| BPS                 | float64 | -  |
+| BASIC_EPS           | float64 | -  |
+| DILUTED_EPS         | float64 | -  |
+| OPERATE_INCOME      | int64   | -  |
+| OPERATE_INCOME_YOY  | float64 | -  |
+| GROSS_PROFIT        | int64   | -  |
+| GROSS_PROFIT_YOY    | float64 | -  |
+| HOLDER_PROFIT       | int64   | -  |
+| HOLDER_PROFIT_YOY   | float64 | -  |
+| GROSS_PROFIT_RATIO  | float64 | -  |
+| EPS_TTM             | float64 | -  |
+| OPERATE_INCOME_QOQ  | float64 | -  |
+| NET_PROFIT_RATIO    | float64 | -  |
+| ROE_AVG             | float64 | -  |
+| GROSS_PROFIT_QOQ    | float64 | -  |
+| ROA                 | float64 | -  |
+| HOLDER_PROFIT_QOQ   | float64 | -  |
+| ROE_YEARLY          | float64 | -  |
+| ROIC_YEARLY         | float64 | -  |
+| TAX_EBT             | float64 | -  |
+| OCF_SALES           | float64 | -  |
+| DEBT_ASSET_RATIO    | float64 | -  |
+| CURRENT_RATIO       | float64 | -  |
+| CURRENTDEBT_DEBT    | float64 | -  |
+| START_DATE          | object  | -  |
+| FISCAL_YEAR         | object  | -  |
+| CURRENCY            | object  | -  |
+| IS_CNY_CODE         | int64   | -  |
 
 接口示例
 
 ```python
 import akshare as ak
 
-stock_financial_hk_analysis_indicator_em_df = ak.stock_financial_hk_analysis_indicator_em(symbol="00700",
-                                                                                          indicator="年度")
+stock_financial_hk_analysis_indicator_em_df = ak.stock_financial_hk_analysis_indicator_em(symbol="00700", indicator="年度")
 print(stock_financial_hk_analysis_indicator_em_df)
 ```
 
 数据示例
 
 ```
-   周期 基本每股收益(元) 稀释每股收益(元)  ... 资产负债率(%) 流动负债/总负债(%)    流动比率
-1  2021-03-31    5.0200    4.9170  ...  40.6137     49.3061  1.1596
-2  2020-12-31   16.8440   16.5230  ...  41.6508     48.4494  1.1805
-3  2020-09-30   10.6010   10.4030  ...  45.6738     47.7102  1.2314
-4  2020-06-30    6.5410    6.4400  ...  47.7145     46.0158  1.3411
-5  2020-03-31    3.0490    2.9990  ...  49.4019     50.5371  1.1081
-6  2019-12-31    9.8560    9.6430  ...  48.7598     51.6285  1.0575
-7  2019-09-30    7.5780    7.4860  ...  48.4319     51.0084  1.2290
-8  2019-06-30    5.4270    5.3620  ...  48.4575     51.0186  1.2047
-9  2019-03-31    2.8770    2.8440  ...  48.9844     56.8520  1.0628
+   SECUCODE SECURITY_CODE SECURITY_NAME_ABBR  ... FISCAL_YEAR CURRENCY IS_CNY_CODE
+0  00700.HK         00700               腾讯控股  ...       12-31      HKD           0
+1  00700.HK         00700               腾讯控股  ...       12-31      HKD           0
+2  00700.HK         00700               腾讯控股  ...       12-31      HKD           0
+3  00700.HK         00700               腾讯控股  ...       12-31      HKD           0
+4  00700.HK         00700               腾讯控股  ...       12-31      HKD           0
+5  00700.HK         00700               腾讯控股  ...       12-31      HKD           0
+6  00700.HK         00700               腾讯控股  ...       12-31      HKD           0
+7  00700.HK         00700               腾讯控股  ...       12-31      HKD           0
+8  00700.HK         00700               腾讯控股  ...       12-31      HKD           0
+[9 rows x 36 columns]
 ```
 
 #### 历史分红
@@ -21122,4 +21170,120 @@ print(stock_rank_xzjp_ths_df)
 44  45  2021-05-22  603729   ST龙韵  ...   11.62        5.25   531.00万    5.69
 45  46  2021-05-15  002490   山东墨龙  ...    5.32        0.13     1.55亿   19.43
 46  47  2021-05-11  002490   山东墨龙  ...    4.38        0.61     1.40亿   17.54
+```
+
+### ESG 评级
+
+#### ESG 评级数据
+
+接口: stock_esg_rate_sina
+
+目标地址: https://finance.sina.com.cn/esg/grade.shtml
+
+描述: 新浪财经-ESG评级中心-ESG评级-ESG评级数据
+
+限量: 单次返回所有数据
+
+输入参数
+
+| 名称  | 类型  | 描述  |
+|-----|-----|-----|
+| -   | -   | -   |
+
+输出参数
+
+| 名称    | 类型     | 描述 |
+|-------|--------|----|
+| 成分股代码 | object | -  |
+| 评级机构  | object | -  |
+| 评级    | object | -  |
+| 评级季度  | object | -  |
+| 标识    | object | -  |
+| 交易市场  | object | -  |
+
+接口示例
+
+```python
+import akshare as ak
+
+stock_esg_rate_sina_df = ak.stock_esg_rate_sina()
+print(stock_esg_rate_sina_df)
+```
+
+数据示例
+
+```
+    成分股代码              评级机构     评级    评级季度             标识 交易市场
+0      SZ000001             中财绿金院     A-  2022Q4            NaN   cn
+1      SZ000001              商道融绿     B+  2022Q4            NaN   cn
+2      SZ000001                盟浪      A  2022Q2            NaN   cn
+3      SZ000001               中诚信    AA-  2023Q3            NaN   cn
+4      SZ000001  晨星Sustainalytics  24.96  2022Q4  Comprehensive   cn
+         ...               ...    ...     ...            ...  ...
+46888   HK02361                盟浪      -  2022Q2            NaN   hk
+46889   HK02361               中诚信     BB  2023Q3            NaN   hk
+46890   HK02361  晨星Sustainalytics      -  2022Q4                  hk
+46891   HK02361                妙盈      -  2022Q2            NaN   hk
+46892   HK02361             华测CTI      -  2022Q1            NaN   hk
+[46893 rows x 6 columns]
+```
+
+#### 华证指数
+
+接口: stock_esg_hz_sina
+
+目标地址: https://finance.sina.com.cn/esg/grade.shtml
+
+描述: 新浪财经-ESG评级中心-ESG评级-华证指数
+
+限量: 单次返回所有数据
+
+输入参数
+
+| 名称  | 类型  | 描述  |
+|-----|-----|-----|
+| -   | -   | -   |
+
+输出参数
+
+| 名称     | 类型      | 描述 |
+|--------|---------|----|
+| 日期     | object  | -  |
+| 股票代码   | object  | -  |
+| 交易市场   | object  | -  |
+| 股票名称   | object  | -  |
+| ESG评分  | float64 | -  |
+| ESG等级  | object  | -  |
+| 环境     | float64 | -  |
+| 环境等级   | object  | -  |
+| 社会     | float64 | -  |
+| 社会等级   | object  | -  |
+| 公司治理   | float64 | -  |
+| 公司治理等级 | object  | -  |
+
+接口示例
+
+```python
+import akshare as ak
+
+stock_esg_hz_sina_df = ak.stock_esg_hz_sina()
+print(stock_esg_hz_sina_df)
+```
+
+数据示例
+
+```
+      日期       股票代码 交易市场   股票名称  ESG评分  ... 环境等级     社会 社会等级   公司治理 公司治理等级
+0     2023-04-30  300760.SZ   cn   迈瑞医疗  88.85  ...  BBB  92.77   AA  89.90      A
+1     2023-04-30  601825.SH   cn   沪农商行  88.09  ...  BBB  88.64    A  89.79      A
+2     2023-04-30  601166.SH   cn   兴业银行  88.08  ...   AA  86.00    A  88.78      A
+3     2023-04-30  300021.SZ   cn   大禹节水  87.91  ...    A  91.78   AA  85.77      A
+4     2023-04-30  600803.SH   cn   新奥股份  87.90  ...    A  90.49   AA  85.99      A
+          ...        ...  ...    ...    ...  ...  ...    ...  ...    ...    ...
+5195  2023-04-30  601717.SH   cn    郑煤机  82.54  ...    B  91.59   AA  86.35      A
+5196  2023-04-30  300296.SZ   cn    利亚德  82.54  ...   BB  84.20  BBB  85.18      A
+5197  2023-04-30  600584.SH   cn   长电科技  82.52  ...    B  84.73  BBB  85.90      A
+5198  2023-04-30  300832.SZ   cn    新产业  82.52  ...    B  83.29  BBB  86.06      A
+5199  2023-04-30  000002.SZ   cn  万  科A  82.52  ...    A  77.11   BB  83.59    BBB
+[5200 rows x 12 columns]
 ```

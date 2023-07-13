@@ -468,8 +468,6 @@
  "stock_hsgt_fund_flow_summary_em"  # 沪深港通资金流向
  # 两市停复牌
  "stock_tfp_em"  # 两市停复牌数据
- # 恐慌指数
- "index_vix"  # 恐慌指数
  # 中国油价
  "energy_oil_hist"  # 汽柴油历史调价信息
  "energy_oil_detail"  # 地区油价
@@ -755,7 +753,7 @@
  "index_cflp_volume"  # 中国公路物流运量指数
  # 汽车销量
  "car_gasgoo_sale_rank"  # 盖世汽车-汽车行业制造企业数据库-销量数据
- "car_cpca_energy_sale"  # 乘联会-新能源细分市场-整体市场
+ "car_energy_sale_cpca"  # 乘联会-新能源细分市场-整体市场
  # 平均持仓
  "stock_average_position_legu"  # 平均持仓
  # 增发
@@ -977,9 +975,6 @@
  # 视频
  "video_tv"  # 电视剧集
  "video_variety_show"  # 综艺节目
- # 电竞
- "club_rank_game"  # 俱乐部排名
- "player_rank_game"  # 选手排行榜
  # 基金数据-分红送配
  "fund_cf_em"  # 基金拆分
  "fund_fh_rank_em"  # 基金分红排行
@@ -1220,6 +1215,9 @@
  "fund_lof_hist_em"  # 东方财富-LOF 行情
  "fund_lof_spot_em"  # 东方财富-LOF 实时行情
  "fund_lof_hist_min_em"  # 东方财富-LOF 分时行情
+ # 新浪财经-ESG评级中心
+ "stock_esg_rate_sina"  # 新浪财经-ESG评级中心-ESG评级-ESG评级数据
+ "stock_esg_hz_sina"  # 新浪财经-ESG评级中心-ESG评级-华证指数
 ```
 
 ## 案例演示

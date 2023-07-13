@@ -4,6 +4,7 @@
 
 | AKShare 版本 | 旧接口名称                                       | 新接口名称                                       | 修改日期     |
 |------------|---------------------------------------------|---------------------------------------------|----------|
+| 1.10.50    | car_cpca_energy_sale                        | car_energy_sale_cpca                        | 20230710 |
 | 1.10.36    | stock_em_sy_hy_list                         | stock_sy_hy_em                              | 20230624 |
 | 1.10.36    | stock_em_sy_list                            | stock_sy_em                                 | 20230624 |
 | 1.10.36    | stock_em_sy_jz_list                         | stock_sy_jz_em                              | 20230624 |
@@ -61,6 +62,70 @@
 | 1.4.86     | fund_em_aum                                 | fund_aum_em                                 | 20220322 |
 
 ## 更新说明详情
+
+1.10.55 fix: fix macro_usa_personal_spending interface
+
+    1. 修复 macro_usa_personal_spending 接口
+    2. 修复 append to concat 方法
+
+1.10.54 fix: fix macro_usa_core_cpi_monthly interface
+
+    1. 修复 macro_usa_core_cpi_monthly 接口
+
+1.10.53 fix: fix index_stock_cons_csindex interface
+
+    1. 修复 index_stock_cons_csindex 接口
+
+1.10.52 fix: fix stock_financial_hk_report_em interface
+
+    1. 修复 stock_financial_hk_report_em 接口
+    2. 修复 stock_financial_hk_analysis_indicator_em 接口
+    3. 修复 index_value_name_funddb 接口
+
+1.10.51 fix: fix fund_money_rank_em interface
+
+    1. 修复 fund_money_rank_em 接口
+
+1.10.50 fix: fix car_energy_sale_cpca interface
+
+    1. 修复 car_energy_sale_cpca 接口
+
+1.10.49 fix: fix stock_hot_rank_em interface
+
+    1. 修复 stock_hot_rank_em 接口
+    2. 移除 club_rank_game 接口
+    3. 移除 player_rank_game 接口
+
+1.10.48 add: add stock_esg_hz_sina interface
+
+    1. 新增 stock_esg_hz_sina 接口
+
+1.10.47 add: add stock_esg_rate_sina interface
+
+    1. 新增 stock_esg_rate_sina 接口
+
+1.10.46 fix: fix index_value_hist_funddb interface
+    
+    1. 修复 index_value_hist_funddb 接口
+
+1.10.45 fix: fix stock_zh_a_minute interface
+
+    1. 修复 stock_zh_a_minute 接口
+
+1.10.44 fix: fix get_shfe_rank_table interface
+    
+    1. 修复 get_shfe_rank_table 接口
+
+1.10.43 rem: rem index_vix interface
+
+    1. 移除 index_vix 接口
+
+1.10.42 fix: fix fund_rating_all interface
+
+    1. 修复 fund_rating_all 接口
+    2. 修复 fund_rating_sh 接口
+    3. 修复 fund_rating_zs 接口
+    4. 修复 fund_rating_ja 接口
 
 1.10.41 add: add fund_lof_hist_em interface
 
@@ -2568,6 +2633,36 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.10.55 fix: fix macro_usa_personal_spending interface
+
+1.10.54 fix: fix macro_usa_core_cpi_monthly interface
+
+1.10.53 fix: fix index_stock_cons_csindex interface
+
+1.10.52 fix: fix stock_financial_hk_report_em interface
+
+1.10.51 fix: fix fund_money_rank_em interface
+
+1.10.50 fix: fix car_energy_sale_cpca interface
+
+1.10.49 fix: fix stock_hot_rank_em interface
+
+1.10.48 add: add stock_esg_hz_sina interface
+
+1.10.47 add: add stock_esg_rate_sina interface
+
+1.10.46 fix: fix index_value_hist_funddb interface
+
+1.10.45 fix: fix stock_zh_a_minute interface
+
+1.10.44 fix: fix get_shfe_rank_table interface
+
+1.10.43 rem: rem index_vix interface
+
+1.10.42 fix: fix fund_rating_all interface
+
+1.10.41 add: add fund_lof_hist_em interface
 
 1.10.40 fix: fix futures_news_baidu interface
 

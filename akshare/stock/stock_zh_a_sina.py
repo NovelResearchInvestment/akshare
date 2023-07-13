@@ -28,7 +28,7 @@ from akshare.stock.cons import (
 def _get_zh_a_page_count(num_per_page: int=80) -> int:
     """
     所有股票的总页数
-    http://vip.stock.finance.sina.com.cn/mkt/#hs_a
+    https://vip.stock.finance.sina.com.cn/mkt/#hs_a
     :return: 需要采集的股票总页数
     :rtype: int
     """
@@ -43,11 +43,27 @@ def _get_zh_a_page_count(num_per_page: int=80) -> int:
 def stock_zh_a_spot(num_per_page=80) -> pd.DataFrame:
     """
     新浪财经-所有 A 股的实时行情数据; 重复运行本函数会被新浪暂时封 IP
-    http://vip.stock.finance.sina.com.cn/mkt/#hs_a
+    https://vip.stock.finance.sina.com.cn/mkt/#hs_a
     :return: 所有股票的实时行情数据
     :rtype: pandas.DataFrame
     """
-    TYPE_MAPPING = {
+    big_df = pd.DataFrame()
+    page_count = _get_zh_a_page_count()
+    zh_sina_stock_payload_copy = zh_sina_a_stock_payload.copy()
+    for page in tqdm(
+        range(1, page_count + 1), leave=False, desc="Please wait for a moment"
+    ):
+        zh_sina_stock_payload_copy.update({"page": page})
+        r = requests.get(
+            zh_sina_a_stock_url, params=zh_sina_stock_payload_copy
+        )
+        data_json = demjson.decode(r.text)
+        big_df = pd.concat(
+            [big_df, pd.DataFrame(data_json)], ignore_index=True
+        )
+
+    big_df = big_df.astype(
+        {
             "trade": "float",
             "pricechange": "float",
             "changepercent": "float",
@@ -65,34 +81,46 @@ def stock_zh_a_spot(num_per_page=80) -> pd.DataFrame:
             "nmc": "float",
             "turnoverratio": "float",
         }
-    COLUMNS_WEB = ["代码", "_", "名称", "最新价", "涨跌额", "涨跌幅", "买入",
-                   "卖出", "昨收", "今开", "最高", "最低", "成交量", "成交额",
-                   "_", "_", "_", "_", "_", "_",]
-    COLUMNS_OUT = ["代码", "名称", "最新价", "涨跌额", "涨跌幅", "买入", "卖出",
-                   "昨收", "今开", "最高", "最低", "成交量", "成交额",]
-    big_df_list = []
-    page_count = _get_zh_a_page_count(num_per_page=num_per_page)
-    zh_sina_stock_payload_copy = zh_sina_a_stock_payload.copy()
-    for page in tqdm(
-        range(1, page_count + 1), leave=False, desc="Please wait for a moment"
-    ):
-        zh_sina_stock_payload_copy.update({"page": page})
-        r = requests.get(
-            zh_sina_a_stock_url, params=zh_sina_stock_payload_copy
-        )
-        if r.status_code == 456:
-            data_json = pd.DataFrame()
-        else:
-            data_json = demjson.decode(r.text)
-        big_df_list.append(pd.DataFrame(data_json))
-
-    big_df = pd.concat(big_df_list)
-    if len(big_df) > 0:
-        big_df = big_df.astype(TYPE_MAPPING)
-        big_df.columns = COLUMNS_WEB
-        big_df = big_df[COLUMNS_OUT]
-    else:
-        big_df = pd.DataFrame(columns=COLUMNS_OUT)
+    )
+    big_df.columns = [
+        "代码",
+        "_",
+        "名称",
+        "最新价",
+        "涨跌额",
+        "涨跌幅",
+        "买入",
+        "卖出",
+        "昨收",
+        "今开",
+        "最高",
+        "最低",
+        "成交量",
+        "成交额",
+        "_",
+        "_",
+        "_",
+        "_",
+        "_",
+        "_",
+    ]
+    big_df = big_df[
+        [
+            "代码",
+            "名称",
+            "最新价",
+            "涨跌额",
+            "涨跌幅",
+            "买入",
+            "卖出",
+            "昨收",
+            "今开",
+            "最高",
+            "最低",
+            "成交量",
+            "成交额",
+        ]
+    ]
     return big_df
 
 
@@ -305,7 +333,7 @@ def stock_zh_a_minute(
 ) -> pd.DataFrame:
     """
     股票及股票指数历史行情数据-分钟数据
-    http://finance.sina.com.cn/realstock/company/sh600519/nc.shtml
+    https://finance.sina.com.cn/realstock/company/sh600519/nc.shtml
     :param symbol: sh000300
     :type symbol: str
     :param period: 1, 5, 15, 30, 60 分钟的数据
@@ -315,6 +343,15 @@ def stock_zh_a_minute(
     :return: specific data
     :rtype: pandas.DataFrame
     """
+    url = "https://quotes.sina.cn/cn/api/jsonp_v2.php/=/CN_MarketDataService.getKLineData"
+    params = {
+        "symbol": symbol,
+        "scale": period,
+        "ma": "no",
+        "datalen": f"{datalen}",
+    }
+    r = requests.get(url, params=params)
+    data_text = r.text
     try:
         data_json = json.loads(data_text.split("=(")[1].split(");")[0])
         temp_df = pd.DataFrame(data_json).iloc[:, :6]

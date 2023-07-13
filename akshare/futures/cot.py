@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2022/1/12 15:06
+Date: 2023/7/12 17:06
 Desc: 期货-中国-交易所-会员持仓数据接口
 大连商品交易所、上海期货交易所、郑州商品交易所、中国金融期货交易所
 采集前 20 会员持仓数据;
@@ -10,7 +10,6 @@ Desc: 期货-中国-交易所-会员持仓数据接口
 大连商品交易所有具体合约的持仓排名, 通过 futures_dce_position_rank 获取
 20171228
 http://www.czce.com.cn/cn/DFSStaticFiles/Future/2020/20200727/FutureDataHolding.txt
-
 20100825
 http://www.czce.com.cn/cn/exchange/2014/datatradeholding/20140515.txt
 """
@@ -284,12 +283,13 @@ def get_rank_sum(
 
 def get_shfe_rank_table(date=None, vars_list=cons.contract_symbols):
     """
-    上海期货交易所前 20 会员持仓排名数据明细
+    上海期货交易所会员成交及持仓排名表
     https://www.shfe.com.cn/
+    https://www.shfe.com.cn/statements/dataview.html?paramid=delaymarket_ao
     注：该交易所只公布每个品种内部的标的排名，没有公布品种的总排名
     数据从20020107开始，每交易日16:30左右更新数据
     :param date: 日期 format：YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象 为空时为当天
-    :param vars_list: 合约品种如RB、AL等列表 为空时为所有商品
+    :param vars_list: 合约品种如 RB、AL等列表 为空时为所有商品
     :return: pd.DataFrame
     rank                        排名                        int
     vol_party_name              成交量排序的当前名次会员        string(中文)
@@ -556,7 +556,7 @@ def _get_dce_contract_list(date, var):
 
 
 def get_dce_rank_table(
-    date: str = "20210309", vars_list=cons.contract_symbols
+    date: str = "20230706", vars_list=cons.contract_symbols
 ):
     """
     大连商品交易所前 20 会员持仓排名数据明细, 由于交易所网站问题, 需要 20200720 之后才有数据
@@ -1121,31 +1121,34 @@ def futures_dce_position_rank_other(date: str = "20160104"):
 
 
 if __name__ == "__main__":
-    # 郑州商品交易所
-    get_czce_rank_table_first_df = get_czce_rank_table(date="20210525")
-    print(get_czce_rank_table_first_df)
+    # # 郑州商品交易所
+    # get_czce_rank_table_first_df = get_czce_rank_table(date="20210525")
+    # print(get_czce_rank_table_first_df)
+    #
+    # get_czce_rank_table_first_df = get_czce_rank_table(date="20201026")
+    # print(get_czce_rank_table_first_df)
+    #
+    # # 中国金融期货交易所
+    # get_cffex_rank_table_df = get_cffex_rank_table(date="20200325")
+    # print(get_cffex_rank_table_df)
+    #
+    # # 上海期货交易所
+    # get_shfe_rank_table_df = get_shfe_rank_table(date="20230705")
+    # print(get_shfe_rank_table_df)
+    #
+    # # 大连商品交易所
+    # get_dce_rank_table_first_df = get_dce_rank_table(date="20131227")
+    # print(get_dce_rank_table_first_df)
+    #
+    # get_dce_rank_table_second_df = get_dce_rank_table(date="20171227")
+    # print(get_dce_rank_table_second_df)
+    #
+    # get_dce_rank_table_third_df = get_dce_rank_table(date="20200929")
+    # print(get_dce_rank_table_third_df)
 
-    get_czce_rank_table_first_df = get_czce_rank_table(date="20201026")
-    print(get_czce_rank_table_first_df)
-
-    # 中国金融期货交易所
-    get_cffex_rank_table_df = get_cffex_rank_table(date="20200325")
-    print(get_cffex_rank_table_df)
-
-    # 上海期货交易所
-    get_shfe_rank_table_df = get_shfe_rank_table(date="20230103")
-    print(get_shfe_rank_table_df)
-
-    # 大连商品交易所
-    get_dce_rank_table_first_df = get_dce_rank_table(date="20131227")
-    print(get_dce_rank_table_first_df)
-
-    get_dce_rank_table_second_df = get_dce_rank_table(date="20171227")
-    print(get_dce_rank_table_second_df)
-    get_dce_rank_table_third_df = get_dce_rank_table(date="20200929")
+    get_dce_rank_table_third_df = get_dce_rank_table(date="20230706")
     print(get_dce_rank_table_third_df)
-    get_dce_rank_table_third_df = get_dce_rank_table(date="20210517")
-    print(get_dce_rank_table_third_df)
+
     get_dce_rank_table_fourth_df = get_dce_rank_table(
         date="20210517", vars_list=["V"]
     )
@@ -1157,7 +1160,7 @@ if __name__ == "__main__":
     )
     print(get_rank_sum_daily_df)
 
-    futures_dce_detail_dict = futures_dce_position_rank(date="20210407")
+    futures_dce_detail_dict = futures_dce_position_rank(date="20230706")
     print(futures_dce_detail_dict)
 
     futures_dce_position_rank_other_df = futures_dce_position_rank_other(

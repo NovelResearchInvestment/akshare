@@ -2456,9 +2456,23 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.10.39 fix: fix stock_board_concept_hist_min_em interface
 1.10.40 fix: fix futures_news_baidu interface
 1.10.41 add: add fund_lof_hist_em interface
+1.10.42 fix: fix fund_rating_all interface
+1.10.43 rem: rem index_vix interface
+1.10.44 fix: fix get_shfe_rank_table interface
+1.10.45 fix: fix stock_zh_a_minute interface
+1.10.46 fix: fix index_value_hist_funddb interface
+1.10.47 add: add stock_esg_rate_sina interface
+1.10.48 add: add stock_esg_hz_sina interface
+1.10.49 fix: fix stock_hot_rank_em interface
+1.10.50 fix: fix car_energy_sale_cpca interface
+1.10.51 fix: fix fund_money_rank_em interface
+1.10.52 fix: fix stock_financial_hk_report_em interface
+1.10.53 fix: fix index_stock_cons_csindex interface
+1.10.54 fix: fix macro_usa_core_cpi_monthly interface
+1.10.55 fix: fix macro_usa_personal_spending interface
 """
 
-__version__ = "1.10.41"
+__version__ = "1.10.55"
 __author__ = "AKFamily"
 
 import sys
@@ -2471,6 +2485,11 @@ if sys.version_info < (3, 8):
     # sys.exit(1)
 
 del sys
+
+"""
+新浪财经-ESG评级中心
+"""
+from akshare.stock_feature.stock_esg_sina import stock_esg_rate_sina, stock_esg_hz_sina
 
 """
 LOF 行情数据
@@ -2938,11 +2957,6 @@ from akshare.fund.fund_scale_em import (
 from akshare.fund.fund_fhsp_em import fund_cf_em, fund_fh_rank_em, fund_fh_em
 
 """
-中国电竞价值排行榜
-"""
-from akshare.other.other_game import club_rank_game, player_rank_game
-
-"""
 艺恩-艺人
 """
 from akshare.movie.artist_yien import (
@@ -3375,7 +3389,7 @@ from akshare.stock_feature.stock_average_position_lg import (
 """
 汽车销量
 """
-from akshare.other.other_car import car_gasgoo_sale_rank, car_cpca_energy_sale
+from akshare.other.other_car import car_gasgoo_sale_rank, car_energy_sale_cpca
 
 """
 中国公路物流运价、运量指数
@@ -3965,11 +3979,6 @@ from akshare.futures.futures_spot_stock_em import futures_spot_stock
 energy_oil
 """
 from akshare.energy.energy_oil_em import energy_oil_detail, energy_oil_hist
-
-"""
-index-vix
-"""
-from akshare.economic.macro_other import index_vix
 
 """
 futures-foreign
