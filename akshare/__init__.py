@@ -2470,21 +2470,82 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.10.53 fix: fix index_stock_cons_csindex interface
 1.10.54 fix: fix macro_usa_core_cpi_monthly interface
 1.10.55 fix: fix macro_usa_personal_spending interface
+1.10.56 fix: fix stock_zh_b_daily interface
+1.10.57 fix: fix stock_zh_valuation_baidu interface
+1.10.58 fix: fix fund_etf_hist_em interface
+1.10.59 add: add fund_announcement_personnel_em interface
+1.10.60 add: add macro_usa_cpi_yoy interface
+1.10.61 fix: fix macro_cnbs interface
+1.10.62 fix: fix index_hist_sw interface
+1.10.63 fix: fix stock_esg_hz_sina interface
+1.10.64 fix: fix stock_zh_b_spot interface
+1.10.65 fix: fix macro_china_lpr interface
+1.10.66 fix: fix stock_financial_report_sina interface
+1.10.67 rem: rem futures_egg_price_yearly interface
+1.10.68 fix: fix option_gfex_daily interface
+1.10.69 fix: fix currency_latest interface
+1.10.70 fix: fix stock_zh_a_hist interface
+1.10.71 fix: fix stock_us_hist interface
+1.10.72 fix: fix stock_financial_hk_report_em interface
+1.10.73 add: add stock_irm_cninfo interface
+1.10.74 add: add stock_sns_sseinfo interface
+1.10.75 add: add macro_china_urban_unemployment interface
+1.10.76 fix: fix stock_notice_report interface
+1.10.77 add: add bond_cb_profile_sina interface
+1.10.78 fix: fix get_cffex_rank_table interface
+1.10.79 add: add stock_hold_management_detail_em interface
 """
 
-__version__ = "1.10.55"
+__version__ = "1.10.79"
 __author__ = "AKFamily"
 
 import sys
-import warnings
 
-if sys.version_info < (3, 8):
-    warnings.warn(
-        "为了支持更多特性，AKShare 将于 2023-07-01 停止对 Python 3.7 及以下版本的支持，请尽快升级 Python 版本"
-    )
-    # sys.exit(1)
+# import warnings
+
+# if sys.version_info < (3, 8):
+#     warnings.warn(
+#         "为了支持更多特性，请尽快升级 Python 版本到 3.8 及以上"
+#     )
+#     sys.exit(1)
 
 del sys
+
+"""
+东方财富网-数据中心-股市日历
+"""
+from akshare.stock.stock_gsrl_em import stock_gsrl_gsdt_em
+
+"""
+东方财富网-数据中心-特色数据-高管持股
+"""
+from akshare.stock.stock_hold_control_em import (
+    stock_hold_management_detail_em,
+    stock_hold_management_person_em,
+)
+
+"""
+新浪财经-债券-可转债
+"""
+from akshare.bond.bond_cb_sina import bond_cb_profile_sina, bond_cb_summary_sina
+
+"""
+上证e互动
+"""
+from akshare.stock_feature.stock_sns_sseinfo import stock_sns_sseinfo
+
+"""
+互动易-提问与回答
+"""
+from akshare.stock_feature.stock_irm_cninfo import (
+    stock_irm_cninfo,
+    stock_irm_ans_cninfo,
+)
+
+"""
+基金公告-人事公告
+"""
+from akshare.fund.fund_announcement import fund_announcement_personnel_em
 
 """
 新浪财经-ESG评级中心
@@ -3128,15 +3189,6 @@ from akshare.stock.stock_us_pink import stock_us_pink_spot_em
 REITs
 """
 from akshare.reits.reits_basic import reits_realtime_em
-
-"""
-鸡蛋价格数据
-"""
-from akshare.futures_derivative.futures_egg import (
-    futures_egg_price_yearly,
-    futures_egg_price_area,
-    futures_egg_price,
-)
 
 """
 全部 A 股-等权重市盈率、中位数市盈率
@@ -4365,19 +4417,10 @@ from akshare.fortune.fortune_500 import fortune_rank, fortune_rank_eng
 申万行业一级
 """
 from akshare.index.index_sw import (
-    sw_index_representation_spot,
-    sw_index_spot,
-    sw_index_second_spot,
-    sw_index_cons,
-    sw_index_daily,
-    sw_index_daily_indicator,
     sw_index_third_cons,
     sw_index_first_info,
     sw_index_second_info,
     sw_index_third_info,
-    index_level_one_hist_sw,
-    index_style_index_hist_sw,
-    index_market_representation_hist_sw,
 )
 
 """
@@ -4561,6 +4604,7 @@ from akshare.economic.macro_usa import (
     macro_usa_adp_employment,
     macro_usa_core_pce_price,
     macro_usa_cpi_monthly,
+    macro_usa_cpi_yoy,
     macro_usa_crude_inner,
     macro_usa_gdp_monthly,
     macro_usa_initial_jobless,
@@ -4692,6 +4736,7 @@ from akshare.economic.macro_china import (
     macro_shipping_bcti,
     macro_shipping_bdi,
     macro_shipping_bpi,
+    macro_china_urban_unemployment,
 )
 
 """

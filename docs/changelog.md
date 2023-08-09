@@ -63,6 +63,113 @@
 
 ## 更新说明详情
 
+1.10.79 add: add stock_hold_management_detail_em interface
+
+    1. 新增 stock_hold_management_detail_em 接口
+    2. 新增 stock_hold_management_person_em 接口
+    3. 新增 stock_gsrl_gsdt_em 接口
+
+1.10.78 fix: fix get_cffex_rank_table interface
+
+    1. 修复 get_cffex_rank_table 接口
+    2. 修复 futures_spot_price 接口
+
+1.10.77 add: add bond_cb_profile_sina interface
+
+    1. 新增 bond_cb_profile_sina 接口
+    2. 新增 bond_cb_summary_sina 接口
+
+1.10.76 fix: fix stock_notice_report interface
+
+    1. 修复 stock_notice_report 接口
+    2. 修复 stock_irm_cninfo 接口
+
+1.10.75 add: add macro_china_urban_unemployment interface
+
+    1. 新增 macro_china_urban_unemployment 接口
+
+1.10.74 add: add stock_sns_sseinfo interface
+
+    1. 新增 stock_sns_sseinfo 接口
+
+1.10.73 add: add stock_irm_cninfo interface
+
+    1. 新增 stock_irm_cninfo 接口
+    2. 新增 stock_irm_ans_cninfo 接口
+
+1.10.72 fix: fix stock_financial_hk_report_em interface
+
+    1. 修复 stock_financial_hk_report_em 接口
+
+1.10.71 fix: fix stock_us_hist interface
+
+    1. 修复 stock_us_hist 接口
+    2. 移除 sw 相关接口
+
+1.10.70 fix: fix stock_zh_a_hist interface
+
+    1. 修复 stock_zh_a_hist 接口
+
+1.10.69 fix: fix currency_latest interface
+
+    1. 修复 currency_latest 接口
+    2. 修复 currency_history 接口
+    3. 修复 currency_time_series 接口
+    4. 修复 currency_currencies 接口
+    5. 修复 currency_convert 接口
+
+1.10.68 fix: fix option_gfex_daily interface
+
+    1. 修复 option_gfex_daily 接口
+
+1.10.67 rem: rem futures_egg_price_yearly interface
+
+    1. 移除 futures_egg_price_yearly 等接口
+
+1.10.66 fix: fix stock_financial_report_sina interface
+
+    1. 修复 stock_financial_report_sina 接口
+
+1.10.65 fix: fix macro_china_lpr interface
+
+    1. 修复 macro_china_lpr 接口
+
+1.10.64 fix: fix stock_zh_b_spot interface
+
+    1. 修复 stock_zh_b_spot 接口
+
+1.10.63 fix: fix stock_esg_hz_sina interface
+
+    1. 修复 stock_esg_hz_sina 接口
+
+1.10.62 fix: fix index_hist_sw interface
+
+    1. 修复 index_hist_sw 接口
+
+1.10.61 fix: fix macro_cnbs interface
+
+    1. 修复 macro_cnbs 接口
+
+1.10.60 add: add macro_usa_cpi_yoy interface
+
+    1. 新增 macro_usa_cpi_yoy 接口
+
+1.10.59 add: add fund_announcement_personnel_em interface
+
+    1. 新增 fund_announcement_personnel_em 接口
+
+1.10.58 fix: fix fund_etf_hist_em interface
+
+    1. 修复 fund_etf_hist_em 接口
+
+1.10.57 fix: fix stock_zh_valuation_baidu interface
+
+    1. 修复 stock_zh_valuation_baidu 接口
+
+1.10.56 fix: fix stock_zh_b_daily interface
+
+    1. 修复 stock_zh_b_daily 接口
+
 1.10.55 fix: fix macro_usa_personal_spending interface
 
     1. 修复 macro_usa_personal_spending 接口
@@ -2633,6 +2740,54 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.10.79 add: add stock_hold_management_detail_em interface
+
+1.10.78 fix: fix get_cffex_rank_table interface
+
+1.10.77 add: add bond_cb_profile_sina interface
+
+1.10.76 fix: fix stock_notice_report interface
+
+1.10.75 add: add macro_china_urban_unemployment interface
+
+1.10.74 add: add stock_sns_sseinfo interface
+
+1.10.73 add: add stock_irm_cninfo interface
+
+1.10.72 fix: fix stock_financial_hk_report_em interface
+
+1.10.71 fix: fix stock_us_hist interface
+
+1.10.70 fix: fix stock_zh_a_hist interface
+
+1.10.69 fix: fix currency_latest interface
+
+1.10.68 fix: fix option_gfex_daily interface
+
+1.10.67 rem: rem futures_egg_price_yearly interface
+
+1.10.66 fix: fix stock_financial_report_sina interface
+
+1.10.65 fix: fix macro_china_lpr interface
+
+1.10.64 fix: fix stock_zh_b_spot interface
+
+1.10.63 fix: fix stock_esg_hz_sina interface
+
+1.10.62 fix: fix index_hist_sw interface
+
+1.10.61 fix: fix macro_cnbs interface
+
+1.10.60 add: add macro_usa_cpi_yoy interface
+
+1.10.59 add: add fund_announcement_personnel_em interface
+
+1.10.58 fix: fix fund_etf_hist_em interface
+
+1.10.57 fix: fix stock_zh_valuation_baidu interface
+
+1.10.56 fix: fix stock_zh_b_daily interface
 
 1.10.55 fix: fix macro_usa_personal_spending interface
 

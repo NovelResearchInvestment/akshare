@@ -154,17 +154,8 @@
  # 谷歌指数
  "google_index"  # 获取谷歌趋势指数
  # 申万行业指数
- "sw_index_representation_spot"  # 申万市场表征数据
- "sw_index_spot"  # 申万一级实时行情
- "sw_index_second_spot"  # 申万二级实时行情
- "sw_index_cons"  # 申万一级、二级板块成份
- "sw_index_daily"  # 申万一级、二级历史行情
- "sw_index_daily_indicator"  # 申万一级、二级历史行情指标
  "sw_index_third_info"  # 申万三级信息
  "sw_index_third_cons"  # 申万三级信息成份
- "index_level_one_hist_sw"  # 申万指数-指数发布-指数体系-一级行业
- "index_market_representation_hist_sw"  # 申万指数-指数发布-指数体系-市场表征
- "index_style_index_hist_sw"  # 申万指数-指数发布-指数体系-风格指数
  # 空气质量
  "air_quality_hist"  # 空气质量历史数据
  "air_quality_rank"  # 空气质量排行
@@ -255,6 +246,7 @@
  "macro_bank_india_interest_rate"  # 印度央行决议报告
  "macro_bank_brazil_interest_rate"  # 巴西央行决议报告
  # 中国
+ "macro_china_urban_unemployment"  # 城镇调查失业率
  "macro_china_shrzgm"  # 社会融资规模增量统计
  "macro_china_gdp_yearly"  # 金十数据中心-经济指标-中国-国民经济运行状况-经济状况-中国GDP年率报告
  "macro_china_cpi_yearly"  # 金十数据中心-经济指标-中国-国民经济运行状况-物价水平-中国CPI年率报告
@@ -303,6 +295,7 @@
  # 美国
  "macro_usa_gdp_monthly"  # 金十数据中心-经济指标-美国-经济状况-美国GDP
  "macro_usa_cpi_monthly"  # 金十数据中心-经济指标-美国-物价水平-美国CPI月率报告
+ "macro_usa_cpi_yoy"  # 东方财富-经济数据一览-美国-CPI年率
  "macro_usa_core_cpi_monthly"  # 金十数据中心-经济指标-美国-物价水平-美国核心CPI月率报告
  "macro_usa_personal_spending"  # 金十数据中心-经济指标-美国-物价水平-美国个人支出月率报告
  "macro_usa_retail_sales"  # 金十数据中心-经济指标-美国-物价水平-美国零售销售月率报告
@@ -879,10 +872,6 @@
  # 全部 A 股-等权重市盈率、中位数市盈率
  "stock_a_ttm_lyr"  # 全部 A 股-等权重市盈率、中位数市盈率
  "stock_a_all_pb"  # 全部 A 股-等权重市净率、中位数市净率
- # 鸡蛋价格
- "futures_egg_price_yearly"  # 各年度产区鸡蛋价格走势
- "futures_egg_price"  # 2015-2021年鸡蛋价格走势图
- "futures_egg_price_area"  # 各主产区鸡蛋均价
  # REITs
  "reits_realtime_em"  #  REITs-行情
  # A 股分时数据
@@ -1218,6 +1207,21 @@
  # 新浪财经-ESG评级中心
  "stock_esg_rate_sina"  # 新浪财经-ESG评级中心-ESG评级-ESG评级数据
  "stock_esg_hz_sina"  # 新浪财经-ESG评级中心-ESG评级-华证指数
+ # 基金公告
+ "fund_announcement_personnel_em"  # 东方财富网站-天天基金网-基金档案-基金公告-人事调整
+ # 互动易
+ "stock_irm_cninfo"  # 互动易-提问
+ "stock_irm_ans_cninfo"  # 互动易-回答
+ # 上证e互动
+ "stock_sns_sseinfo"  # 上证e互动-提问与回答
+ # 新浪财经-债券-可转债
+ "bond_cb_profile_sina"  # 新浪财经-债券-可转债-详情资料
+ "bond_cb_summary_sina"  # 新浪财经-债券-可转债-债券概况
+ # 东方财富网-数据中心-特色数据-高管持股
+ "stock_hold_management_detail_em"  # 东方财富网-数据中心-特色数据-高管持股-董监高及相关人员持股变动明细
+ "stock_hold_management_person_em"  # 东方财富网-数据中心-特色数据-高管持股-人员增减持股变动明细
+ # 股市日历
+ "stock_gsrl_gsdt_em"  # 东方财富网-数据中心-股市日历-公司动态
 ```
 
 ## 案例演示
