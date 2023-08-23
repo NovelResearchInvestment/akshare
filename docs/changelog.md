@@ -63,6 +63,55 @@
 
 ## 更新说明详情
 
+1.10.90 fix: fix futures_comex_inventory interface
+
+    1. 修复 futures_comex_inventory 接口
+
+1.10.89 add: add stock_share_hold_change_bse interface
+
+    1. 新增 stock_share_hold_change_bse 接口
+    2. 新增 stock_share_hold_change_sse 接口
+    3. 新增 stock_share_hold_change_szse 接口
+
+1.10.88 add: add stock_research_report_em interface
+
+    1. 新增 stock_research_report_em 接口
+
+1.10.87 add: add stock_zdhtmx_em interface
+
+    1. 新增 stock_zdhtmx_em 接口
+
+1.10.86 add: add stock_gddh_em interface
+
+    1. 新增 stock_gddh_em 接口
+
+1.10.85 fix: fix stock_hot_rank_wc interface
+
+    1. 修复 stock_hot_rank_wc 接口
+
+1.10.84 fix: fix stock_us_fundamental interface
+
+    1. 修复 stock_us_fundamental 接口
+
+1.10.83 add: add stock_industry_clf_hist_sw interface
+
+    1. 新增 stock_industry_clf_hist_sw 接口
+
+1.10.82 fix: fix currency_boc_sina interface
+
+    1. 修复 currency_boc_sina 接口
+    2. 修复 futures_dce_position_rank 接口
+    3. 修复 get_rank_sum_daily 接口
+
+1.10.81 fix: fix stock_bid_ask_em interface
+
+    1. 修复 stock_bid_ask_em 接口
+    2. 移除 stock_us_zh_spot 接口
+
+1.10.80 fix: fix macro_china_gyzjz interface
+
+    1. 修复 macro_china_gyzjz 接口
+
 1.10.79 add: add stock_hold_management_detail_em interface
 
     1. 新增 stock_hold_management_detail_em 接口
@@ -2740,6 +2789,28 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.10.90 fix: fix futures_comex_inventory interface
+
+1.10.89 add: add stock_share_hold_change_bse interface
+
+1.10.88 add: add stock_research_report_em interface
+
+1.10.87 add: add stock_zdhtmx_em interface
+
+1.10.86 add: add stock_gddh_em interface
+
+1.10.85 fix: fix stock_hot_rank_wc interface
+
+1.10.84 fix: fix stock_us_fundamental interface
+
+1.10.83 add: add stock_industry_clf_hist_sw interface
+
+1.10.82 fix: fix currency_boc_sina interface
+
+1.10.81 fix: fix stock_bid_ask_em interface
+
+1.10.80 fix: fix macro_china_gyzjz interface
 
 1.10.79 add: add stock_hold_management_detail_em interface
 

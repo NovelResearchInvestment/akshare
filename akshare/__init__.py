@@ -2494,9 +2494,20 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.10.77 add: add bond_cb_profile_sina interface
 1.10.78 fix: fix get_cffex_rank_table interface
 1.10.79 add: add stock_hold_management_detail_em interface
+1.10.80 fix: fix macro_china_gyzjz interface
+1.10.81 fix: fix stock_bid_ask_em interface
+1.10.82 fix: fix currency_boc_sina interface
+1.10.83 add: add stock_industry_clf_hist_sw interface
+1.10.84 fix: fix stock_us_fundamental interface
+1.10.85 fix: fix stock_hot_rank_wc interface
+1.10.86 add: add stock_gddh_em interface
+1.10.87 add: add stock_zdhtmx_em interface
+1.10.88 add: add stock_research_report_em interface
+1.10.89 add: add stock_share_hold_change_bse interface
+1.10.90 fix: fix futures_comex_inventory interface
 """
 
-__version__ = "1.10.79"
+__version__ = "1.10.90"
 __author__ = "AKFamily"
 
 import sys
@@ -2510,6 +2521,30 @@ import sys
 #     sys.exit(1)
 
 del sys
+
+"""
+董监高及相关人员持股变动
+"""
+from akshare.stock.stock_share_hold import (
+    stock_share_hold_change_bse,
+    stock_share_hold_change_sse,
+    stock_share_hold_change_szse,
+)
+
+"""
+东方财富网-数据中心-研究报告-个股研报
+"""
+from akshare.stock_feature.stock_research_report_em import stock_research_report_em
+
+"""
+东方财富网-数据中心-重大合同-重大合同明细
+"""
+from akshare.stock_feature.stock_zdhtmx_em import stock_zdhtmx_em
+
+"""
+东方财富网-数据中心-股东大会
+"""
+from akshare.stock_feature.stock_gddh_em import stock_gddh_em
 
 """
 东方财富网-数据中心-股市日历
@@ -3171,6 +3206,12 @@ from akshare.stock.stock_industry_pe_cninfo import (
 )
 
 """
+申万宏源行业分类数据
+"""
+
+from akshare.stock.stock_industry_sw import stock_industry_clf_hist_sw
+
+"""
 投资评级
 """
 from akshare.stock.stock_rank_forecast import stock_rank_forecast_cninfo
@@ -3743,7 +3784,7 @@ from akshare.bond.bond_china_money import (
 """
 COMEX黄金-白银库存
 """
-from akshare.futures.futures_comex import futures_comex_inventory
+from akshare.futures.futures_comex_em import futures_comex_inventory
 
 """
 国债期货可交割券相关指标
@@ -4579,11 +4620,6 @@ from akshare.futures_derivative.sys_spot_futures import (
     get_sys_spot_futures,
     get_sys_spot_futures_dict,
 )
-
-"""
-和讯财经-行情及历史数据
-"""
-from akshare.stock.stock_us_zh_hx import stock_us_zh_spot, stock_us_zh_daily
 
 """
 全球宏观-机构宏观

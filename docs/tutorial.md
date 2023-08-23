@@ -83,9 +83,6 @@
  "get_finance_option"  # 提供上海证券交易所期权数据
  # 加密货币行情
  "crypto_js_spot"  # 提供主流加密货币行情数据接口
- # 美股-中国概念股行情和历史数据
- "stock_us_zh_spot"  # 中国概念股行情
- "stock_us_zh_daily"  # 中国概念股历史数据
  # 新浪财经-港股
  "stock_hk_spot"  # 获取港股的历史行情数据(包括前后复权因子)
  "stock_hk_daily"  # 获取港股的实时行情数据(也可以用于获得所有港股代码)
@@ -1165,6 +1162,8 @@
  "index_realtime_sw"  # 申万指数实时行情
  # 申万指数历史行情
  "index_hist_sw"  # 申万指数历史行情
+ # 申万宏源研究-行业分类-全部行业分类
+ "stock_industry_clf_hist_sw"  # 申万宏源研究-行业分类-全部行业分类
  # 申万指数分时行情
  "index_min_sw"  # 申万指数分时行情
  # 申万指数成分股
@@ -1222,6 +1221,16 @@
  "stock_hold_management_person_em"  # 东方财富网-数据中心-特色数据-高管持股-人员增减持股变动明细
  # 股市日历
  "stock_gsrl_gsdt_em"  # 东方财富网-数据中心-股市日历-公司动态
+ # 东方财富网-数据中心-股东大会
+ "stock_gddh_em"  # 东方财富网-数据中心-股东大会
+ # 东方财富网-数据中心-重大合同-重大合同明细
+ "stock_zdhtmx_em"  # 重大合同明细
+ # 东方财富网-数据中心-研究报告-个股研报
+ "stock_research_report_em"  # 个股研报
+ # 董监高及相关人员持股变动
+ "stock_share_hold_change_sse"  # 董监高及相关人员持股变动-上海证券交易所
+ "stock_share_hold_change_szse"  # 董监高及相关人员持股变动-深圳证券交易所
+ "stock_share_hold_change_bse"  # 董监高及相关人员持股变动-北京证券交易所
 ```
 
 ## 案例演示
