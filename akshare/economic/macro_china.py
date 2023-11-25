@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2023/6/13 16:20
+Date: 2023/10/28 18:20
 Desc: 宏观数据-中国
 """
 import json
@@ -1521,65 +1521,6 @@ def macro_china_au_report() -> pd.DataFrame:
     big_df["持仓量"] = pd.to_numeric(big_df["持仓量"], errors="coerce")
     big_df["交收量"] = pd.to_numeric(big_df["交收量"], errors="coerce")
     return big_df
-
-
-# 发改委-中国电煤价格指数-全国综合电煤价格指数
-def macro_china_ctci() -> pd.DataFrame:
-    """
-    中国电煤价格指数-全国综合电煤价格指数
-    http://jgjc.ndrc.gov.cn/dmzs.aspx?clmId=741
-    :return: 20140101-至今的所有历史数据
-    :rtype: pandas.DataFrame
-    """
-    url = "http://59.252.41.60/portal//out/dm?t=1578298533594"
-    r = requests.get(url)
-    temp_df = pd.Series(r.json()["data"][0])
-    temp_df.index = pd.to_datetime(r.json()["periods"])
-    temp_df = temp_df.astype(float)
-    return temp_df
-
-
-# 发改委-中国电煤价格指数-各价区电煤价格指数
-def macro_china_ctci_detail() -> pd.DataFrame:
-    """
-    2019年11月各价区电煤价格指数
-    http://jgjc.ndrc.gov.cn/dmzs.aspx?clmId=741
-    :return:
-    :rtype:
-    """
-    url = "http://59.252.41.60/portal//out/dm/list/cebdf627f9c24c22a507e2f2e25e2b43?t=1578298533161"
-    res = requests.get(url)
-    data_df = pd.DataFrame(res.json()["data"])
-    data_df.index = res.json()["names"]
-    data_df.columns = ["-", "环比", "上期", "同比", "本期"]
-    temp = data_df[["环比", "上期", "同比", "本期"]]
-    temp = temp.astype(float)
-    return temp
-
-
-# 发改委-中国电煤价格指数-历史电煤价格指数
-def macro_china_ctci_detail_hist(year: str = "2018") -> pd.DataFrame:
-    """
-    历史电煤价格指数
-    http://jgjc.ndrc.gov.cn/dmzs.aspx?clmId=741
-    :param year: 2014-2019 年
-    :type year: str
-    :return: 制定年份的中国电煤价格指数
-    :rtype: pandas.DataFrame
-    """
-    url = "http://59.252.41.60/portal//out/dm/listAll?t=1578299685398"
-    params = {
-        "CONF_ID": "cebdf627f9c24c22a507e2f2e25e2b43",
-        "year": f"{year}",
-    }
-    res = requests.post(url, data=params)
-    data_df = pd.DataFrame(res.json()["data"])
-    data_df.columns = res.json()["names"]
-    data_df.index = data_df["地区"]
-    del data_df["地区"]
-    temp_df = data_df
-    temp_df = temp_df.astype(float)
-    return temp_df
 
 
 # 中国-利率-贷款报价利率
@@ -3391,130 +3332,6 @@ def macro_china_wbck() -> pd.DataFrame:
     return temp_df
 
 
-def macro_china_hb(symbol: str = "weekly") -> pd.DataFrame:
-    """
-    中国-货币净投放与净回笼
-    http://www.chinamoney.com.cn/chinese/hb/
-    :param symbol: choice of {"weekly", "monthly"}
-    :type symbol: str
-    :return: 货币净投放与净回笼
-    :rtype: pandas.DataFrame
-    """
-    import warnings
-
-    warnings.warn("由于目标网站未更新数据，该接口即将移除", DeprecationWarning)
-
-    # if symbol == "weekly":
-    #     current_year = datetime.today().year
-    #     url = "https://www.chinamoney.com.cn/ags/ms/cm-u-bond-publish/TicketPutAndBackStatByWeek"
-    #     params = {
-    #         "t": "1597986289666",
-    #         "t": "1597986289666",
-    #     }
-    #     big_df = pd.DataFrame()
-    #     for year in tqdm(range(1997, current_year + 1)):
-    #         payload = {
-    #             "startWeek": f"{year}-01",
-    #             "endWeek": f"{year}-52",
-    #             "pageSize": "5000",
-    #             "pageNo": "1",
-    #         }
-    #         r = requests.post(url, params=params, data=payload)
-    #         temp_df = pd.DataFrame(r.json()["data"]["resultList"])
-    #         big_df = pd.concat([big_df, temp_df], ignore_index=True)
-    #     big_df = big_df.sort_values(by=["startDate"])
-    #     big_df.reset_index(inplace=True, drop=True)
-    #     big_df.columns = ["日期", "投放量", "回笼量", "净投放", "开始日期", "结束日期"]
-    #     big_df = big_df[["日期", "开始日期", "结束日期", "投放量", "回笼量", "净投放"]]
-    #     big_df["开始日期"] = pd.to_datetime(big_df["开始日期"]).dt.date
-    #     big_df["结束日期"] = pd.to_datetime(big_df["结束日期"]).dt.date
-    #     big_df["投放量"] = pd.to_numeric(big_df["投放量"])
-    #     big_df["回笼量"] = pd.to_numeric(big_df["回笼量"])
-    #     big_df["净投放"] = pd.to_numeric(big_df["净投放"])
-    #     return big_df
-    # else:
-    #     current_year = datetime.today().year
-    #     url = "https://www.chinamoney.com.cn/ags/ms/cm-u-bond-publish/TicketPutAndBackStatByMonth"
-    #     params = {
-    #         "t": "1597986289666",
-    #         "t": "1597986289666",
-    #     }
-    #     big_df = pd.DataFrame()
-    #     for year in tqdm(range(1997, current_year + 1)):
-    #         payload = {
-    #             "startMonth": f"{year}-01",
-    #             "endMonth": f"{year}-12",
-    #             "pageSize": "5000",
-    #             "pageNo": "1",
-    #         }
-    #         r = requests.post(url, params=params, data=payload)
-    #         temp_df = pd.DataFrame(r.json()["data"]["resultList"])
-    #         big_df = pd.concat([big_df, temp_df], ignore_index=True)
-    #     big_df.columns = ["日期", "投放量", "回笼量", "净投放", "-", "-"]
-    #     big_df = big_df[["日期", "投放量", "回笼量", "净投放"]]
-    #     big_df["投放量"] = pd.to_numeric(big_df["投放量"])
-    #     big_df["回笼量"] = pd.to_numeric(big_df["回笼量"])
-    #     big_df["净投放"] = pd.to_numeric(big_df["净投放"])
-    #     return big_df
-
-
-def macro_china_gksccz() -> pd.DataFrame:
-    """
-    中国外汇交易中心暨全国银行间同业拆借中心-央行公开市场操作
-    http://www.chinamoney.com.cn/chinese/yhgkscczh/
-    :return: 央行公开市场操作
-    :rtype: pandas.DataFrame
-    """
-    import warnings
-
-    warnings.warn("由于目标网站未更新数据，该接口即将移除", DeprecationWarning)
-    # url = "https://www.chinamoney.com.cn/ags/ms/cm-u-bond-publish/TicketHandle"
-    # params = {
-    #     "t": "1597986289666",
-    #     "t": "1597986289666",
-    # }
-    # payload = {
-    #     "pageSize": "15",
-    #     "pageNo": "1",
-    # }
-    # headers = {
-    #     "Accept": "application/json, text/javascript, */*; q=0.01",
-    #     "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-    #     "Referer": "https://www.chinamoney.com.cn/chinese/yhgkscczh/",
-    #     "sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
-    #     "sec-ch-ua-mobile": "?0",
-    #     "sec-ch-ua-platform": '"Windows"',
-    #     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
-    #     "X-Requested-With": "XMLHttpRequest",
-    # }
-    # r = requests.post(url, params=params, data=payload, headers=headers)
-    # data_json = r.json()
-    # total_page = data_json["data"]["pageTotal"]
-    # big_df = pd.DataFrame()
-    # for page in tqdm(range(1, total_page + 1)):
-    #     payload.update(
-    #         {
-    #             "pageNo": page,
-    #         }
-    #     )
-    #     r = requests.post(url, params=params, data=payload)
-    #     data_json = r.json()
-    #     temp_df = pd.DataFrame(data_json["data"]["resultList"])
-    #     big_df = pd.concat([big_df, temp_df], ignore_index=True)
-    # big_df.columns = [
-    #     "操作日期",
-    #     "期限",
-    #     "交易量",
-    #     "中标利率",
-    #     "正/逆回购",
-    # ]
-    # big_df["操作日期"] = pd.to_datetime(big_df["操作日期"]).dt.date
-    # big_df["期限"] = pd.to_numeric(big_df["期限"])
-    # big_df["交易量"] = pd.to_numeric(big_df["交易量"])
-    # big_df["中标利率"] = pd.to_numeric(big_df["中标利率"])
-    # return big_df
-
-
 def macro_china_bond_public() -> pd.DataFrame:
     """
     中国-债券信息披露-债券发行
@@ -3878,6 +3695,20 @@ def macro_china_society_traffic_volume() -> pd.DataFrame:
         temp_df = pd.DataFrame(data_json["data"]["非累计"])
         big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
+    big_df['货运量'] = pd.to_numeric(big_df['货运量'], errors="coerce")
+    big_df['货运量同比增长'] = pd.to_numeric(big_df['货运量同比增长'], errors="coerce")
+    big_df['货物周转量'] = pd.to_numeric(big_df['货物周转量'], errors="coerce")
+    big_df['公里货物周转量同比增长'] = pd.to_numeric(big_df['公里货物周转量同比增长'], errors="coerce")
+    big_df['客运量'] = pd.to_numeric(big_df['客运量'], errors="coerce")
+    big_df['客运量同比增长'] = pd.to_numeric(big_df['客运量同比增长'], errors="coerce")
+    big_df['旅客周转量'] = pd.to_numeric(big_df['旅客周转量'], errors="coerce")
+    big_df['公里旅客周转量同比增长'] = pd.to_numeric(big_df['公里旅客周转量同比增长'], errors="coerce")
+    big_df['沿海主要港口货物吞吐量'] = pd.to_numeric(big_df['沿海主要港口货物吞吐量'], errors="coerce")
+    big_df['沿海主要港口货物吞吐量同比增长'] = pd.to_numeric(big_df['沿海主要港口货物吞吐量同比增长'], errors="coerce")
+    big_df['其中:外贸货物吞吐量'] = pd.to_numeric(big_df['其中:外贸货物吞吐量'], errors="coerce")
+    big_df['其中:外贸货物吞吐量同比增长'] = pd.to_numeric(big_df['其中:外贸货物吞吐量同比增长'], errors="coerce")
+    big_df['民航总周转量'] = pd.to_numeric(big_df['民航总周转量'], errors="coerce")
+    big_df['公里民航总周转'] = pd.to_numeric(big_df['公里民航总周转'], errors="coerce")
     return big_df
 
 
@@ -3944,6 +3775,8 @@ def macro_china_international_tourism_fx() -> pd.DataFrame:
         temp_df = pd.DataFrame(data_json["data"])
         big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
+    big_df['数量'] = pd.to_numeric(big_df['数量'], errors="coerce")
+    big_df['比重'] = pd.to_numeric(big_df['比重'], errors="coerce")
     return big_df
 
 
@@ -3976,6 +3809,8 @@ def macro_china_passenger_load_factor() -> pd.DataFrame:
         temp_df = pd.DataFrame(data_json["data"])
         big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
+    big_df['客座率'] = pd.to_numeric(big_df['客座率'], errors="coerce")
+    big_df['载运率'] = pd.to_numeric(big_df['载运率'], errors="coerce")
     return big_df
 
 
@@ -4075,6 +3910,8 @@ def macro_china_central_bank_balance() -> pd.DataFrame:
         temp_df = pd.DataFrame(data_json["data"])
         big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
+    for item in big_df.columns[1:]:
+        big_df[item] = pd.to_numeric(big_df[item], errors="coerce")
     return big_df
 
 
@@ -4107,6 +3944,8 @@ def macro_china_insurance() -> pd.DataFrame:
         temp_df = pd.DataFrame(data_json["data"])
         big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
+    for item in big_df.columns[2:]:
+        big_df[item] = pd.to_numeric(big_df[item], errors="coerce")
     return big_df
 
 
@@ -4139,6 +3978,8 @@ def macro_china_supply_of_money() -> pd.DataFrame:
         temp_df = pd.DataFrame(data_json["data"])
         big_df = pd.concat([big_df, temp_df], ignore_index=True)
     big_df.columns = [item[1] for item in data_json["config"]["all"]]
+    for item in big_df.columns[1:]:
+        big_df[item] = pd.to_numeric(big_df[item], errors="coerce")
     return big_df
 
 
@@ -4481,16 +4322,6 @@ if __name__ == "__main__":
     macro_china_au_report_df = macro_china_au_report()
     print(macro_china_au_report_df)
 
-    # 发改委-中国电煤价格指数-全国综合电煤价格指数
-    macro_china_ctci_df = macro_china_ctci()
-    print(macro_china_ctci_df)
-    # 发改委-中国电煤价格指数-各价区电煤价格指数
-    macro_china_ctci_detail_df = macro_china_ctci_detail()
-    print(macro_china_ctci_detail_df)
-    # 发改委-中国电煤价格指数-历史电煤价格指数
-    macro_china_ctci_detail_hist_df = macro_china_ctci_detail_hist()
-    print(macro_china_ctci_detail_hist_df)
-
     # 中国-新房价指数
     macro_china_new_house_price_df = macro_china_new_house_price()
     print(macro_china_new_house_price_df)
@@ -4543,12 +4374,6 @@ if __name__ == "__main__":
 
     macro_china_wbck_df = macro_china_wbck()
     print(macro_china_wbck_df)
-
-    macro_china_hb_df = macro_china_hb(symbol="weekly")
-    print(macro_china_hb_df)
-
-    macro_china_gksccz_df = macro_china_gksccz()
-    print(macro_china_gksccz_df)
 
     macro_china_bond_public_df = macro_china_bond_public()
     print(macro_china_bond_public_df)

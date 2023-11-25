@@ -623,7 +623,8 @@ def get_dce_daily(date: str = "20220308") -> pd.DataFrame:
         "exportFlag": "excel",
     }
     r = requests.post(url, data=params, headers=headers)
-    data_df = pd.read_excel(BytesIO(r.content))
+    data_df = pd.read_excel(BytesIO(r.content), header=1)
+
     data_df = data_df[~data_df["商品名称"].str.contains("小计")]
     data_df = data_df[~data_df["商品名称"].str.contains("总计")]
     data_df["variety"] = data_df["商品名称"].map(lambda x: cons.DCE_MAP[x])
@@ -663,7 +664,12 @@ def get_dce_daily(date: str = "20220308") -> pd.DataFrame:
             "variety",
         ]
     ]
-    data_df = data_df.applymap(lambda x: x.replace(",", ""))
+    # TODO pandas 2.1.0 change
+    try:
+        data_df = data_df.map(lambda x: x.replace(",", ""))
+    except:
+        data_df = data_df.applymap(lambda x: x.replace(",", ""))
+
     data_df = data_df.astype(
         {
             "open": "float",
@@ -742,11 +748,11 @@ def get_futures_daily(
 
 if __name__ == "__main__":
     get_futures_daily_df = get_futures_daily(
-        start_date="20220714", end_date="20220813", market="DCE"
+        start_date="20231001", end_date="20231022", market="CZCE"
     )
     print(get_futures_daily_df)
 
-    get_dce_daily_df = get_dce_daily(date="20220308")
+    get_dce_daily_df = get_dce_daily(date="20230810")
     print(get_dce_daily_df)
 
     get_cffex_daily_df = get_cffex_daily(date="20230810")

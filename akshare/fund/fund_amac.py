@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2023/4/3 20:48
+Date: 2023/10/25 16:30
 Desc: 中国证券投资基金业协会-信息公示数据
 中国证券投资基金业协会-新版: https://gs.amac.org.cn
 """
@@ -270,7 +270,7 @@ def amac_manager_classify_info() -> pd.DataFrame:
         r = requests.post(url, params=params, json={}, verify=False)
         data_json = r.json()
         temp_df = pd.DataFrame(data_json["content"])
-        big_df = pd.concat([big_df, temp_df], ignore_index=True)
+        big_df = pd.concat(objs=[big_df, temp_df], ignore_index=True)
     keys_list = [
         "managerName",
         "artificialPersonName",

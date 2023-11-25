@@ -166,8 +166,25 @@ def stock_us_daily(symbol: str = "FB", adjust: str = "") -> pd.DataFrame:
         temp_df = pd.merge(
             data_df, new_range, left_index=True, right_index=True, how="left"
         )
-        temp_df.fillna(method="ffill", inplace=True)
-        temp_df.fillna(method="bfill", inplace=True)
+        try:
+            # try for pandas >= 2.1.0
+            temp_df.ffill(inplace=True)
+        except Exception as e:
+            try:
+            # try for pandas < 2.1.0          
+                temp_df.fillna(method="ffill", inplace=True)
+            except Exception as e:
+                print("Error:", e)
+        try:
+            # try for pandas >= 2.1.0
+            temp_df.bfill(inplace=True)
+        except Exception as e:
+            try:
+            # try for pandas < 2.1.0          
+                temp_df.fillna(method="bfill", inplace=True)
+            except Exception as e:
+                print("Error:", e)        
+
         temp_df = temp_df.astype(float)
         temp_df["open"] = temp_df["open"] * temp_df["qfq_factor"] + temp_df["adjust"]
         temp_df["high"] = temp_df["high"] * temp_df["qfq_factor"] + temp_df["adjust"]
@@ -257,10 +274,10 @@ if __name__ == "__main__":
     stock_us_spot_df = stock_us_spot()
     print(stock_us_spot_df)
 
-    stock_us_daily_df = stock_us_daily(symbol="AMZN", adjust="")
+    stock_us_daily_df = stock_us_daily(symbol=".DJI", adjust="")
     print(stock_us_daily_df)
 
-    stock_us_daily_qfq_df = stock_us_daily(symbol="AAPL", adjust="qfq")
+    stock_us_daily_qfq_df = stock_us_daily(symbol=".DJI", adjust="qfq")
     print(stock_us_daily_qfq_df)
 
     stock_us_daily_qfq_factor_df = stock_us_daily(symbol="AAPL", adjust="qfq-factor")
