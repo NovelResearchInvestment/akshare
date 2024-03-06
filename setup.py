@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2023/6/4 22:09
+Date: 2024/2/19 13:30
 Desc: AKShare's PYPI info file
 """
-import re
 import ast
+import re
 
 import setuptools
 
@@ -15,7 +15,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 def get_version_string() -> str:
     """
-    Get the akshare version number
+    get the version of akshare
     :return: version number
     :rtype: str, e.g. '0.6.24'
     """
@@ -53,7 +53,18 @@ setuptools.setup(
         "decorator>=4.4.2",
         "py-mini-racer>=0.6.0",
         "akracer>=0.0.11",
+        "pyarrow>=15.0.0",
     ],
+    extras_require={
+        # 这些是额外的依赖集合，可以通过 'pip install akshare[full]' 安装
+        'full': [
+            'akqmt',
+        ],
+        # 这些是额外的依赖集合，可以通过 'pip install akshare[qmt]' 安装
+        'qmt': [
+            'akqmt',
+        ],
+    },
     package_data={"": ["*.py", "*.json", "*.pk", "*.js", "*.zip"]},
     keywords=[
         "stock",

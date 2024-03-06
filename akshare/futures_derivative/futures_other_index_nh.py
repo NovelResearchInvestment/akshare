@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # !/usr/bin/env python
 """
-Date: 2023/11/17 18:00
+Date: 2023/12/2 19:00
 Desc: 板块指数、品种指数和相关系数矩阵
 南华期货-板块指数涨跌
 https://www.nanhua.net/nhzc/platechange.html
@@ -48,19 +48,16 @@ def futures_board_index_nh(start_date: str = "20231110", end_date: str = "202311
     end_df.columns = [
         'name',
         'code',
-        'end_date',
+        end_date,
     ]
-    # 去除异常数据 IF
-    end_df = end_df[end_df['code'] != 'IF']
     end_df.reset_index(inplace=True, drop=True)
 
     # 计算数据
-    start_df[end_date] = end_df['end_date']
-    start_df['gap'] = start_df[end_date] - start_df[start_date]
-    start_df['return'] = start_df['gap'] / start_df[start_date]
-
-    temp_df = start_df
-    temp_df = temp_df[['name', 'return']]
+    start_df = start_df.merge(end_df, on=['name', 'code'], how='inner')
+    # 去除异常数据 IF
+    start_df = start_df[start_df['code'] != 'IF']
+    start_df['return'] = start_df[end_date] / start_df[start_date] - 1
+    temp_df = start_df[['name', 'return']]
 
     return temp_df
 
@@ -138,7 +135,7 @@ def futures_correlation_nh(date: str = "20231110", period: str = "20") -> pd.Dat
 
 
 if __name__ == '__main__':
-    futures_board_index_nh_df = futures_board_index_nh(start_date="20231110", end_date="20231116")
+    futures_board_index_nh_df = futures_board_index_nh(start_date="20230103", end_date="20231201")
     print(futures_board_index_nh_df)
 
     futures_variety_index_nh_df = futures_variety_index_nh(start_date="20231110", end_date="20231116")

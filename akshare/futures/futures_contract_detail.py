@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2021/12/20 12:52
+Date: 2024/1/29 17:00
 Desc: 查询期货合约当前时刻的详情
 https://finance.sina.com.cn/futures/quotes/V2101.shtml
 """
+from io import StringIO
+
 import pandas as pd
 import requests
 
@@ -22,7 +24,7 @@ def futures_contract_detail(symbol: str = 'AP2101') -> pd.DataFrame:
     r = requests.get(url)
     r.encoding = 'gb2312'
     try:
-        temp_df = pd.read_html(r.text)[6]
+        temp_df = pd.read_html(StringIO(r.text))[6]
     except IndexError as e:
         r_text = r.text
         print(f"{e} \n [{symbol}]: {r_text}")
@@ -33,10 +35,10 @@ def futures_contract_detail(symbol: str = 'AP2101') -> pd.DataFrame:
     data_two.columns = ['item', 'value']
     data_three = temp_df.iloc[:, 4:]
     data_three.columns = ['item', 'value']
-    temp_df = pd.concat([data_one, data_two, data_three], axis=0, ignore_index=True)
+    temp_df = pd.concat(objs=[data_one, data_two, data_three], axis=0, ignore_index=True)
     return temp_df
 
 
 if __name__ == '__main__':
-    futures_contract_detail_df = futures_contract_detail(symbol='V1903')
+    futures_contract_detail_df = futures_contract_detail(symbol='IM2402')
     print(futures_contract_detail_df)

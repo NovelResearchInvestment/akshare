@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2022/3/5 23:50
+Date: 2024/1/14 18:00
 Desc: 国证指数
 http://www.cnindex.com.cn/index.html
 """
 import zipfile
+from io import BytesIO
 
 import pandas as pd
 import requests
@@ -74,20 +75,26 @@ def index_all_cni() -> pd.DataFrame:
     return temp_df
 
 
-def index_hist_cni(symbol: str = "399001") -> pd.DataFrame:
+def index_hist_cni(symbol: str = "399001", start_date: str = "20230114", end_date: str = "20240114") -> pd.DataFrame:
     """
     指数历史行情数据
     http://www.cnindex.com.cn/module/index-detail.html?act_menu=1&indexCode=399001
     :param symbol: 指数代码
     :type symbol: str
+    :param start_date: 开始时间
+    :type start_date: str
+    :param end_date: 结束时间
+    :type end_date: str
     :return: 指数历史行情数据
     :rtype: pandas.DataFrame
     """
+    start_date = "-".join([start_date[:4], start_date[4:6], start_date[6:]])
+    end_date = "-".join([end_date[:4], end_date[4:6], end_date[6:]])
     url = "http://hq.cnindex.com.cn/market/market/getIndexDailyDataWithDataFormat"
     params = {
         "indexCode": symbol,
-        "startDate": "",
-        "endDate": "",
+        "startDate": start_date,
+        "endDate": end_date,
         "frequency": "day",
     }
     r = requests.get(url, params=params)
@@ -121,6 +128,15 @@ def index_hist_cni(symbol: str = "399001") -> pd.DataFrame:
     temp_df["涨跌幅"] = temp_df["涨跌幅"].str.replace("%", "")
     temp_df["涨跌幅"] = temp_df["涨跌幅"].astype("float")
     temp_df["涨跌幅"] = temp_df["涨跌幅"] / 100
+    temp_df.sort_values(['日期'], inplace=True, ignore_index=True)
+    temp_df['日期'] = pd.to_datetime(temp_df['日期'], errors="coerce").dt.date
+    temp_df['开盘价'] = pd.to_numeric(temp_df['开盘价'], errors="coerce")
+    temp_df['最高价'] = pd.to_numeric(temp_df['最高价'], errors="coerce")
+    temp_df['最低价'] = pd.to_numeric(temp_df['最低价'], errors="coerce")
+    temp_df['收盘价'] = pd.to_numeric(temp_df['收盘价'], errors="coerce")
+    temp_df['涨跌幅'] = pd.to_numeric(temp_df['涨跌幅'], errors="coerce")
+    temp_df['成交量'] = pd.to_numeric(temp_df['成交量'], errors="coerce")
+    temp_df['成交额'] = pd.to_numeric(temp_df['成交额'], errors="coerce")
     return temp_df
 
 
@@ -141,7 +157,7 @@ def index_detail_cni(symbol: str = '399005', date: str = '202011') -> pd.DataFra
         'dateStr': '-'.join([date[:4], date[4:]])
     }
     r = requests.get(url, params=params)
-    temp_df = pd.read_excel(r.content)
+    temp_df = pd.read_excel(BytesIO(r.content))
     temp_df['样本代码'] = temp_df['样本代码'].astype(str).str.zfill(6)
     temp_df.columns = [
         '日期',
@@ -152,9 +168,9 @@ def index_detail_cni(symbol: str = '399005', date: str = '202011') -> pd.DataFra
         '总市值',
         '权重',
     ]
-    temp_df['自由流通市值'] = pd.to_numeric(temp_df['自由流通市值'])
-    temp_df['总市值'] = pd.to_numeric(temp_df['总市值'])
-    temp_df['权重'] = pd.to_numeric(temp_df['权重'])
+    temp_df['自由流通市值'] = pd.to_numeric(temp_df['自由流通市值'], errors="coerce")
+    temp_df['总市值'] = pd.to_numeric(temp_df['总市值'], errors="coerce")
+    temp_df['权重'] = pd.to_numeric(temp_df['权重'], errors="coerce")
     return temp_df
 
 
@@ -208,7 +224,7 @@ def index_detail_hist_cni(symbol: str = '399001', date: str = "") -> pd.DataFram
             'indexcode': symbol
         }
         r = requests.get(url, params=params)
-        temp_df = pd.read_excel(r.content)
+        temp_df = pd.read_excel(BytesIO(r.content))
     temp_df['样本代码'] = temp_df['样本代码'].astype(str).str.zfill(6)
     temp_df.columns = [
         '日期',
@@ -240,7 +256,7 @@ def index_detail_hist_adjust_cni(symbol: str = '399005') -> pd.DataFrame:
     }
     r = requests.get(url, params=params)
     try:
-        temp_df = pd.read_excel(r.content, engine="openpyxl")
+        temp_df = pd.read_excel(BytesIO(r.content), engine="openpyxl")
     except zipfile.BadZipFile as e:
         return pd.DataFrame()
     temp_df['样本代码'] = temp_df['样本代码'].astype(str).str.zfill(6)
@@ -251,13 +267,13 @@ if __name__ == "__main__":
     index_all_cni_df = index_all_cni()
     print(index_all_cni_df)
 
-    index_hist_cni_df = index_hist_cni(symbol="399303")
+    index_hist_cni_df = index_hist_cni(symbol="399005", start_date="20230114", end_date="20240114")
     print(index_hist_cni_df)
 
-    index_detail_cni_df = index_detail_cni(symbol='399303', date='202011')
+    index_detail_cni_df = index_detail_cni(symbol='399001', date='202011')
     print(index_detail_cni_df)
 
-    index_detail_hist_cni_df = index_detail_hist_cni(symbol='399303', date='202201')
+    index_detail_hist_cni_df = index_detail_hist_cni(symbol='399005', date='202201')
     print(index_detail_hist_cni_df)
 
     index_detail_hist_adjust_cni_df = index_detail_hist_adjust_cni(symbol='399005')

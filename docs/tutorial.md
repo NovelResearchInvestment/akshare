@@ -33,6 +33,7 @@
  "futures_czce_warehouse_receipt"  # 郑州商品交易所-交易数据-仓单日报
  "futures_shfe_warehouse_receipt"  # 上海期货交易所-交易数据-仓单日报
  "futures_dce_warehouse_receipt"  # 大连商品交易所-交易数据-仓单日报
+ "futures_gfex_warehouse_receipt"  # 广州期货交易所-行情数据-仓单日报
  "futures_rule"  # 国泰君安-交易日历
  # 奇货可查数据
  "get_qhkc_index"  # 获取奇货可查-指数-数值数据
@@ -47,7 +48,6 @@
  "get_bond_bank"  # 获取中国银行间市场交易商协会-债券数据
  # 提供英为财情数据接口
  "index_investing_global"  # 提供英为财情-股票指数-全球股指与期货指数数据
- "index_investing_global_from_url"  # 提供英为财情-股票指数-全球股指与期货指数数据-URL版本
  "bond_investing_global"  # 提供英为财情-债券数据-全球政府债券行情与收益率数据
  # 交易所商品期权数据
  "option_dce_daily"  # 提供大连商品交易所商品期权数据
@@ -93,7 +93,6 @@
  "get_us_stock_name"  # 获得美股的所有股票代码
  "stock_us_spot"  # 获取美股行情报价
  "stock_us_daily"  # 获取美股的历史数据(包括前复权因子)
- "stock_us_fundamental"  # 获取美股的基本面数据
  # A+H股实时行情数据和历史行情数据
  "stock_zh_ah_spot"  # 获取 A+H 股实时行情数据(延迟15分钟)
  "stock_zh_ah_daily"  # 获取 A+H 股历史行情数据(日频)
@@ -124,7 +123,8 @@
  "stock_zh_index_daily"  # 股票指数历史行情数据
  "stock_zh_index_daily_tx"  # 股票指数历史行情数据-腾讯
  "stock_zh_index_daily_em"  # 股票指数历史行情数据-东方财富
- "stock_zh_index_spot"  # 股票指数实时行情数据
+ "stock_zh_index_spot_sina"  # 股票指数实时行情数据-新浪
+ "stock_zh_index_spot_em"  # 股票指数实时行情数据-东财
  # 股票分笔数据
  "stock_zh_a_tick_tx_js"  # A 股票分笔行情数据-腾讯-当日数据
  # 世界各地区日出和日落数据-日
@@ -141,14 +141,6 @@
  "futures_return_index_nh"  # 收益率指数
  # 经济政策不确定性(EPU)指数
  "article_epu_index"  # 主要国家和地区的经济政策不确定性(EPU)指数
- # 微博指数
- "index_weibo_sina"  # 获取3个月内的微博指数
- # 百度指数
- "baidu_search_index"  # 获取百度搜索指数
- "baidu_info_index"  # 获取百度资讯指数
- "baidu_media_index"  # 获取百度媒体指数
- # 谷歌指数
- "google_index"  # 获取谷歌趋势指数
  # 申万行业指数
  "sw_index_third_info"  # 申万三级信息
  "sw_index_third_cons"  # 申万三级信息成份
@@ -533,11 +525,11 @@
  "stock_zh_index_hist_csindex"  # 中证指数
  "stock_zh_index_value_csindex"  # 中证指数-指数估值
  # A股龙虎榜
- "stock_sina_lhb_detail_daily"  # 龙虎榜-每日详情
- "stock_sina_lhb_ggtj"  # 龙虎榜-个股上榜统计
- "stock_sina_lhb_yytj"  # 龙虎榜-营业上榜统计
- "stock_sina_lhb_jgzz"  # 龙虎榜-机构席位追踪
- "stock_sina_lhb_jgmx"  # 龙虎榜-机构席位成交明细
+ "stock_lhb_detail_daily_sina"  # 龙虎榜-每日详情
+ "stock_lhb_ggtj_sina"  # 龙虎榜-个股上榜统计
+ "stock_lhb_yytj_sina"  # 龙虎榜-营业上榜统计
+ "stock_lhb_jgzz_sina"  # 龙虎榜-机构席位追踪
+ "stock_lhb_jgmx_sina"  # 龙虎榜-机构席位成交明细
  # 注册制审核
  "stock_register_kcb"  # 注册制审核-科创板
  "stock_register_cyb"  # 注册制审核-创业板
@@ -719,8 +711,6 @@
  # 汽车销量
  "car_gasgoo_sale_rank"  # 盖世汽车-汽车行业制造企业数据库-销量数据
  "car_energy_sale_cpca"  # 乘联会-新能源细分市场-整体市场
- # 平均持仓
- "stock_average_position_legu"  # 平均持仓
  # 增发
  "stock_em_qbzf"  # 增发
  # 配股
@@ -1228,6 +1218,33 @@
  "index_fear_greed_funddb"  # 恐惧贪婪指数
  # 筹码分布
  "stock_cyq_em"  # 筹码分布
+ # 雪球基金-基金详情
+ "fund_individual_basic_info_xq"  # 雪球基金-基金详情
+ "fund_individual_achievement_xq"  # 雪球基金-基金业绩
+ "fund_individual_analysis_xq"  # 雪球基金-基金数据分析
+ "fund_individual_profit_probability_xq"  # 雪球基金-盈利概率
+ "fund_individual_detail_info_xq"  # 雪球基金-详细信息
+ # 港股盈利预测
+ "stock_hk_profit_forecast_et"  # 港股盈利预测
+ # 雪球-行情中心-个股
+ "stock_individual_spot_xq"  # 雪球-行情中心-个股
+ # 东方财富网-行情中心-期货市场-国际期货
+ "futures_global_em"  # 东方财富网-行情中心-期货市场-国际期货
+ # 东方财富-数据中心-沪深港通-市场概括-分时数据
+ "stock_hsgt_fund_min_em"  # 东方财富-数据中心-沪深港通-市场概括-分时数据
+ # 新浪财经-商品期货-成交持仓
+ "futures_hold_pos_sina"  # 新浪财经-商品期货-成交持仓
+ # 生意社-商品与期货-现期图
+ "futures_spot_sys"  # 生意社-商品与期货-现期图
+ # 上海期货交易所指定交割仓库库存周报
+ "futures_stock_shfe_js"  # 上海期货交易所指定交割仓库库存周报
+ # 期货合约信息
+ "futures_contract_info_shfe"  # 上海期货交易所-期货合约信息
+ "futures_contract_info_ine"  # 上海国际能源交易中心-期货合约信息
+ "futures_contract_info_dce"  # 大连商品交易所-期货合约信息
+ "futures_contract_info_czce"  # 郑州商品交易所-期货合约信息
+ "futures_contract_info_gfex"  # 广州期货交易所-期货合约信息
+ "futures_contract_info_cffex"  # 中国金融期货交易所-期货合约信息
 ```
 
 ## 案例演示

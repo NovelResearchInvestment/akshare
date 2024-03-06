@@ -1,25 +1,24 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2023/2/23 11:20
+Date: 2023/12/11 20:20
 Desc: 东方财富网-指数行情数据
 """
-import warnings
-
-import requests
-import pandas as pd
 from functools import lru_cache
+
+import pandas as pd
+import requests
 
 
 @lru_cache()
 def index_code_id_map_em() -> dict:
     """
     东方财富-股票和市场代码
-    http://quote.eastmoney.com/center/gridlist.html#hs_a_board
+    https://quote.eastmoney.com/center/gridlist.html#hs_a_board
     :return: 股票和市场代码
     :rtype: dict
     """
-    url = "http://80.push2.eastmoney.com/api/qt/clist/get"
+    url = "https://80.push2.eastmoney.com/api/qt/clist/get"
     params = {
         "pn": "1",
         "pz": "10000",
@@ -89,10 +88,10 @@ def index_code_id_map_em() -> dict:
 
 
 def index_zh_a_hist(
-    symbol: str = "000859",
-    period: str = "daily",
-    start_date: str = "19700101",
-    end_date: str = "22220101",
+        symbol: str = "000859",
+        period: str = "daily",
+        start_date: str = "19700101",
+        end_date: str = "22220101",
 ) -> pd.DataFrame:
     """
     东方财富网-中国股票指数-行情数据
@@ -110,7 +109,7 @@ def index_zh_a_hist(
     """
     code_id_dict = index_code_id_map_em()
     period_dict = {"daily": "101", "weekly": "102", "monthly": "103"}
-    url = "http://push2his.eastmoney.com/api/qt/stock/kline/get"
+    url = "https://push2his.eastmoney.com/api/qt/stock/kline/get"
     OUT_COLUMNS = ["日期", "开盘", "收盘", "最高", "最低", "成交量", "成交额", "振幅", "涨跌幅", "涨跌额", "换手率"]
     try:
         params = {
@@ -207,10 +206,25 @@ def index_zh_a_hist(
             msg = f"got empty dataframe from: {symbol}, {period}, {start_date}, {end_date}"
             warnings.warn(msg)
             return
-        
+
         temp_df = pd.DataFrame(
             [item.split(",") for item in data_json["data"]["klines"]]
         )
+    temp_df.columns = [
+        "日期",
+        "开盘",
+        "收盘",
+        "最高",
+        "最低",
+        "成交量",
+        "成交额",
+        "振幅",
+        "涨跌幅",
+        "涨跌额",
+        "换手率",
+    ]
+    temp_df.index = pd.to_datetime(temp_df["日期"], errors="coerce")
+    temp_df = temp_df[start_date:end_date]
 
     if temp_df.shape[0] == 0:
         msg = f"got empty dataframe from: {symbol}, {period}, {start_date}, {end_date}"
@@ -221,6 +235,16 @@ def index_zh_a_hist(
     temp_df.index = pd.to_datetime(temp_df["日期"])
     temp_df = temp_df[start_date:end_date].copy()
     temp_df.reset_index(inplace=True, drop=True)
+    temp_df["开盘"] = pd.to_numeric(temp_df["开盘"], errors="coerce")
+    temp_df["收盘"] = pd.to_numeric(temp_df["收盘"], errors="coerce")
+    temp_df["最高"] = pd.to_numeric(temp_df["最高"], errors="coerce")
+    temp_df["最低"] = pd.to_numeric(temp_df["最低"], errors="coerce")
+    temp_df["成交量"] = pd.to_numeric(temp_df["成交量"], errors="coerce")
+    temp_df["成交额"] = pd.to_numeric(temp_df["成交额"], errors="coerce")
+    temp_df["振幅"] = pd.to_numeric(temp_df["振幅"], errors="coerce")
+    temp_df["涨跌幅"] = pd.to_numeric(temp_df["涨跌幅"], errors="coerce")
+    temp_df["涨跌额"] = pd.to_numeric(temp_df["涨跌额"], errors="coerce")
+    temp_df["换手率"] = pd.to_numeric(temp_df["换手率"], errors="coerce")
     numeric_keys = ["开盘", "收盘", "最高", "最低", "成交量", "成交额", "振幅", "涨跌幅", "涨跌额", "换手率"]
     for k in numeric_keys:
         temp_df[k] = pd.to_numeric(temp_df[k])
@@ -228,14 +252,14 @@ def index_zh_a_hist(
 
 
 def index_zh_a_hist_min_em(
-    symbol: str = "399006",
-    period: str = "1",
-    start_date: str = "1979-09-01 09:32:00",
-    end_date: str = "2222-01-01 09:32:00",
+        symbol: str = "399006",
+        period: str = "1",
+        start_date: str = "1979-09-01 09:32:00",
+        end_date: str = "2222-01-01 09:32:00",
 ) -> pd.DataFrame:
     """
     东方财富网-指数数据-每日分时行情
-    http://quote.eastmoney.com/concept/sh603777.html?from=classic
+    https://quote.eastmoney.com/center/hszs.html
     :param symbol: 指数代码
     :type symbol: str
     :param period: choice of {'1', '5', '15', '30', '60'}
@@ -312,16 +336,16 @@ def index_zh_a_hist_min_em(
             "成交额",
             "最新价",
         ]
-        temp_df.index = pd.to_datetime(temp_df["时间"])
+        temp_df.index = pd.to_datetime(temp_df["时间"], errors="coerce")
         temp_df = temp_df[start_date:end_date]
         temp_df.reset_index(drop=True, inplace=True)
-        temp_df["开盘"] = pd.to_numeric(temp_df["开盘"])
-        temp_df["收盘"] = pd.to_numeric(temp_df["收盘"])
-        temp_df["最高"] = pd.to_numeric(temp_df["最高"])
-        temp_df["最低"] = pd.to_numeric(temp_df["最低"])
-        temp_df["成交量"] = pd.to_numeric(temp_df["成交量"])
-        temp_df["成交额"] = pd.to_numeric(temp_df["成交额"])
-        temp_df["最新价"] = pd.to_numeric(temp_df["最新价"])
+        temp_df["开盘"] = pd.to_numeric(temp_df["开盘"], errors="coerce")
+        temp_df["收盘"] = pd.to_numeric(temp_df["收盘"], errors="coerce")
+        temp_df["最高"] = pd.to_numeric(temp_df["最高"], errors="coerce")
+        temp_df["最低"] = pd.to_numeric(temp_df["最低"], errors="coerce")
+        temp_df["成交量"] = pd.to_numeric(temp_df["成交量"], errors="coerce")
+        temp_df["成交额"] = pd.to_numeric(temp_df["成交额"], errors="coerce")
+        temp_df["最新价"] = pd.to_numeric(temp_df["最新价"], errors="coerce")
         temp_df["时间"] = pd.to_datetime(temp_df["时间"]).astype(str)
         return temp_df
     else:
@@ -396,20 +420,20 @@ def index_zh_a_hist_min_em(
             "涨跌额",
             "换手率",
         ]
-        temp_df.index = pd.to_datetime(temp_df["时间"])
+        temp_df.index = pd.to_datetime(temp_df["时间"], errors="coerce")
         temp_df = temp_df[start_date:end_date]
         temp_df.reset_index(drop=True, inplace=True)
-        temp_df["开盘"] = pd.to_numeric(temp_df["开盘"])
-        temp_df["收盘"] = pd.to_numeric(temp_df["收盘"])
-        temp_df["最高"] = pd.to_numeric(temp_df["最高"])
-        temp_df["最低"] = pd.to_numeric(temp_df["最低"])
-        temp_df["成交量"] = pd.to_numeric(temp_df["成交量"])
-        temp_df["成交额"] = pd.to_numeric(temp_df["成交额"])
-        temp_df["振幅"] = pd.to_numeric(temp_df["振幅"])
-        temp_df["涨跌幅"] = pd.to_numeric(temp_df["涨跌幅"])
-        temp_df["涨跌额"] = pd.to_numeric(temp_df["涨跌额"])
-        temp_df["换手率"] = pd.to_numeric(temp_df["换手率"])
-        temp_df["时间"] = pd.to_datetime(temp_df["时间"]).astype(str)
+        temp_df["开盘"] = pd.to_numeric(temp_df["开盘"], errors="coerce")
+        temp_df["收盘"] = pd.to_numeric(temp_df["收盘"], errors="coerce")
+        temp_df["最高"] = pd.to_numeric(temp_df["最高"], errors="coerce")
+        temp_df["最低"] = pd.to_numeric(temp_df["最低"], errors="coerce")
+        temp_df["成交量"] = pd.to_numeric(temp_df["成交量"], errors="coerce")
+        temp_df["成交额"] = pd.to_numeric(temp_df["成交额"], errors="coerce")
+        temp_df["振幅"] = pd.to_numeric(temp_df["振幅"], errors="coerce")
+        temp_df["涨跌幅"] = pd.to_numeric(temp_df["涨跌幅"], errors="coerce")
+        temp_df["涨跌额"] = pd.to_numeric(temp_df["涨跌额"], errors="coerce")
+        temp_df["换手率"] = pd.to_numeric(temp_df["换手率"], errors="coerce")
+        temp_df["时间"] = pd.to_datetime(temp_df["时间"], errors="coerce").astype(str)
         temp_df = temp_df[
             [
                 "时间",
@@ -438,9 +462,9 @@ if __name__ == "__main__":
     print(index_zh_a_hist_df)
 
     index_zh_a_hist_min_em_df = index_zh_a_hist_min_em(
-        symbol="800000",
-        period="5",
-        start_date="1977-05-08 09:30:00",
-        end_date="2023-02-23 15:00:00",
+        symbol="000001",
+        period="1",
+        start_date="2023-12-11 09:30:00",
+        end_date="2023-12-11 19:00:00",
     )
     print(index_zh_a_hist_min_em_df)
