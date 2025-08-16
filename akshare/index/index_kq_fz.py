@@ -5,7 +5,6 @@ Date: 2023/5/18 17:10
 Desc: 中国柯桥纺织指数
 http://www.kqindex.cn/flzs/jiage
 """
-
 import pandas as pd
 import requests
 from tqdm import tqdm

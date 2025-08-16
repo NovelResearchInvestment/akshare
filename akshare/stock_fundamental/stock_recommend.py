@@ -5,7 +5,6 @@ Date: 2022/1/7 13:40
 Desc: 新浪财经-机构推荐池
 http://stock.finance.sina.com.cn/stock/go.php/vIR_RatingNewest/index.phtml
 """
-
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup

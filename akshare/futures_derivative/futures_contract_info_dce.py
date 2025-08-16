@@ -5,7 +5,6 @@ Date: 2024/2/28 11:00
 Desc: 大连商品交易所-业务/服务-业务参数-交易参数-合约信息查询
 http://www.dce.com.cn/dalianshangpin/ywfw/ywcs/jycs/hyxxcx/index.html
 """
-
 from io import StringIO
 
 import pandas as pd

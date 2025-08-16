@@ -5,7 +5,6 @@ Date: 2022/11/12 17:14
 Desc: 东方财富-经济数据-英国
 https://data.eastmoney.com/cjsj/foreign_4_0.html
 """
-
 import pandas as pd
 import requests
 

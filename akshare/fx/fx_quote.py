@@ -7,7 +7,6 @@ Desc: 中国外汇交易中心暨全国银行间同业拆借中心-市场数据-
 人民币外汇远掉报价: fx_swap_quote
 外币对即期报价: fx_pair_quote
 """
-
 import time
 
 import pandas as pd

@@ -5,7 +5,6 @@ Date: 2022/12/13 14:18
 Desc: 天天基金网-基金数据-分红送配
 https://fund.eastmoney.com/data/fundfenhong.html
 """
-
 import pandas as pd
 import requests
 from tqdm import tqdm

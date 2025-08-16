@@ -6,7 +6,6 @@ Desc: Drewry 集装箱指数
 https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry
 https://infogram.com/world-container-index-1h17493095xl4zj
 """
-
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup

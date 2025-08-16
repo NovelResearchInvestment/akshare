@@ -6,7 +6,6 @@ Desc: 股票指数成份股数据, 新浪有两个接口, 这里使用老接口:
 新接口：https://vip.stock.finance.sina.com.cn/mkt/#zhishu_000001
 老接口：https://vip.stock.finance.sina.com.cn/corp/view/vII_NewestComponent.php?page=1&indexid=399639
 """
-
 import math
 from io import BytesIO, StringIO
 

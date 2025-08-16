@@ -5,7 +5,6 @@ Date: 2023/11/7 18:30
 Desc: 基金数据-新发基金-新成立基金
 https://fund.eastmoney.com/data/xinfound.html
 """
-
 import pandas as pd
 import requests
 

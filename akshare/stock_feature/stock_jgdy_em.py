@@ -7,7 +7,6 @@ http://data.eastmoney.com/jgdy/
 东方财富网-数据中心-特色数据-机构调研-机构调研统计: http://data.eastmoney.com/jgdy/tj.html
 东方财富网-数据中心-特色数据-机构调研-机构调研详细: http://data.eastmoney.com/jgdy/xx.html
 """
-
 import pandas as pd
 import requests
 from tqdm import tqdm

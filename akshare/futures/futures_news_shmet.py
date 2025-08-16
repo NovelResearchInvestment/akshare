@@ -81,7 +81,6 @@ def futures_news_shmet(symbol: str = "全部") -> pd.DataFrame:
 if __name__ == "__main__":
     futures_news_shmet_df = futures_news_shmet(symbol="铜")
     print(futures_news_shmet_df)
-
     for item in [
         "全部",
         "要闻",

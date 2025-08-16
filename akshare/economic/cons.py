@@ -4,7 +4,6 @@
 Date: 2019/10/21 21:11
 Desc: 宏观经济配置文件
 """
-
 # urls-china
 JS_CHINA_CPI_YEARLY_URL = (
     "https://cdn.jin10.com/dc/reports/dc_chinese_cpi_yoy_all.js?v={}&_={}"

@@ -9,7 +9,6 @@ https://datacenter.jin10.com/market
 红色颜色越深，表明该股票讨论热度越高，其当前的涨幅更大。
 绿色颜色越深，表明该股票讨论的热度越低，其当前的跌幅更大。
 """
-
 import time
 from typing import Dict
 

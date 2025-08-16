@@ -5,7 +5,6 @@ Date: 2023/12/22 20:00
 Desc: 胡润排行榜
 https://www.hurun.net/
 """
-
 import warnings
 
 import pandas as pd

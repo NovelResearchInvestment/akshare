@@ -126,7 +126,6 @@ inventory
 
 ```python
 from akshare import pro_api
-
 pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
 inventory_df = pro.inventory(variety="RB", date="2018-08-08")
 print(inventory_df)
@@ -169,7 +168,6 @@ inventory
 
 ```python
 from akshare import pro_api
-
 pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
 inventory_df = pro.inventory(variety="RB", year="2019", week_number="10")
 print(inventory_df)
@@ -503,7 +501,6 @@ warehouse_receipt
 
 ```python
 from akshare import pro_api
-
 pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
 warehouse_receipt_sum_df = pro.warehouse_receipt(date="2018-08-08")
 print(warehouse_receipt_sum_df)

@@ -5,7 +5,6 @@ Date: 2024/1/20 22:30
 Desc: FF-data-library
 https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html
 """
-
 from io import StringIO
 
 import pandas as pd

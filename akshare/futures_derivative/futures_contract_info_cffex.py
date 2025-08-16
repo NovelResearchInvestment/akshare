@@ -5,7 +5,6 @@ Date: 2024/2/28 17:00
 Desc: 中国金融期货交易所-数据-交易参数
 http://www.cffex.com.cn/jycs/
 """
-
 import xml.etree.ElementTree as ET
 
 import pandas as pd

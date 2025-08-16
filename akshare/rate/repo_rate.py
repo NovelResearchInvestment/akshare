@@ -4,7 +4,6 @@
 Date: 2024/1/20 23:04
 Desc: 中国外汇交易中心暨全国银行间同业拆借中心-回购定盘利率-历史数据
 """
-
 import pandas as pd
 import requests
 

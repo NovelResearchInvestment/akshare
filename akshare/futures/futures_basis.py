@@ -12,7 +12,6 @@ Desc: 生意社网站采集大宗商品现货价格及相应基差数据, 数据
 发现生意社的 bugs:
 1. 2018-09-12 周三 数据缺失是因为生意社源数据在该交易日缺失: https://www.100ppi.com/sf/day-2018-09-12.html
 """
-
 import datetime
 import re
 import time

@@ -29,26 +29,6 @@ variety_positions
 | long_chge  | int    | 该席位多头持仓变化量 |
 | short      | int    | 该席位空头持仓量   |
 | short_chge | int    | 该席位空头持仓变化量 |
-
-### 示例代码
-
-```python
-from akshare import pro_api
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_positions_df = pro.variety_positions(fields="longs", code="rb1810", date="2018-08-08")
-print(variety_positions_df)
-```
-
-### 返回示例
-
-```
-   broker   long  long_chge
-0    永安期货  80565       3075
-1    申银万国  65572       2992
-2    华泰期货  49279      -1552
-3    中信期货  46272       4286
-4    海通期货  42596       -286
-5    方正中期  41839      -7504
 6    鲁证期货  41520       -550
 7    银河期货  38892      -2800
 8    一德期货  34618      -1378
@@ -79,6 +59,7 @@ variety_all_positions
 
 #### 请求参数
 
+<<<<<<< HEAD
 | 参数名    | 说明    | 举例                            |
 |--------|-------|-------------------------------|
 | fields | 多头/空头 | longs: 返回多头数据; shorts: 返回空头数据 |
@@ -97,26 +78,25 @@ variety_all_positions
 | short      | int    | 该席位空头持仓量   |
 | short_chge | int    | 该席位空头持仓变化量 |
 | code       | string | 具体合约       |
+=======
+| 参数名    | 说明    | 举例                            |
+|--------|-------|-------------------------------|
+| fields | 多头/空头 | longs: 返回多头数据; shorts: 返回空头数据 |
+| symbol | 合约代号  | RB                            |
+| date   | 查询日期  | 2018-08-08                    |
 
-#### 示例代码
+#### 返回参数
 
-```python
-from akshare import pro_api
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_all_positions_df = pro.variety_all_positions(fields="shorts", symbol="RB", date="2018-08-08")
-print(variety_all_positions_df)
-```
-
-#### 返回示例
-
-```
-   broker   long  long_chge    code
-0    东证期货      0        -60  rb1808
-1    永安期货  80565       3075  rb1810
-2    申银万国  65572       2992  rb1810
-3    华泰期货  49279      -1552  rb1810
-4    中信期货  46272       4286  rb1810
-5    海通期货  42596       -286  rb1810
+| 参数名        | 类型     | 说明         |
+|:-----------|:-------|:-----------|
+| longs      | array  | 多头龙虎榜      |
+| shorts     | array  | 空头龙虎榜      |
+| broker     | string | 席位         |
+| long       | int    | 该席位多头持仓量   |
+| long_chge  | int    | 该席位多头持仓变化量 |
+| short      | int    | 该席位空头持仓量   |
+| short_chge | int    | 该席位空头持仓变化量 |
+| code       | string | 具体合约       |
 6    方正中期  41839      -7504  rb1810
 7    鲁证期货  41520       -550  rb1810
 8    银河期货  38892      -2800  rb1810
@@ -170,6 +150,7 @@ variety_net_positions
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名    | 说明     | 举例         |
 |:-------|:-------|------------|
 | symbol | 查询品种编码 | RB         |
@@ -182,26 +163,25 @@ variety_net_positions
 |:-------------|:-----|-------|
 | trans_date   | date | 查询日期  |
 | net_position | int  | 净持仓数据 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|symbol |查询品种编码   |RB|
+|broker |席位   |永安期货|
+|date |查询日期   |2018-08-08|
 
-### 示例代码
+| 参数名    | 说明     | 举例         |
+|:-------|:-------|------------|
+| symbol | 查询品种编码 | RB         |
+| broker | 席位     | 永安期货       |
+| date   | 查询日期   | 2018-08-08 |
 
-```python
-from akshare import pro_api
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_net_positions_df = pro.variety_net_positions(symbol="RB", broker="永安期货", date="2018-08-08")
-print(variety_net_positions_df)
-```
+### 返回参数
 
-### 返回示例
-
-```
-             variety_net_positions
-trans_date              2018-08-08
-net_position                 58463
-```
-
-## 合约行情数据
-
+| 参数名          | 类型   | 说明    |
+|:-------------|:-----|-------|
+| trans_date   | date | 查询日期  |
+| net_position | int  | 净持仓数据 |
 ### 接口名称
 
 variety_quotes
@@ -212,6 +192,7 @@ variety_quotes
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名  | 说明     | 举例         |
 |:-----|:-------|------------|
 | code | 具体合约代号 | rb1810     |
@@ -227,26 +208,25 @@ variety_quotes
 | low     | float | 最低价 |
 | volume  | int   | 成交量 |
 | openint | int   | 持仓量 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|code |具体合约代号   |rb1810|
+| 参数名  | 说明     | 举例         |
+|:-----|:-------|------------|
+| code | 具体合约代号 | rb1810     |
+| date | 查询日期   | 2018-08-08 |
 
-### 示例代码
+### 返回参数
 
-```python
-from akshare import pro_api
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_quotes_df = pro.variety_quotes(code="rb1810", date="2018-08-08")
-print(variety_quotes_df)
-```
-
-### 返回示例
-
-```
-              variety_quotes
-open                    4237
-close                   4236
-high                    4278
-low                     4205
-volume               2620386
-openint              2160052
+| 参数名     | 类型    | 说明  |
+|:--------|:------|-----|
+| open    | float | 开盘价 |
+| close   | float | 收盘价 |
+| high    | float | 最高价 |
+| low     | float | 最低价 |
+| volume  | int   | 成交量 |
+| openint | int   | 持仓量 |
 settle_price            4240
 ```
 
@@ -262,6 +242,7 @@ variety_money
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名    | 说明   | 举例         |
 |:-------|:-----|------------|
 | symbol | 品种编码 | RB         |
@@ -273,26 +254,25 @@ variety_money
 |:------------|:------|-----------|
 | trans_date  | date  | 查询日期      |
 | total_value | float | 沉淀资金量，单位元 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|symbol |品种编码   |RB|
+|date |查询日期   |2018-08-08|
 
-### 示例代码
+### 返回参数
 
-```python
-from akshare import pro_api
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_money_df = pro.variety_money(symbol="RB", date="2018-08-08")
-print(variety_money_df)
-```
+| 参数名    | 说明   | 举例         |
+|:-------|:-----|------------|
+| symbol | 品种编码 | RB         |
+| date   | 查询日期 | 2018-08-08 |
 
-### 返回示例
+### 返回参数
 
-```
-            variety_money
-trans_date     2018-08-08
-total_value   7.46824e+09
-```
-
-## 合约多空比数据
-
+| 参数名         | 类型    | 说明        |
+|:------------|:------|-----------|
+| trans_date  | date  | 查询日期      |
+| total_value | float | 沉淀资金量，单位元 |
 ### 接口名称
 
 variety_bbr
@@ -302,6 +282,26 @@ variety_bbr
 合约多空比数据接口
 
 ### 请求参数
+
+<<<<<<< HEAD
+| 参数名  | 说明     | 举例         |
+|:-----|:-------|------------|
+| code | 具体合约代号 | rb1810     |
+| date | 查询日期   | 2018-08-08 |
+
+### 返回参数
+
+| 参数名        | 类型    | 说明   |
+|:-----------|:------|------|
+| trans_date | date  | 查询日期 |
+| bbr        | float | 多空比  |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|code |具体合约代号   |rb1810|
+|date |查询日期   |2018-08-08|
+
+### 返回参数
 
 | 参数名  | 说明     | 举例         |
 |:-----|:-------|------------|
@@ -314,26 +314,6 @@ variety_bbr
 |:-----------|:------|------|
 | trans_date | date  | 查询日期 |
 | bbr        | float | 多空比  |
-
-### 示例代码
-
-```python
-from akshare import pro_api
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_bbr_df = pro.variety_bbr(code="rb1810", date="2018-08-08")
-print(variety_bbr_df)
-```
-
-### 返回示例
-
-```
-           variety_bbr
-trans_date  2018-08-08
-bbr            54.5111
-```
-
-## 合约净持仓保证金变化数据
-
 ### 接口名称
 
 variety_net_money_chge
@@ -343,6 +323,26 @@ variety_net_money_chge
 合约净持仓保证金变化数据接口
 
 ### 请求参数
+
+<<<<<<< HEAD
+| 参数名  | 说明     | 举例         |
+|:-----|:-------|------------|
+| code | 具体合约代号 | rb1810     |
+| date | 查询日期   | 2018-08-08 |
+
+### 返回参数
+
+| 参数名    | 类型     | 说明                      |
+|:-------|:-------|-------------------------|
+| broker | string | 席位                      |
+| value  | float  | 沉淀资金变化量，正数为向多，负数为向空，单位元 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|code |具体合约代号   |rb1810|
+|date |查询日期   |2018-08-08|
+
+### 返回参数
 
 | 参数名  | 说明     | 举例         |
 |:-----|:-------|------------|
@@ -355,32 +355,11 @@ variety_net_money_chge
 |:-------|:-------|-------------------------|
 | broker | string | 席位                      |
 | value  | float  | 沉淀资金变化量，正数为向多，负数为向空，单位元 |
-
-### 示例代码
-
-```python
-from akshare import pro_api
-
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_net_money_chge_df = pro.variety_net_money_chge(code="rb1810", date="2018-08-08")
-print(variety_net_money_chge_df)
-```
-
-### 返回示例
-
-```
-   broker     value
-0    国海良时 -59991336
-1    方正中期 -45593568
 2    国泰君安 -10364256
 3    瑞达期货  -7979256
 4    南华期货  -7742664
 5    东海期货  -6521544
 6    中大期货  -5998752
-7    一德期货  -5258448
-8    光大期货  -3152016
-9    浙商期货  -3117672
-10   华安期货         0
 11   鲁证期货    183168
 12   东证期货   1885104
 13   广发期货   1911816
@@ -411,6 +390,7 @@ variety_net_money
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名  | 说明     | 举例         |
 |:-----|:-------|------------|
 | code | 具体合约代号 | rb1810     |
@@ -422,26 +402,25 @@ variety_net_money
 |:-------|:-------|--------------------------|
 | broker | string | 席位                       |
 | value  | float  | 净持仓保证金数据，正数为净多，负数为净空，单位元 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|code |具体合约代号   |rb1810|
+|date |查询日期   |2018-08-08|
 
-### 示例代码
+### 返回参数
 
-```python
-from akshare import pro_api
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_net_money_df = pro.variety_net_money(code="rb1810", date="2018-08-08")
-print(variety_net_money_df)
-```
+| 参数名  | 说明     | 举例         |
+|:-----|:-------|------------|
+| code | 具体合约代号 | rb1810     |
+| date | 查询日期   | 2018-08-08 |
 
-### 返回示例
+### 返回参数
 
-```
-   broker      value
-0    中辉期货  -99601416
-1    中大期货  -90671976
-2    银河期货  -84314520
-3    徽商期货  -72374256
-4    中信建投  -70912728
-5    光大期货  -52279200
+| 参数名    | 类型     | 说明                       |
+|:-------|:-------|--------------------------|
+| broker | string | 席位                       |
+| value  | float  | 净持仓保证金数据，正数为净多，负数为净空，单位元 |
 6    国泰君安  -40617504
 7    东海期货  -39449808
 8    南华期货  -32596272
@@ -477,6 +456,7 @@ variety_total_money
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名  | 说明     | 举例         |
 |:-----|:-------|------------|
 | code | 具体合约代号 | rb1810     |
@@ -488,32 +468,30 @@ variety_total_money
 |:-------|:-------|--------------|
 | broker | string | 席位           |
 | value  | float  | 总持仓保证金数据，单位元 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|code |具体合约代号   |rb1810|
+|date |查询日期   |2018-08-08|
 
-### 示例代码
+### 返回参数
 
-```python
-from akshare import pro_api
+| 参数名  | 说明     | 举例         |
+|:-----|:-------|------------|
+| code | 具体合约代号 | rb1810     |
+| date | 查询日期   | 2018-08-08 |
 
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_total_money_df = pro.variety_total_money(code="rb1810", date="2018-08-08")
-print(variety_total_money_df)
-```
+### 返回参数
 
-### 返回示例
-
-```
-   broker      value
-0    中辉期货   99601416
-1    中大期货   90671976
+| 参数名    | 类型     | 说明           |
+|:-------|:-------|--------------|
+| broker | string | 席位           |
+| value  | float  | 总持仓保证金数据，单位元 |
 2    银河期货  381138264
 3    徽商期货   72374256
 4    中信建投   70912728
 5    光大期货  164912256
 6    国泰君安  237935232
-7    东海期货  183786192
-8    南华期货  179977824
-9    东证期货  143599896
-10   兴证期货  161905248
 11   华安期货          0
 12   国海良时          0
 13   国投安信  146160432
@@ -544,6 +522,7 @@ variety_profit
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名        | 说明     | 举例         |
 |:-----------|:-------|------------|
 | symbol     | 品种编码   | RB         |
@@ -556,32 +535,30 @@ variety_profit
 |:-------------|:-------|----------|
 | broker       | string | 席位       |
 | total_profit | float  | 盈亏数据，单位元 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|symbol |品种编码   |RB|
+|start_date |查询开始日期   |2018-02-08|
+|end_date |查询结束日期   |2018-08-08|
 
-### 示例代码
+| 参数名        | 说明     | 举例         |
+|:-----------|:-------|------------|
+| symbol     | 品种编码   | RB         |
+| start_date | 查询开始日期 | 2018-02-08 |
+| end_date   | 查询结束日期 | 2018-08-08 |
 
-```python
-from akshare import pro_api
+### 返回参数
 
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_profit_df = pro.variety_profit(symbol="RB", start_date="2018-02-08", end_date="2018-08-08")
-print(variety_profit_df)
-```
-
-### 返回示例
-
-```
-   broker  total_profit
-0    中辉期货    -367083530
-1    东证期货    -274196150
+| 参数名          | 类型     | 说明       |
+|:-------------|:-------|----------|
+| broker       | string | 席位       |
+| total_profit | float  | 盈亏数据，单位元 |
 2    招商期货    -252721200
 3    海通期货    -231433760
 4    中信建投    -224441170
 5    广发期货    -224286720
 6    徽商期货    -173556810
-7    光大期货    -153981100
-8    南华期货    -126979400
-9    浙商期货    -124635130
-10   国联期货    -121934700
 11   中信期货    -106715730
 12   道通期货     -95878520
 13   申银万国     -82166760
@@ -646,6 +623,7 @@ variety_strategies
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名  | 说明   | 举例         |
 |:-----|:-----|------------|
 | code | 合约代号 | rb1810     |
@@ -658,31 +636,29 @@ variety_strategies
 | trans_date | date  | 查询日期 |
 | longhu     | float | 龙虎比  |
 | niuxiong   | float | 牛熊线  |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|code |合约代号   |rb1810|
+|date |查询日期   |2018-08-08|
 
-### 示例代码
+### 返回参数
+| 参数名  | 说明   | 举例         |
+|:-----|:-----|------------|
+| code | 合约代号 | rb1810     |
+| date | 查询日期 | 2018-08-08 |
 
-```python
-from akshare import pro_api
+### 返回参数
 
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_strategies_df = pro.variety_strategies(code="rb1810", date="2018-08-08")
-print(variety_strategies_df)
-```
-
-### 返回示例
-
-```
-           variety_strategies
-trans_date         2018-08-08
-longhu                  7.954
+| 参数名        | 类型    | 说明   |
+|:-----------|:------|------|
+| trans_date | date  | 查询日期 |
+| longhu     | float | 龙虎比  |
+| niuxiong   | float | 牛熊线  |
 niuxiong                   10
 ```
 
 ## 龙虎比排行数据
-
-### 多头排行
-
-#### 接口名称
 
 variety_longhu_top
 
@@ -692,6 +668,7 @@ variety_longhu_top
 
 #### 请求参数
 
+<<<<<<< HEAD
 | 参数名  | 说明   | 举例         |
 |:-----|:-----|------------|
 | date | 查询日期 | 2018-08-08 |
@@ -703,32 +680,30 @@ variety_longhu_top
 | symbol | string | 品种编码   |
 | code   | string | 具体合约代号 |
 | value  | float  | 龙虎比    |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|date |查询日期   |2018-08-08|
 
-#### 示例代码
+#### 返回参数
 
-```python
-from akshare import pro_api
+|参数名|类型|说明|
+| 参数名  | 说明   | 举例         |
+|:-----|:-----|------------|
+| date | 查询日期 | 2018-08-08 |
 
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_longhu_long_top_df = pro.variety_longhu_top(fields="long", date="2018-08-08")
-print(variety_longhu_long_top_df)
-```
+#### 返回参数
 
-#### 返回示例
-
-```
-     code symbol      value
-0  cu1905     CU  56.976958
-1  au1812     AU  41.579291
+| 参数名    | 类型     | 说明     |
+|:-------|:-------|--------|
+| symbol | string | 品种编码   |
+| code   | string | 具体合约代号 |
+| value  | float  | 龙虎比    |
 2  sm1901     SM  10.242171
 3   v1901      V   9.424667
 4  sf1901     SF   9.115990
 5   j1901      J   7.243534
 6  rb1901     RB   6.526060
-7  hc1901     HC   4.098336
-8  cu1811     CU   3.650439
-9  al1810     AL   3.589835
-```
 
 ### 空头排行
 
@@ -742,6 +717,7 @@ variety_longhu_top
 
 #### 请求参数
 
+<<<<<<< HEAD
 | 参数名  | 说明   | 举例         |
 |:-----|:-----|------------|
 | date | 查询日期 | 2018-08-08 |
@@ -753,32 +729,30 @@ variety_longhu_top
 | symbol | string | 品种编码   |
 | code   | string | 具体合约代号 |
 | value  | float  | 龙虎比    |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|date |查询日期   |2018-08-08|
 
-#### 示例代码
+#### 返回参数
 
-```python
-from akshare import pro_api
+|参数名|类型|说明|
+| 参数名  | 说明   | 举例         |
+|:-----|:-----|------------|
+| date | 查询日期 | 2018-08-08 |
 
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_longhu_short_top_df = pro.variety_longhu_top(fields="short", date="2018-08-08")
-print(variety_longhu_short_top_df)
-```
+#### 返回参数
 
-#### 返回示例
-
-```
-     code symbol      value
-0  oi1905     OI -39.089038
-1  ru1905     RU -27.660905
+| 参数名    | 类型     | 说明     |
+|:-------|:-------|--------|
+| symbol | string | 品种编码   |
+| code   | string | 具体合约代号 |
+| value  | float  | 龙虎比    |
 2   y1905      Y -25.509936
 3  al1812     AL -24.926301
 4   m1905      M -24.878081
 5  cu1901     CU -23.127945
 6   a1901      A -21.994445
-7   y1901      Y -21.953714
-8   c1901      C -21.143036
-9  rm1905     RM -19.026835
-```
 
 ## 牛熊线排行数据
 
@@ -794,6 +768,7 @@ variety_niuxiong_top
 
 #### 请求参数
 
+<<<<<<< HEAD
 | 参数名  | 说明   | 举例         |
 |:-----|:-----|------------|
 | date | 查询日期 | 2018-08-08 |
@@ -805,32 +780,30 @@ variety_niuxiong_top
 | symbol | string | 品种编码 |
 | code   | string | 合约代号 |
 | value  | float  | 牛熊线  |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|date |查询日期   |2018-08-08|
 
-#### 示例代码
+#### 返回参数
 
-```python
-from akshare import pro_api
+|参数名|类型|说明|
+| 参数名  | 说明   | 举例         |
+|:-----|:-----|------------|
+| date | 查询日期 | 2018-08-08 |
 
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_niuxiong_long_top_df = pro.variety_niuxiong_top(fields="long", date="2018-08-08")
-print(variety_niuxiong_long_top_df)
-```
+#### 返回参数
 
-#### 返回示例
-
-```
-     code symbol  value
-0  au1812     AU     45
-1  rm1901     RM     30
+| 参数名    | 类型     | 说明   |
+|:-------|:-------|------|
+| symbol | string | 品种编码 |
+| code   | string | 合约代号 |
+| value  | float  | 牛熊线  |
 2  sm1901     SM     28
 3   v1901      V     27
 4   t1812      T     23
 5   j1901      J     23
 6  sm1809     SM     23
-7  ta1903     TA     23
-8  ta1905     TA     21
-9  sf1901     SF     20
-```
 
 ### 空头排行
 
@@ -844,6 +817,7 @@ variety_niuxiong_top
 
 #### 请求参数
 
+<<<<<<< HEAD
 | 参数名  | 说明   | 举例         |
 |:-----|:-----|------------|
 | date | 查询日期 | 2018-08-08 |
@@ -855,32 +829,30 @@ variety_niuxiong_top
 | symbol | string | 品种编码 |
 | code   | string | 合约代号 |
 | value  | float  | 牛熊线  |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|date |查询日期   |2018-08-08|
 
-#### 示例代码
+#### 返回参数
 
-```python
-from akshare import pro_api
+|参数名|类型|说明|
+| 参数名  | 说明   | 举例         |
+|:-----|:-----|------------|
+| date | 查询日期 | 2018-08-08 |
 
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_niuxiong_short_top_df = pro.variety_niuxiong_top(fields="short", date="2018-08-08")
-print(variety_niuxiong_short_top_df)
-```
+#### 返回参数
 
-#### 返回示例
-
-```
-     code symbol  value
-0   a1901      A    -40
-1  cu1810     CU    -37
+| 参数名    | 类型     | 说明   |
+|:-------|:-------|------|
+| symbol | string | 品种编码 |
+| code   | string | 合约代号 |
+| value  | float  | 牛熊线  |
 2  zn1810     ZN    -32
 3  ru1901     RU    -26
 4  ru1905     RU    -23
 5   y1905      Y    -22
 6  al1811     AL    -21
-7   l1901      L    -20
-8  hc1810     HC    -16
-9   y1901      Y    -14
-```
 
 ## 商品相关研报数据
 
@@ -893,6 +865,26 @@ variety_reports
 商品相关研报数据接口
 
 ### 请求参数
+
+<<<<<<< HEAD
+| 参数名        | 说明   | 举例         |
+|:-----------|:-----|------------|
+| csymbolode | 品种编码 | RB         |
+| date       | 查询日期 | 2018-08-08 |
+
+### 返回参数
+
+| 参数名   | 类型       | 说明    |
+|:------|:---------|-------|
+| title | string   | 研报标题  |
+| pub   | string   | 研报发布人 |
+| time  | datetime | 发布时间  |
+| url   | string   | 研报地址  |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|csymbolode |品种编码   |RB|
+|date |查询日期   |2018-08-08|
 
 | 参数名        | 说明   | 举例         |
 |:-----------|:-----|------------|
@@ -907,32 +899,11 @@ variety_reports
 | pub   | string   | 研报发布人 |
 | time  | datetime | 发布时间  |
 | url   | string   | 研报地址  |
-
-### 示例代码
-
-```python
-from akshare import pro_api
-
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_reports_df = pro.variety_reports(csymbolode="RB", date="2018-08-08")
-print(variety_reports_df)
-```
-
-### 返回示例
-
-```
-    pub  ...                                                url
-0  中信期货  ...  https://report.qhkch.com/47/黑色建材日报/reportd471f...
-1  格林大华  ...  https://report.qhkch.com/274/工业品/reportd836d83...
 2  格林大华  ...  https://report.qhkch.com/274/深度报告/reportd003e4...
 3  华泰期货  ...  https://report.qhkch.com/127/金属/report11f7a4db...
 4  华泰期货  ...  https://report.qhkch.com/127/黑色建材/reportdd6bdd...
 5  银河期货  ...  https://report.qhkch.com/416/黑色链/reportb05ee81...
 6  兴证期货  ...  https://report.qhkch.com/101/工业品日报/report26db3...
-```
-
-## 商品列表数据
-
 ### 接口名称
 
 variety_all
@@ -943,6 +914,7 @@ variety_all
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名        | 说明   | 举例         |
 |:-----------|:-----|------------|
 | csymbolode | 品种编码 | RB         |
@@ -955,32 +927,30 @@ variety_all
 | name   | string | 品种名称 |
 | symbol | string | 品种编码 |
 | market | string | 所在市场 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|csymbolode |品种编码   |RB|
+|date |查询日期   |2018-08-08|
 
-### 示例代码
+### 返回参数
+| 参数名        | 说明   | 举例         |
+|:-----------|:-----|------------|
+| csymbolode | 品种编码 | RB         |
+| date       | 查询日期 | 2018-08-08 |
 
-```python
-from akshare import pro_api
+### 返回参数
 
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_all_df = pro.variety_all()
-print(variety_all_df)
-```
-
-### 返回示例
-
-```
-   market name symbol
-0     上期所  螺纹钢     RB
-1     大商所  铁矿石      I
+| 参数名    | 类型     | 说明   |
+|:-------|:-------|------|
+| name   | string | 品种名称 |
+| symbol | string | 品种编码 |
+| market | string | 所在市场 |
 2     大商所   焦煤     JM
 3     大商所   焦炭      J
 4     郑商所   棉纱     CY
 5     上期所   热卷     HC
 6     郑商所   苹果     AP
-7     郑商所   棉花     CF
-8     郑商所   玻璃     FG
-9     郑商所   甲醇     MA
-10    郑商所   菜油     OI
 11    郑商所   菜粕     RM
 12    郑商所   硅铁     SF
 13    郑商所   锰硅     SM
@@ -1045,6 +1015,7 @@ variety_list
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名  | 说明   | 举例         |
 |:-----|:-----|------------|
 | date | 查询日期 | 2018-08-08 |
@@ -1054,26 +1025,25 @@ variety_list
 | 参数名 | 类型     | 说明 |
 |:----|:-------|----|
 | -   | string | 合约 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|date |查询日期   |2018-08-08|
 
-### 示例代码
+### 返回参数
 
-```python
-from akshare import pro_api
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_list_df = pro.variety_list(date="2018-08-08")
-print(variety_list_df)
-```
+|参数名|类型|说明|
+|:-----  |:-----|-----|
+|- |string   | 合约  |
+| 参数名  | 说明   | 举例         |
+|:-----|:-----|------------|
+| date | 查询日期 | 2018-08-08 |
 
-### 返回示例
+### 返回参数
 
-```
-          0
-0     a1809
-1     a1811
-2     a1901
-3     a1903
-4     a1905
-..      ...
+| 参数名 | 类型     | 说明 |
+|:----|:-------|----|
+| -   | string | 合约 |
 495  zn1903
 496  zn1904
 497  zn1905
@@ -1093,6 +1063,7 @@ variety_no_futures
 
 ### 请求参数
 
+<<<<<<< HEAD
 | 参数名    | 说明    | 举例         |
 |:-------|:------|------------|
 | symbol | 品种编码	 | RB         |
@@ -1104,20 +1075,22 @@ variety_no_futures
 |:-----------|:-----|------------|
 | trans_date | date | 查询日期       |
 | net_value  | int  | 非期货公司净持仓数据 |
+=======
+|参数名|说明|举例|
+|:-----  |:-----|-----|
+|symbol |品种编码	   |RB|
+|date |查询日期   |2018-08-08|
 
-### 示例代码
+### 返回参数
 
-```python
-from akshare import pro_api
-pro = pro_api(token="在此处输入您的 token, 可以联系奇货可查网站管理员获取")
-variety_no_futures_df = pro.variety_no_futures(symbol="RB", date="2018-08-08")
-print(variety_no_futures_df)
-```
+| 参数名    | 说明    | 举例         |
+|:-------|:------|------------|
+| symbol | 品种编码	 | RB         |
+| date   | 查询日期  | 2018-08-08 |
 
-### 返回示例
+### 返回参数
 
-```
-           variety_no_futures
-trans_date         2018-08-08
-net_value               -1000
-```
+| 参数名        | 类型   | 说明         |
+|:-----------|:-----|------------|
+| trans_date | date | 查询日期       |
+| net_value  | int  | 非期货公司净持仓数据 |

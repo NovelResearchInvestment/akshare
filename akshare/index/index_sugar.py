@@ -5,7 +5,6 @@ Date: 2023/6/19 17:00
 Desc: 沐甜科技数据中心-中国食糖指数
 https://www.msweet.com.cn/mtkj/sjzx13/index.html
 """
-
 import requests
 import pandas as pd
 

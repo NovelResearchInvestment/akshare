@@ -22,7 +22,6 @@ def futures_rule(date: str = "20231205") -> pd.DataFrame:
     :rtype: pandas.DataFrame
     """
     import urllib3
-
     urllib3.disable_warnings()
     url = " https://www.gtjaqh.com/pc/calendar"
     params = {"date": f"{date}"}

@@ -1194,7 +1194,6 @@ print(air_quality_rank_df)
 
 ```python
 import akshare as ak
-
 air_quality_watch_point_df = ak.air_quality_watch_point(city="杭州", start_date="2018-01-01", end_date="2020-04-27")
 print(air_quality_watch_point_df)
 ```

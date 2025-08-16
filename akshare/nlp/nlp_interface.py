@@ -6,7 +6,6 @@ Desc: ownthink-knowledge graph
 https://ownthink.com/
 https://www.ownthink.com/docs/kg/
 """
-
 import pandas as pd
 import requests
 

@@ -7,7 +7,6 @@ Desc: 艺恩-艺人
 艺人流量价值
 https://www.endata.com.cn/Marketing/Artist/business.html
 """
-
 import datetime
 import json
 import os

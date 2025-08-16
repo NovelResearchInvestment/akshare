@@ -30,7 +30,6 @@ _py_major, _py_minor = None, None
 def _get_pyver():
     global _py_major, _py_minor
     import sys
-
     vi = sys.version_info
     try:
         _py_major, _py_minor = vi.major, vi.minor
@@ -280,7 +279,6 @@ def _nonnumber_float_constants():
     (opposed to some implementation of it) doesn't discuss
     non-numbers.  We try various strategies from the best to the
     worst.
-
     If this Python interpreter uses the IEEE 754 floating point
     standard then the returned values will probably be real instances
     of the 'float' type.  Otherwise a custom class object is returned
@@ -681,7 +679,6 @@ del _nonnumber_float_constants
 # ----------------------------------------------------------------------
 # Integers
 
-
 class json_int((1).__class__):  # Have to specify base this way to satisfy 2to3
     """A subclass of the Python int/long that remembers its format (hex,octal,etc).
 
@@ -737,7 +734,6 @@ class json_int((1).__class__):  # Have to specify base this way to satisfy 2to3
 
 # ----------------------------------------------------------------------
 # String processing helpers
-
 
 def skipstringsafe(s, start=0, end=None):
     i = start
@@ -808,7 +804,6 @@ class utf32(codecs.CodecInfo):
     See http://en.wikipedia.org/wiki/UTF-32
 
     """
-
     BOM_UTF32_BE = _make_raw_bytes([0, 0, 0xFE, 0xFF])  # '\x00\x00\xfe\xff'
     BOM_UTF32_LE = _make_raw_bytes([0xFF, 0xFE, 0, 0])  # '\xff\xfe\x00\x00'
 
@@ -1244,12 +1239,10 @@ class helpers(object):
         Returns None if codec not found, rather than raising a LookupError.
         """
         import codecs
-
         if isinstance(encoding, codecs.CodecInfo):
             return encoding
         encoding = encoding.lower()
         import codecs
-
         if helpers.always_use_custom_codecs:
             # Try custom utf32 first, then standard python codecs
             cdk = utf32.lookup(encoding)
@@ -1591,7 +1584,6 @@ class helpers(object):
 # File position indicator
 # ----------------------------------------------------------------------
 
-
 class position_marker(object):
     """A position marks a specific place in a text document.
     It consists of the following attributes:
@@ -1753,7 +1745,6 @@ class position_marker(object):
 # ----------------------------------------------------------------------
 # Buffered Stream Reader
 # ----------------------------------------------------------------------
-
 
 class buffered_stream(object):
     """A helper class for the JSON parser.
@@ -2196,7 +2187,6 @@ class JSONSkipHook(JSONException):
     situation.
 
     """
-
     pass
 
 
@@ -2206,7 +2196,6 @@ class JSONStopProcessing(JSONException):
     with an error.
 
     """
-
     pass
 
 
@@ -2341,13 +2330,11 @@ class JSONError(JSONException):
 
 class JSONDecodeError(JSONError):
     """An exception class raised when a JSON decoding error (syntax error) occurs."""
-
     pass
 
 
 class JSONDecodeHookError(JSONDecodeError):
     """An exception that occured within a decoder hook.
-
     The original exception is available in the 'hook_exception' attribute.
     """
 
@@ -2370,13 +2357,11 @@ class JSONDecodeHookError(JSONDecodeError):
 
 class JSONEncodeError(JSONError):
     """An exception class raised when a python object can not be encoded as a JSON string."""
-
     pass
 
 
 class JSONEncodeHookError(JSONEncodeError):
     """An exception that occured within an encoder hook.
-
     The original exception is available in the 'hook_exception' attribute.
     """
 
@@ -2400,7 +2385,6 @@ class JSONEncodeHookError(JSONEncodeError):
 # ----------------------------------------------------------------------
 # Encoder state object
 # ----------------------------------------------------------------------
-
 
 class encode_state(object):
     """An internal transient object used during JSON encoding to
@@ -2603,7 +2587,6 @@ class decode_statistics(object):
 # Decoder state object
 # ----------------------------------------------------------------------
 
-
 class decode_state(object):
     """An internal transient object used during JSON decoding to
     record the current parsing state and error messages.
@@ -2646,7 +2629,6 @@ class decode_state(object):
     def set_input(self, txt, encoding=None):
         """Initialize the state by setting the input document text."""
         import sys
-
         self.reset()
         try:
             self.buf = buffered_stream(txt, encoding=encoding)
@@ -3706,7 +3688,6 @@ class json_options(object, metaclass=_behaviors_metaclass):
 # ----------------------------------------------------------------------
 # The main JSON encoder/decoder class.
 # ----------------------------------------------------------------------
-
 
 class JSON(object):
     """An encoder/decoder for JSON data streams.
@@ -5453,7 +5434,6 @@ class JSON(object):
 
         """
         import sys
-
         state = decode_state(options=self.options)
 
         # Prepare the input
@@ -6105,7 +6085,6 @@ class JSON(object):
 
 # ------------------------------
 
-
 def encode(obj, encoding=None, **kwargs):
     r"""Encodes a Python object into a JSON-encoded string.
 
@@ -6265,14 +6244,12 @@ def decode(txt, encoding=None, **kwargs):
     This will be successful if the input was encoded in any of UTF-8,
     UTF-16 (BE or LE), or UTF-32 (BE or LE), and of course plain ASCII
     works too.
-
     Note though that if you know the character encoding, then you
     should convert to a unicode string yourself, or pass it the name
     of the 'encoding' to avoid the guessing made by the auto
     detection, as with
 
         python_object = demjson.decode( input_bytes, encoding='utf8' )
-
     Callback hooks:
     ---------------
     You may supply callback hooks by using the hook name as the
@@ -6283,7 +6260,6 @@ def decode(txt, encoding=None, **kwargs):
 
     """
     import sys
-
     # Initialize the JSON object
     return_errors = False
     return_stats = False
@@ -6407,7 +6383,6 @@ def decode_file(filename, encoding=None, **kwargs):
 
 # ======================================================================
 
-
 class jsonlint(object):
     """This class contains most of the logic for the "jsonlint" command.
 
@@ -6421,7 +6396,6 @@ class jsonlint(object):
             return lint.main( sys.argv[1:] )
 
     """
-
     _jsonlint_usage = r"""Usage: %(program_name)s [<options> ...] [--] inputfile.json ...
 
 With no input filename, or "-", it will read from standard input.
@@ -6987,6 +6961,5 @@ the options --allow, --warn, or --forbid ; for example:
         if not success:
             return 1
         return 0
-
 
 # end file

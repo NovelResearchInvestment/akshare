@@ -5,7 +5,6 @@ Date: 2024/1/29 17:00
 Desc: 查询期货合约当前时刻的详情
 https://finance.sina.com.cn/futures/quotes/V2101.shtml
 """
-
 from io import StringIO
 
 import pandas as pd

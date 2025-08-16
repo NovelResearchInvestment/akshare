@@ -5,7 +5,6 @@ Date: 2023/11/5 20:00
 Desc: 基金经理大全
 https://fund.eastmoney.com/manager/default.html
 """
-
 import pandas as pd
 import requests
 from tqdm import tqdm

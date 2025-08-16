@@ -6,7 +6,6 @@ Desc: 东方财富-LOF 行情
 https://quote.eastmoney.com/center/gridlist.html#fund_lof
 https://quote.eastmoney.com/sz166009.html
 """
-
 from functools import lru_cache
 
 import pandas as pd

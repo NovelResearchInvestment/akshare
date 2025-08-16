@@ -7,7 +7,6 @@ https://github.com/FutureSharks/financial-data
 long history data for S&P 500 index daily
 http://www.econ.yale.edu/~shiller/data.htm
 """
-
 import pandas as pd
 
 

@@ -12,7 +12,6 @@ http://www.dce.com.cn/dalianshangpin/xqsj/tjsj26/rtj/cdrb/index.html
 广州期货交易所-行情数据-仓单日报
 http://www.gfex.com.cn/gfex/cdrb/hqsj_tjsj.shtml
 """
-
 import re
 from io import BytesIO, StringIO
 

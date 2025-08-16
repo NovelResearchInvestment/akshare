@@ -5,7 +5,6 @@ Date: 2021/12/27 15:47
 Desc: 中国公路物流运价、运量指数
 http://index.0256.cn/expx.htm
 """
-
 import pandas as pd
 import requests
 

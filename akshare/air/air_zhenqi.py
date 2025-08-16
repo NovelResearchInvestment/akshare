@@ -7,7 +7,6 @@ https://www.zq12369.com/environment.php
 空气质量在线监测分析平台的空气质量数据
 https://www.aqistudy.cn/
 """
-
 import json
 import os
 import re

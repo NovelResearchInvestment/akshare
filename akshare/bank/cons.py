@@ -4,7 +4,6 @@
 Date: 2023/4/3 21:06
 Desc: 银保监会配置文件
 """
-
 cbirc_headers_without_cookie_2020 = {
     "Accept": "*/*",
     "Accept-Encoding": "gzip, deflate",

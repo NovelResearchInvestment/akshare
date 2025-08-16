@@ -5,7 +5,6 @@ Date: 2024/1/7 15:00
 Desc: 东方财富网-数据中心-研究报告-盈利预测
 https://data.eastmoney.com/report/profitforecast.jshtml
 """
-
 from io import StringIO
 
 import pandas as pd

@@ -6,7 +6,6 @@ Desc: 新加坡交易所-衍生品-历史数据-历史结算价格
 https://www.sgx.com/zh-hans/research-education/derivatives
 https://links.sgx.com/1.0.0/derivatives-daily/5888/FUTURE.zip
 """
-
 import zipfile
 from io import BytesIO
 from io import StringIO

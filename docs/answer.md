@@ -77,7 +77,6 @@ print(stock_zh_index_daily_df)
 ```
 
 11. 出现 `AttributeError: 'MiniRacer' object has no attribute 'ext'` 报错
-
     1. 安装 64 位版本的 Python
 
 12. 无法下载疫情的海外数据

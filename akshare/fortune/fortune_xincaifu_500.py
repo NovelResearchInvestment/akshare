@@ -5,7 +5,6 @@ Date: 2022/10/30 21:12
 Desc: 新财富 500 人富豪榜
 http://www.xcf.cn/zhuanti/ztzz/hdzt1/500frb/index.html
 """
-
 import json
 
 import pandas as pd

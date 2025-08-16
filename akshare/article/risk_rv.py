@@ -4,7 +4,6 @@
 Date: 2024/1/20 20:51
 Desc: 修大成主页-Risk Lab-Realized Volatility; Oxford-Man Institute of Quantitative Finance Realized Library
 """
-
 import json
 
 import pandas as pd

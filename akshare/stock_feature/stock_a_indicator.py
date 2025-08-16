@@ -6,7 +6,6 @@ Desc: 市盈率, 市净率和股息率查询
 https://www.legulegu.com/stocklist
 https://www.legulegu.com/s/000001
 """
-
 from datetime import datetime
 from hashlib import md5
 

@@ -5,7 +5,6 @@ Date: 2023/3/5 18:12
 Desc: 百度股市通-外汇-行情榜单
 https://gushitong.baidu.com/top/foreign-common-%E5%B8%B8%E7%94%A8
 """
-
 import http.client
 import json
 import urllib

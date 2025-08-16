@@ -5,7 +5,6 @@ Date: 2022/4/10 18:24
 Desc: 彭博亿万富豪指数
 https://www.bloomberg.com/billionaires/
 """
-
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup

@@ -5,7 +5,6 @@ Date: 2024/3/1 23:00
 Desc: 新浪财经-期货的主力合约数据
 https://finance.sina.com.cn/futuremarket/index.shtml
 """
-
 from io import StringIO
 
 import pandas as pd

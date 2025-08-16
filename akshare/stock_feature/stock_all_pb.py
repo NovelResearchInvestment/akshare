@@ -5,7 +5,6 @@ Date: 2023/4/11 20:40
 Desc: 全部A股-等权重市净率、中位数市净率
 https://www.legulegu.com/stockdata/all-pb
 """
-
 import pandas as pd
 import requests
 

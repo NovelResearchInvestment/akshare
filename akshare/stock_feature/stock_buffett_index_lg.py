@@ -5,7 +5,6 @@ Date: 2023/4/5 22:05
 Desc: 乐估乐股-底部研究-巴菲特指标
 https://legulegu.com/stockdata/marketcap-gdp
 """
-
 import pandas as pd
 import requests
 

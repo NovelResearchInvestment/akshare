@@ -13,7 +13,6 @@ http://www.czce.com.cn/cn/DFSStaticFiles/Future/2020/20200727/FutureDataHolding.
 20100825
 http://www.czce.com.cn/cn/exchange/2014/datatradeholding/20140515.txt
 """
-
 import datetime
 import json
 import re

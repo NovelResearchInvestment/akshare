@@ -5,7 +5,6 @@ Date: 2023/4/7 15:05
 Desc: 乐咕乐股-大盘拥挤度
 https://legulegu.com/stockdata/ashares-congestion
 """
-
 import pandas as pd
 import requests
 

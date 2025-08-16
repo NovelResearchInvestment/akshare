@@ -5,7 +5,6 @@ Date: 2023/12/12 16:30
 Desc: 基金评级
 https://fund.eastmoney.com/data/fundrating.html
 """
-
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup

@@ -5,7 +5,6 @@ Date: 2022/1/7 17:02
 Desc: 东方财富网-数据中心-新股申购-首发申报信息-首发申报企业信息
 https://data.eastmoney.com/xg/xg/sbqy.html
 """
-
 import pandas as pd
 import requests
 
